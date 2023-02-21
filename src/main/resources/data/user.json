@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Hồ Hữu Tình",
+    "email": "hohuutinh@gmal.com",
+    "password": "123",
+    "avatar": "",
+    "registerDate": "20/2/2023",
+    "roles": [
+      {
+        "id": 1
+      }
+    ]
+  },
+  {
+    "name": "Chu Khánh Đoan",
+    "email": "chukhanhdoan@gmal.com",
+    "password": "123",
+    "avatar": "",
+    "registerDate": "20/2/2023",
+    "roles": [
+      {
+        "id": 1
+      }
+    ]
+  },
+  {
+    "name": "Phạm Tấn Hoàng",
+    "email": "hoanginu@gmal.com",
+    "password": "123",
+    "avatar": "",
+    "registerDate": "20/2/2023",
+    "roles": [
+      {
+        "id": 2
+      }
+    ]
+  },
+  {
+    "name": "Nguyễn Phương Nam",
+    "email": "namnghien@gmal.com",
+    "password": "123",
+    "avatar": "",
+    "registerDate": "20/2/2023",
+    "roles": [
+      {
+        "id": 2
+      }
+    ]
+  },
+  {
+    "name": "Trần Quốc Khanh",
+    "email": "khanhbeo@gmal.com",
+    "password": "123",
+    "avatar": "",
+    "registerDate": "20/2/2023",
+    "roles": [
+      {
+        "id": 2
+      }
+    ]
+  }
+]
