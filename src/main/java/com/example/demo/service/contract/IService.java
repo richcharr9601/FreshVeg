@@ -13,9 +13,11 @@ public interface IService<TEntity, TKey> {
 
     boolean existsByID(TKey key);
 
-    TEntity create(TEntity entity);
+    TEntity add(TEntity entity);
+
+    List<TEntity> addAll(Iterable<TEntity> entities);
 
     Optional<TEntity> update(TKey key, TEntity entity);
 
-    void delete(TKey key, TEntity entity);
+    void delete(TKey key);
 }

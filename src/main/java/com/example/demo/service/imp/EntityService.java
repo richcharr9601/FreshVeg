@@ -5,9 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.reflections.Reflections;
+import org.reflections.scanners.FieldAnnotationsScanner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.RepositoryWrapper;
 import com.example.demo.service.contract.IService;
@@ -41,9 +40,13 @@ public class EntityService<TEntity, TKey> implements IService<TEntity, TKey> {
     }
 
     @Override
-    public TEntity create(TEntity entity) {
+    public TEntity add(TEntity entity) {
         return repositoryWrapper.<TEntity, TKey>repository(entityType).save(entity);
-
+    }
+    
+    @Override
+    public List<TEntity> addAll(Iterable<TEntity> entities) {
+        return repositoryWrapper.<TEntity, TKey>repository(entityType).saveAll(entities);
     }
 
     @Override
@@ -53,10 +56,12 @@ public class EntityService<TEntity, TKey> implements IService<TEntity, TKey> {
         if (!existsById)
             return null;
 
-        Reflections r = new Reflections(entityType);
+        Reflections r = new Reflections(entityType.getName(), new FieldAnnotationsScanner());
         List<Field> IdFields = List.copyOf(r.getFieldsAnnotatedWith(Id.class));
         try {
-            IdFields.get(0).set(entity, key);
+            Field field = IdFields.stream().findFirst().orElseThrow();
+            field.setAccessible(true);
+            field.set(entity, key);
             return Optional.of(repositoryWrapper.<TEntity, TKey>repository(entityType).save(entity));
         } catch (IllegalArgumentException | IllegalAccessException e) {
             System.out.println("update fail: " + e.getMessage());
@@ -66,7 +71,7 @@ public class EntityService<TEntity, TKey> implements IService<TEntity, TKey> {
     }
 
     @Override
-    public void delete(TKey key, TEntity entity) {
-        repositoryWrapper.<TEntity, TKey>repository(entityType).delete(entity);
+    public void delete(TKey key) {
+        repositoryWrapper.<TEntity, TKey>repository(entityType).deleteById(key);
     }
 }

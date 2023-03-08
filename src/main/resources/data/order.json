@@ -1,0 +1,20 @@
+[
+    {   
+        "user":{
+            "userId": 1
+        },
+        "address": "Ngu Hanh Son",
+        "phone": "09123123123",
+        "amount": 50000.0,
+        "status": 0,
+        "orderDetails": [
+         {   
+            "product": {
+                "productId":1
+            },
+            "quantity": 5,
+            "price": 10000}
+        ]
+    }
+
+]

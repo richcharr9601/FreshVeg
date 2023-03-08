@@ -31,6 +31,7 @@ public class UserController {
     public UserController(ModelMapper modelMapper, UserService userService) {
         this.modelMapper = modelMapper;
         this.userService = userService;
+
     }
 
     @GetMapping("/all")
@@ -48,9 +49,9 @@ public class UserController {
     }
 
     @PostMapping()
-    public ResponseEntity<UserDTO> AddUser(@RequestBody UserDTO userDTO) throws BadRequest {
+    public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO userDTO) throws BadRequest {
         User user = modelMapper.map(userDTO, User.class);
-        return ResponseEntity.ok(modelMapper.map(userService.create(user), UserDTO.class));
+        return ResponseEntity.ok(modelMapper.map(userService.add(user), UserDTO.class));
     }
 
     @PostMapping("/{userId}/role/{roleId}")

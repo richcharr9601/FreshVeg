@@ -11,10 +11,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.repository.entity.CategoryRepository;
-import com.example.demo.repository.entity.CommentRepository;
-import com.example.demo.repository.entity.FavoriteRepository;
 import com.example.demo.repository.entity.OrderDetailRepository;
 import com.example.demo.repository.entity.OrderRepository;
+import com.example.demo.repository.entity.ProductRepository;
 import com.example.demo.repository.entity.RoleRepository;
 import com.example.demo.repository.entity.UserRepository;
 
@@ -27,11 +26,6 @@ public class RepositoryWrapper {
     @Autowired
     CategoryRepository categoryRepository;
 
-    @Autowired
-    CommentRepository commentRepository;
-
-    @Autowired
-    FavoriteRepository favoriteRepository;
 
     @Autowired
     OrderDetailRepository orderDetailRepository;
@@ -44,6 +38,9 @@ public class RepositoryWrapper {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 
     public <TEntity, TKey> JpaRepository<TEntity, TKey> repository(Class<?> type) {
         if (!checkEntity(type))

@@ -12,6 +12,7 @@ import com.example.demo.entities.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
+
 	// List product by category
 	@Query(value = "SELECT * FROM products WHERE category_id = ?", nativeQuery = true)
 	public List<Product> listProductByCategory(Long categoryId);
