@@ -28,6 +28,16 @@ public class OrderMapping extends MappingConfig {
         modelMapper.typeMap(Order.class, OrderDTO.class).addMappings(mapper -> {
             mapper.map(src -> src.getUser().getUserId(), (dest, v) -> dest.setUserId((Long)v));
         });
+
+        modelMapper.typeMap(OrderDTO.class, Order.class).addMappings(mapper -> {
+            mapper.map(src -> src.getAddress().getAddressId(), (dest, v) -> dest.getAddress().setAddressId((Long)v));
+        });
+
+        modelMapper.typeMap(Order.class, OrderDTO.class).addMappings(mapper -> {
+            mapper.map(src -> src.getAddress().getAddressId(), (dest, v) -> dest.getAddress().setAddressId((Long)v));
+        });
+
+        
     }
 
 }

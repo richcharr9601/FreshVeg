@@ -10,5 +10,6 @@ import com.example.demo.entities.Product;
 public interface ICategoryService extends IService<Category, Long> {
     List<Product> findAllProduct(Long categoryId);
     Product editProduct(Long categoryId, Long id, Product product);
-    Boolean deleteProduct(Long categoryId, Product product);
+    Boolean deleteCategory(Long id);
+
 }

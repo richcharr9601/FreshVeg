@@ -36,4 +36,10 @@ public class ProductService extends EntityService<Product, Long> implements IPro
         Page<Product> products = productRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
         return  products;
     }
+
+    // public Boolean deleteProduct(Long categoryId) {
+    //     Boolean result = productRepository.existsById(categoryId);
+    //     productRepository.deleteById(categoryId);
+    //     return result;
+    // }
 }

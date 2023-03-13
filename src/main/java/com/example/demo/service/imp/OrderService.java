@@ -23,13 +23,14 @@ public class OrderService extends EntityService<Order, Long> implements IOrderSe
     private OrderRepository orderRepository;
 
     @Override
-    public OrderDetail addOrderDetail(OrderDetail orderDetail) {
-        boolean orderExisted = repositoryWrapper.getOrderRepository().existsById(orderDetail.getId().getOrderId());
-        boolean productExisted = repositoryWrapper.getProductRepository().existsById(orderDetail.getId().getProductId());
-        if (orderExisted && productExisted) {
+    public OrderDetail addOrderDetail(Long orderId, OrderDetail orderDetail) {
+        // boolean orderExisted = repositoryWrapper.getOrderRepository().existsById(orderDetail.getId().getOrderId());
+        // boolean productExisted = repositoryWrapper.getProductRepository().existsById(orderDetail.getId().getProductId());
+        // if (orderExisted && productExisted) {
+            orderDetail.getId().setOrderId(orderId);
             return repositoryWrapper.getOrderDetailRepository().save(orderDetail);
-        }
-        return null;
+        // }
+        // return null;
     }
 
     public boolean confirmOrder(Long orderId, String status) {

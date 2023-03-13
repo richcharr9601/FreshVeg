@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import com.example.demo.dto.CategoryDTO;
 import com.example.demo.entities.Category;
+import com.example.demo.repository.entity.CategoryRepository;
 import com.example.demo.service.contract.ICategoryService;
 import com.example.demo.service.imp.CategoryService;
 import com.example.demo.service.contract.IProductService;
@@ -29,6 +30,8 @@ public class CategoryController {
     ModelMapper modelMapper;
     ICategoryService categoryService;
     IProductService productService;
+    private CategoryRepository categoryRepository;
+
 
     public CategoryController(ModelMapper modelMapper, CategoryService categoryService, ProductService productService) {
         this.modelMapper = modelMapper;
@@ -44,7 +47,7 @@ public class CategoryController {
                 modelMapper.map(categoryService.findAll(), new TypeToken<List<CategoryDTO>>() {
                 }.getType()));
     }
-
+    
     @PostMapping()
     public ResponseEntity<CategoryDTO> AddCategory(@RequestBody CategoryDTO categoryDTO) throws BadRequest {
 
@@ -56,7 +59,6 @@ public class CategoryController {
     @GetMapping("/{id}")
     public ResponseEntity<Category> getCategory(@PathVariable("id") long id) {
         Optional<Category> CategoryOptional = categoryService.findByID(id);
-        System.out.println(categoryService.findByID(id));
         return CategoryOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, Category.class)))
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -73,9 +75,7 @@ public class CategoryController {
     @DeleteMapping("/{categoryId}")
     public Boolean deleteCategory(@PathVariable("categoryId") Long id)
             throws BadRequest {
-        categoryService.delete(id);
-        return true;
+        return categoryService.deleteCategory(id);
     }
 
-   
-}
+   }

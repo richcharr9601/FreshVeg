@@ -16,6 +16,8 @@ import com.example.demo.repository.entity.OrderRepository;
 import com.example.demo.repository.entity.ProductRepository;
 import com.example.demo.repository.entity.RoleRepository;
 import com.example.demo.repository.entity.UserRepository;
+import com.example.demo.repository.entity.AddressRepository;
+
 
 import jakarta.persistence.Entity;
 import lombok.Getter;
@@ -41,6 +43,9 @@ public class RepositoryWrapper {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    AddressRepository addressRepository;
 
     public <TEntity, TKey> JpaRepository<TEntity, TKey> repository(Class<?> type) {
         if (!checkEntity(type))

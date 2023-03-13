@@ -3,7 +3,24 @@
         "user":{
             "userId": 1
         },
-        "address": "Ngu Hanh Son",
+        "address": {"addressId":1},
+        "phone": "09123123123",
+        "amount": 50000.0,
+        "status": 0,
+        "orderDetails": [
+         {   
+            "product": {
+                "productId":1
+            },
+            "quantity": 5,
+            "price": 10000}
+        ]
+    },
+    {   
+        "user":{
+            "userId": 1
+        },
+        "address": {"addressId":1},
         "phone": "09123123123",
         "amount": 50000.0,
         "status": 0,

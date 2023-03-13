@@ -44,6 +44,5 @@ public class OrderDetail implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@MapsId("orderId")
 	@JoinColumn(name = "orderId")
-	@JsonBackReference
 	private Order order;
 }

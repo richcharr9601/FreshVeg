@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
-
 import com.example.demo.dto.UserDTO;
 import com.example.demo.entities.User;
 import com.example.demo.service.contract.IAuthService;

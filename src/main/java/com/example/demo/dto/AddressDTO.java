@@ -1,8 +1,11 @@
 package com.example.demo.dto;
 
+
 import java.util.List;
 
-import com.example.demo.entities.Address;
+import com.example.demo.entities.Order;
+import com.example.demo.entities.User;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -15,14 +18,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDTO {
-    private Long orderId;
-    private Long userId;
-    private String phone;
-    private Double amount;
-    private int status;
-
-    private Address address;
-    @JsonManagedReference
-    private List<OrderDetailDTO> orderDetails;
+public class AddressDTO {
+    private Long addressId;
+	private String receiverName;
+    private String receiverPhone;
+	private String address;
+	
+	private Long userId;
 }

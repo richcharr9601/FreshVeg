@@ -2,6 +2,8 @@ package com.example.demo.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import com.example.demo.entities.Product;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

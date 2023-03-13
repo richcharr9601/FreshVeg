@@ -63,37 +63,22 @@ public class OrderController {
     public ResponseEntity<OrderDTO> addOrder(@RequestBody OrderDTO orderDTO)
             throws BadRequest {
         Order order = modelMapper.map(orderDTO, Order.class);
-        Order createdOrder = orderService.add(order);
-
-        List<OrderDetail> orderDetails = modelMapper.map(orderDTO.getOrderDetails(), new TypeToken<List<OrderDetail>>(){}.getType());
-        orderDetails.forEach(od -> {
-            od.getId().setOrderId(createdOrder.getOrderId());
-        });
-
-        orderDetailService.addAll(orderDetails);
-        
-        return ResponseEntity.ok(modelMapper.map(createdOrder, OrderDTO.class));
+        orderService.add(order);
+        return ResponseEntity.ok(modelMapper.map(order, OrderDTO.class));
     }
 
-    @PostMapping("ditmesb")
-    public ResponseEntity<OrderDTO> addOrderTest(@RequestBody OrderDTO orderDTO)
-            throws BadRequest {        
-                Order order = modelMapper.map(orderDTO, Order.class);
-                Order addedOrder = orderService.add(order);
-        return ResponseEntity.ok(modelMapper.map(addedOrder, OrderDTO.class));
-    }
 
-    @PutMapping("{userId}/{id}")
-    public ResponseEntity<OrderDTO> editOrder(@PathVariable("userId") Long uid, @PathVariable("id") Long id,
-            @RequestBody OrderDTO orderDTO)
-            throws BadRequest {
-        Order order = modelMapper.map(orderDTO, Order.class);
-        Optional<Order> updateOptional = orderService.update(id, order);
+    // @PutMapping("{userId}/{id}")
+    // public ResponseEntity<OrderDTO> editOrder(@PathVariable("userId") Long uid, @PathVariable("id") Long id,
+    //         @RequestBody OrderDTO orderDTO)
+    //         throws BadRequest {
+    //     Order order = modelMapper.map(orderDTO, Order.class);
+    //     Optional<Order> updateOptional = orderService.update(id, order);
 
-        return updateOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, OrderDTO.class)))
-                .orElse(ResponseEntity.notFound().build());
+    //     return updateOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, OrderDTO.class)))
+    //             .orElse(ResponseEntity.notFound().build());
 
-    }
+    // }
 
     @DeleteMapping("{userId}")
     public Boolean deleteOrder(@PathVariable("userId") Long id)
@@ -102,12 +87,13 @@ public class OrderController {
         return true;
     }
 
-    @PostMapping("order-detail")
-    public ResponseEntity<OrderDetailDTO> AddOrderDetail(@RequestBody OrderDetailDTO oderdetailDto)
+    @PostMapping({"{orderId}"})
+    public ResponseEntity<OrderDetailDTO> AddOrderDetail(@PathVariable("orderId") long id,@RequestBody OrderDetailDTO oderdetailDto)
             throws BadRequest {
                 OrderDetail orderDetail = modelMapper.map(oderdetailDto, OrderDetail.class);
+                orderDetail.getId().setProductId(orderDetail.getId().getProductId());
         return ResponseEntity
-                .ok(modelMapper.map(orderService.addOrderDetail(orderDetail),
+                .ok(modelMapper.map(orderService.addOrderDetail(id, orderDetail),
                         OrderDetailDTO.class));
     }
 
