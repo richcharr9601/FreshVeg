@@ -2,6 +2,10 @@ package com.example.demo.service.imp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.modelmapper.ModelMapper;
 
 import com.example.demo.entities.User;
@@ -24,8 +28,10 @@ public class AuthService extends EntityService<UserDTO, Long> implements IAuthSe
     @Autowired
     private UserRepository userRepository;
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public UserDTO loginByEmail(String email, String password) {
-        User user = userRepository.findByEmail(email);
+        boolean existsByID = userRepository.existsByEmail(email);     
+            User user = userRepository.findByEmail(email);
         UserDTO nullUser = new UserDTO();
         if (user.getEmail().equals(email)) {
             if (user.getPassword().equals(password)) {
@@ -33,8 +39,9 @@ public class AuthService extends EntityService<UserDTO, Long> implements IAuthSe
                 return userNew;
             }
         }
+        
         return nullUser;
-
+    
     }
 
     public Boolean logout(){

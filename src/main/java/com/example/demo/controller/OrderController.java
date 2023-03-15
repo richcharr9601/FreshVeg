@@ -87,15 +87,7 @@ public class OrderController {
         return true;
     }
 
-    @PostMapping({"{orderId}"})
-    public ResponseEntity<OrderDetailDTO> AddOrderDetail(@PathVariable("orderId") long id,@RequestBody OrderDetailDTO oderdetailDto)
-            throws BadRequest {
-                OrderDetail orderDetail = modelMapper.map(oderdetailDto, OrderDetail.class);
-                orderDetail.getId().setProductId(orderDetail.getId().getProductId());
-        return ResponseEntity
-                .ok(modelMapper.map(orderService.addOrderDetail(id, orderDetail),
-                        OrderDetailDTO.class));
-    }
+
 
     @PatchMapping("{orderId}")
     public ResponseEntity<Object> confirmOrder(@PathVariable("orderId") long id, @RequestBody String status)

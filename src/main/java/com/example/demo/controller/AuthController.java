@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import com.example.demo.dto.UserDTO;
@@ -27,8 +30,19 @@ public class AuthController {
     }
 
     @PostMapping()
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<UserDTO> loginByEmail(@RequestBody User user) throws BadRequest {
         return ResponseEntity
                 .ok((modelMapper.map(authService.loginByEmail(user.getEmail(), user.getPassword()), UserDTO.class)));
+    }
+
+    @GetMapping("/login-google")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public ResponseEntity<String> loginByGoogle() {
+    return ResponseEntity.ok("hello");
+  }
+
+    public String logout(){
+        return "/home";
     }
 }

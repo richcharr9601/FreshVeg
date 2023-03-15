@@ -1,11 +1,13 @@
 package com.example.demo.service.contract;
 
 
+import com.example.demo.dto.OrderDTO;
+import com.example.demo.dto.OrderDetailDTO;
 import com.example.demo.entities.Order;
 import com.example.demo.entities.OrderDetail;
 
 public interface IOrderService extends IService<Order, Long> {
-    OrderDetail addOrderDetail(Long orderId, OrderDetail orderDetail);
+    OrderDTO requestOrder(Long userId, Long orderId);
     boolean confirmOrder(Long orderId, String status);
 
 }
