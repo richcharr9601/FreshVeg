@@ -45,6 +45,7 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	private String avatar;
+	private int otp;
 	
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern = "dd/MM/yyyy")

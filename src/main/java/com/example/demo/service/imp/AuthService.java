@@ -1,16 +1,30 @@
 package com.example.demo.service.imp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collection;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 
+import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
 import com.example.demo.dto.UserDTO;
-
+import com.example.demo.dto.UserRegisteredDTO;
+import com.example.demo.repository.entity.RoleRepository;
 import com.example.demo.repository.entity.UserRepository;
 import com.example.demo.service.contract.IAuthService;
 
@@ -48,4 +62,5 @@ public class AuthService extends EntityService<UserDTO, Long> implements IAuthSe
         return  true;
     }
 
+    
 }

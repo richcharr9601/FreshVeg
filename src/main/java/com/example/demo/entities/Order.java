@@ -48,7 +48,6 @@ public class Order implements Serializable {
 	@JoinColumn(name = "addressId")
 	private Address address;
 
-
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "userId")
 	private User user;

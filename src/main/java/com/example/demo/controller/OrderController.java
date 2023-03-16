@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -24,6 +25,7 @@ import com.example.demo.dto.OrderDetailDTO;
 import com.example.demo.entities.Order;
 import com.example.demo.entities.OrderDetail;
 import com.example.demo.entities.OrderDetailKey;
+import com.example.demo.repository.entity.OrderRepository;
 import com.example.demo.service.contract.IOrderService;
 import com.example.demo.service.contract.IOrderDetailService;
 import com.example.demo.service.imp.OrderService;
@@ -42,6 +44,17 @@ public class OrderController {
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
 
+    }
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @GetMapping("all")
+    public ResponseEntity<List<OrderDTO>> getOrders() {
+        List<Order> orders = orderService.findAll();
+        return ResponseEntity.ok(
+                modelMapper.map(orders, new TypeToken<List<OrderDTO>>() {
+                }.getType()));
     }
 
     @GetMapping("{userId}/all")
@@ -64,29 +77,25 @@ public class OrderController {
             throws BadRequest {
         Order order = modelMapper.map(orderDTO, Order.class);
         orderService.add(order);
+
+        order.getOrderDetails().forEach(od -> {
+            orderDetailService.add(od);
+        });
+        
         return ResponseEntity.ok(modelMapper.map(order, OrderDTO.class));
     }
 
 
-    // @PutMapping("{userId}/{id}")
-    // public ResponseEntity<OrderDTO> editOrder(@PathVariable("userId") Long uid, @PathVariable("id") Long id,
-    //         @RequestBody OrderDTO orderDTO)
-    //         throws BadRequest {
-    //     Order order = modelMapper.map(orderDTO, Order.class);
-    //     Optional<Order> updateOptional = orderService.update(id, order);
-
-    //     return updateOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, OrderDTO.class)))
-    //             .orElse(ResponseEntity.notFound().build());
-
-    // }
-
-    @DeleteMapping("{userId}")
-    public Boolean deleteOrder(@PathVariable("userId") Long id)
-            throws BadRequest {
-        orderService.delete(id);
-        return true;
+    @DeleteMapping()
+    public Boolean deleteOrder(@RequestBody Order order)
+    throws BadRequest {
+    Boolean result = orderRepository.existsById(order.getOrderId());
+    if (result) {
+    orderService.delete(order.getOrderId());
+    return true;
     }
-
+    return false;
+}
 
 
     @PatchMapping("{orderId}")
@@ -96,12 +105,5 @@ public class OrderController {
                 : ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("order-detail")
-    public Boolean deleteOrderDetail(
-            @RequestBody OrderDetailKey key)
-            throws BadRequest {
-        orderDetailService.delete(key);
-        return true;
-    }
-
 }
+

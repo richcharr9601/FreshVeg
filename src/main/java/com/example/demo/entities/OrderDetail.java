@@ -36,13 +36,13 @@ public class OrderDetail implements Serializable {
 	private int quantity;
 	private Double price;
 
-	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("productId")
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "productId")
 	private Product product;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@MapsId("orderId")
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "orderId")
 	private Order order;
 }

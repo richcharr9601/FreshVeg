@@ -22,7 +22,8 @@ public class OrderDTO {
     private Double amount;
     private int status;
 
-    private Address address;
+    private Long addressId;
+
     @JsonManagedReference
     private List<OrderDetailDTO> orderDetails;
 }

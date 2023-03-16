@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,6 +58,10 @@ public class AddressController {
         this.addressService = addressService;
 
     }
+
+    @Autowired
+    private AddressRepository addressRepository;
+
     
     @PostMapping()
     public ResponseEntity<AddressDTO> addAddress(@RequestBody AddressDTO addressDTO)
@@ -81,11 +87,14 @@ public class AddressController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // @DeleteMapping("/{categoryId}")
-    // public Boolean deleteProduct(@PathVariable("categoryId") Long id,@RequestBody
-    // Product product)
-    // throws BadRequest {
-    // categoryService.deleteProduct(product.getProductId(), product);
-    // return true;
-    // }
+    @DeleteMapping()
+    public Boolean deleteAddress(@RequestBody Address address)
+    throws BadRequest {
+    Boolean result = addressRepository.existsById(address.getAddressId());
+    if (result) {
+    addressService.delete(address.getAddressId());
+    return true;
+    }
+    return false;
+}
 }

@@ -1,0 +1,24 @@
+server:
+  port: 8080
+  address: localhost
+spring:
+    security:
+        oauth2:
+            client:
+                registration:
+                    google:
+                        clientId: 173296947137-1dsfvqeeb44mictb2lhrbdicirbj802i.apps.googleusercontent.com
+                        clientSecret: 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
+                        scope:
+                            - email
+                            - profile
+                provider:
+                    google:
+                        user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+                        authorization-uri: https://accounts.google.com/o/oauth2/auth
+                        token-uri: https://accounts.google.com/o/oauth2/token
+                        user-name-attribute: sub
+
+    mvc:
+        cors:
+            enabled: true
