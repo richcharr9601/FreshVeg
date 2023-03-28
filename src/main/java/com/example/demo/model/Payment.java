@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Payment {
+    Long orderId;
     int amount;
     String bankCode;
 }

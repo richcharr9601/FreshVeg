@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import java.util.List;
+import java.util.Set;
 
 import com.example.demo.entities.Address;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -21,9 +22,8 @@ public class OrderDTO {
     private String phone;
     private Double amount;
     private int status;
-
     private Long addressId;
 
     @JsonManagedReference
-    private List<OrderDetailDTO> orderDetails;
+    private Set<OrderDetailDTO> orderDetails;
 }

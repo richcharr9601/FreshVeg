@@ -37,18 +37,6 @@ public class CategoryService extends EntityService<Category, Long> implements IC
         return list;
     }
 
-    public Product editProduct(Long categoryId, Long id, Product product) {
-        Category category = categoryRepository.findById(categoryId).get();
-        boolean existsById = productRepository.existsById(id);
-
-        if (existsById && category != null) {
-            product.setProductId(id);
-            category.setCategoryId(categoryId);
-            product.setCategory(category);
-            return productRepository.save(product);
-        }
-        return null;
-    }
 
     public Boolean deleteCategory(Long categoryId) {
         Boolean result = categoryRepository.existsById(categoryId);

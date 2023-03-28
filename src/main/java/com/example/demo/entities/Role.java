@@ -2,7 +2,9 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -29,5 +31,12 @@ public class Role implements Serializable {
 	private String name;
 
 	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Collection<User> users;
+	private Set<User> users;
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+	
 }

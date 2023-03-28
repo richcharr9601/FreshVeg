@@ -1,86 +1,101 @@
 package com.example.demo.controller;
 
-import org.modelmapper.ModelMapper;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.security.payload.LoginRequest;
+import com.example.demo.security.payload.LoginResponse;
+import com.example.demo.security.service.JwtService;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.jwt.JwtClaimNames;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
-import com.example.demo.dto.UserDTO;
+
+import com.example.demo.dto.OTPCodeDTO;
+import com.example.demo.dto.ResetPasswordDTO;
 import com.example.demo.dto.UserRegisteredDTO;
 import com.example.demo.entities.User;
 import com.example.demo.service.contract.DefaultUserService;
-import com.example.demo.service.contract.IAuthService;
-import com.example.demo.service.imp.AuthService;
-import com.example.demo.service.imp.EmailService;
-import com.example.demo.service.imp.UserService;
+import com.nimbusds.jwt.JWTClaimsSet;
 
-import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
 public class AuthController {
 
-    ModelMapper modelMapper;
-    IAuthService authService;
+    final ModelMapper modelMapper;
+    
+    final DefaultUserService defaultUserService;
 
-    public AuthController(ModelMapper modelMapper, AuthService authService) {
-        this.modelMapper = modelMapper;
-        this.authService = authService;
-    }
+    private final AuthenticationManager authenticationManager;
+
+    private final JwtService jwtService;
 
     @PostMapping("login")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<UserDTO> loginByEmail(@RequestBody User user) throws BadRequest {
+    public ResponseEntity<LoginResponse> loginByEmail(@RequestBody LoginRequest loginRequest) throws BadRequest {
+        
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
+        );
+
+        User user = (User) authentication.getPrincipal();
+        if(user.getIsVerified() == true){
+        String jwt = jwtService.generateToken(Map.of(
+            "authorities", user.getAuthorities()
+        ), user);
+
         return ResponseEntity
-                .ok((modelMapper.map(authService.loginByEmail(user.getEmail(), user.getPassword()), UserDTO.class)));
+                .ok(new LoginResponse(jwt, modelMapper.map(user, User.class)));}
+                else return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/login-google")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<String> loginByGoogle() {
-    return ResponseEntity.ok("hello");
-  }
-
-    public String logout(){
-        return "/home";
-    }
-
-    @Autowired
-    private EmailService emailService;
-
-   
-
-    // @PostMapping("/register")
-    // public ResponseEntity<User> registerUser(@RequestBody User user) throws MessagingException {
-    //     User savedUser = userService.add(user);
-    //     emailService.sendEmail(savedUser.getEmail(), savedUser.getName());
-    //     return ResponseEntity.ok(savedUser);
+    // @GetMapping
+    // public  Map<String, Object> currentUser(OAuth2AuthenticationToken oAuth2AuthenticationToken) {
+    //     return oAuth2AuthenticationToken.getPrincipal().getAttributes();
     // }
+    
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+
+        return ResponseEntity.ok("Logout successful");
+    }
 
     @Autowired
     private DefaultUserService userService;
 
-	    @ModelAttribute("user")
-	    public UserRegisteredDTO userRegistrationDto() {
-	        return new UserRegisteredDTO();
-	    }
-
-	    @GetMapping
-	    public String showRegistrationForm() {
-	        return "register";
-	    }
-
 	    @PostMapping("register")
-	    public String registerUserAccount(@RequestBody
+	    public ResponseEntity<User> registerUserAccount(@RequestBody
 	              UserRegisteredDTO registrationDto) {
-	        userService.save(registrationDto);
-	        return "redirect:/login";
+	        	    return ResponseEntity.ok(userService.register(registrationDto)); 
 	    }
+
+        @PostMapping("check-otp")
+        public ResponseEntity<String> checkOTP(@RequestBody OTPCodeDTO otpCodeDTO ){
+            return ResponseEntity.ok(defaultUserService.checkOTP(otpCodeDTO));
+        }
+        
+        @PostMapping("rspassword")
+        public ResponseEntity<User> resetPassword(@RequestBody ResetPasswordDTO resetPasswordDTO ){
+                return ResponseEntity.ok(defaultUserService.forgotPassword(resetPasswordDTO));
+            }
+        @PostMapping("check-rspassword-otp")
+        public ResponseEntity<String> checkResetPasswordOTP(@RequestBody ResetPasswordDTO resetPasswordDTO ){
+            // return defaultUserService.checkResetPasswordOTP(resetPasswordDTO);
+            return ResponseEntity.ok(defaultUserService.checkResetPasswordOTP(resetPasswordDTO));
+        }
 }

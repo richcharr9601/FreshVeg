@@ -3,44 +3,31 @@ package com.example.demo.controller;
 
 import java.io.UnsupportedEncodingException;
 
-import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TimeZone;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
 import com.example.demo.config.PaymentConfig;
-import com.example.demo.dto.OrderDTO;
+import com.example.demo.entities.Order;
 import com.example.demo.model.Payment;
 import com.example.demo.model.PaymentRes;
-import com.example.demo.dto.ProductDTO;
-import com.example.demo.entities.Product;
-import com.example.demo.entities.User;
 import com.example.demo.repository.entity.UserRepository;
-import com.example.demo.service.contract.IAuthService;
 import com.example.demo.service.contract.IOrderService;
 import com.example.demo.service.contract.IUserService;
 import com.example.demo.service.imp.OrderService;
@@ -53,7 +40,6 @@ public class PaymentController {
     ModelMapper modelMapper;
     IOrderService orderService;
     IUserService userService;
-    IAuthService authService;
     UserRepository userRepository;
 
     public PaymentController(ModelMapper modelMapper, OrderService orderService, UserService userService) {
@@ -63,7 +49,7 @@ public class PaymentController {
     }
 
 
-    @PostMapping("/create-payment")
+    @PostMapping("/checkout/create-payment")
     public ResponseEntity<?> createPayment(@RequestBody Payment requestParams)  {
                     String TXNREF = PaymentConfig.getRandomNumber(5);
                     int amount = requestParams.getAmount() * 100;
@@ -138,7 +124,8 @@ public class PaymentController {
     result.setStatus("00");
     result.setMessage("Success");
     result.setUrl(paymentUrl);
-    
+    Optional<Order> order = orderService.findByID(requestParams.getOrderId());
+    order.get().setStatus(1);
     return ResponseEntity.status(HttpStatus.OK).body(result); 
 
 }

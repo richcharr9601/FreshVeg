@@ -3,8 +3,10 @@ package com.example.demo.entities;
 
 
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -39,7 +41,7 @@ public class Address {
 	private String address;
 
 	@OneToMany(mappedBy = "address")
-	private List<Order> orders;
+	private Set<Order> orders;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "userId")

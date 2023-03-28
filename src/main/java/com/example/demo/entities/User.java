@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Nationalized;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
@@ -27,6 +30,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @SuppressWarnings("serial")
 @Entity
@@ -35,7 +41,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class User implements Serializable {
+public class User implements Serializable, UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +52,7 @@ public class User implements Serializable {
 	private String password;
 	private String avatar;
 	private int otp;
+	private Boolean isVerified;
 	
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern = "dd/MM/yyyy")
@@ -54,9 +61,55 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy = "user")
 	@JsonManagedReference
-	private List<Address> address;
+	private Set<Address> address;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-	private Collection<Role> roles;
+	@JsonIgnoreProperties("users")
+	private Set<Role> roles;
+
+	@Override
+	@JsonIgnore
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority(roles.toArray()[0].toString()));
+	}
+
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+	@Override
+	@JsonIgnore
+	public String getUsername() {
+		return email;
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isEnabled() {
+		return true;
+	}
+
+    public Object stream() {
+        return null;
+    }
 }

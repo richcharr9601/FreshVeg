@@ -25,5 +25,5 @@ public class ProductDTO {
 	private Boolean status;
 	public boolean favorite;
 
-	private Category category;
+	private Long categoryId;
 }

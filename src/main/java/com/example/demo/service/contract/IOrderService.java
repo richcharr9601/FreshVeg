@@ -7,7 +7,6 @@ import com.example.demo.entities.Order;
 import com.example.demo.entities.OrderDetail;
 
 public interface IOrderService extends IService<Order, Long> {
-    OrderDTO requestOrder(Long userId, Long orderId);
     boolean confirmOrder(Long orderId, String status);
 
 }

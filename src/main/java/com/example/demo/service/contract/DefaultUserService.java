@@ -1,15 +1,28 @@
 package com.example.demo.service.contract;
 
+import java.util.Optional;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.OTPCodeDTO;
+import com.example.demo.dto.ResetPasswordDTO;
 import com.example.demo.dto.UserRegisteredDTO;
 import com.example.demo.entities.User;
 
 @Service
 public interface DefaultUserService extends UserDetailsService{
 
-	User save(UserRegisteredDTO userRegisteredDTO);
+	User register(UserRegisteredDTO userRegisteredDTO);
 
 	String generateOtp(User user);
+
+	String checkOTP(OTPCodeDTO otpCodeDTO);
+	
+	String generateOtpForgorPassword(User user);
+
+	User forgotPassword(ResetPasswordDTO resetPasswordDTO);
+	
+	String checkResetPasswordOTP(ResetPasswordDTO resetPasswordDTO);
+
 }

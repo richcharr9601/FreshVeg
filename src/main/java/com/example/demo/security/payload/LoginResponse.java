@@ -1,6 +1,6 @@
-package com.example.demo.dto;
+package com.example.demo.security.payload;
 
-
+import com.example.demo.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,12 +10,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRegisteredDTO {
-    private String username;
-	
-	private String email;
-	
-	private String password;
-	
-	// String role;
+public class LoginResponse {
+
+    private String accessToken;
+
+    private User user;
 }

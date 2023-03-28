@@ -3,8 +3,11 @@ package com.example.demo.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.annotations.Nationalized;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -42,7 +45,7 @@ public class Order implements Serializable {
 	private int status;
 
 	@OneToMany(mappedBy = "order")
-	private List<OrderDetail> orderDetails;
+	private Set<OrderDetail> orderDetails;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "addressId")

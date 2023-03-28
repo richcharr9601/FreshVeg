@@ -12,4 +12,5 @@ public interface IUserService extends IService<User, Long> {
     boolean changePassword(Long userId, String password);
 
     Optional<Role> addRole(Long userId, Long roleId);
+    
 }

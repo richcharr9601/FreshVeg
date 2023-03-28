@@ -42,7 +42,6 @@ public class CategoryController {
 
     @GetMapping("/all")
     public ResponseEntity<List<CategoryDTO>> getCategory() {
-        System.out.println(categoryService.findAll());
         return ResponseEntity.ok(
                 modelMapper.map(categoryService.findAll(), new TypeToken<List<CategoryDTO>>() {
                 }.getType()));
@@ -73,9 +72,9 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{categoryId}")
-    public Boolean deleteCategory(@PathVariable("categoryId") Long id)
+    public ResponseEntity<Boolean> deleteCategory(@PathVariable("categoryId") Long id)
             throws BadRequest {
-        return categoryService.deleteCategory(id);
+        return categoryService.deleteCategory(id) ? ResponseEntity.ok(true) : ResponseEntity.badRequest().build();
     }
 
    }

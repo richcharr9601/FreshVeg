@@ -2,8 +2,10 @@ package com.example.demo.service.imp;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Role;
@@ -23,13 +25,16 @@ public class UserService extends EntityService<User, Long> implements IUserServi
     @Autowired
     private RoleRepository roleRepository;
 
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+
     @Override
     public boolean changePassword(Long userId, String passowrd) {
         boolean existsById = userRepository.existsById(userId);
 
         if (existsById) {
             User user = userRepository.findById(userId).get();
-            user.setPassword(passowrd);
+            user.setPassword(passwordEncoder.encode(passowrd));
             userRepository.save(user);
             return true;
         }
@@ -44,7 +49,7 @@ public class UserService extends EntityService<User, Long> implements IUserServi
         if (userExist && roleExist) {
             User user = userRepository.findById(userId).get();
             Role role = roleRepository.findById(userId).get();
-            user.setRoles(List.of(role));
+            user.setRoles(Set.of(role));
             userRepository.save(user);
 
             return Optional.of(role);

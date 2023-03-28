@@ -6,12 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-
+import java.util.Optional;
+import java.util.Set;
 
 import com.example.demo.entities.Address;
+import com.example.demo.entities.User;
 
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long> {
-    @Query(value = "select * from address inner join users on address.USER_ID = users.userId where address.USER_ID = ?1", nativeQuery = true)
-	List<Address>findAddressTest(@Param("id") Long id);
+    Set<Address> findByUser(Optional<User> user);
 }

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -52,8 +53,8 @@ public class ProductController {
 
     
     
-    @PostMapping("/{categoryId}")
-    public ResponseEntity<ProductDTO> addProduct(@PathVariable("categoryId") long id, @RequestBody ProductDTO productDto)
+    @PostMapping()
+    public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDto)
             throws BadRequest {
                 Product product = modelMapper.map(productDto, Product.class);
         return ResponseEntity.ok(modelMapper.map(productService.add(product), ProductDTO.class));
@@ -74,21 +75,24 @@ public class ProductController {
                 }.getType()));
     }
 
-    @PutMapping("/{categoryId}/{id}")
-    public ResponseEntity<Product> editProduct(@PathVariable("categoryId") long cid, @PathVariable("id") long id,
-            @RequestBody Product product)
+    @PutMapping("{productId}")
+    public ResponseEntity<ProductDTO> editProduct(@PathVariable("productId") Long id,
+            @RequestBody ProductDTO productDTO)
             throws BadRequest {
-        return ResponseEntity.ok(modelMapper.map(categoryService.editProduct(cid, id, product), Product.class));
+            Product product = modelMapper.map(productDTO, Product.class);
+            Optional<Product> updateOptional = productService.update(id, product);
+        return updateOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, ProductDTO.class)))
+        .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping()
-    public Boolean deleteProduct(@RequestBody Product product)
+    public ResponseEntity<String> deleteProduct(@RequestBody Product product)
     throws BadRequest {
     Boolean result = productRepository.existsById(product.getProductId());
     if (result) {
-    productService.delete(product.getProductId());
-    return true;
+    productRepository.deleteById(product.getProductId());
+    return ResponseEntity.ok("Product with ID" + product.getProductId() + " has been deleted");
     }
-    return false;
+    return ResponseEntity.ok("Cannot delete");
 }
 }

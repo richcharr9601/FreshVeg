@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.OTPCodeDTO;
+import com.example.demo.dto.ResetPasswordDTO;
 import com.example.demo.dto.UserRegisteredDTO;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
@@ -43,25 +45,69 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 		if(user == null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
-		// return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getName()));
-		return null;		
+		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+		// return null;		
 	}
 	
-	// private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Set<Role> roles){
-	// 	return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
-	// }
+	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
+		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+	}
 
 	@Override
-	public User save(UserRegisteredDTO userRegisteredDTO) {
-		// Role role = roleRepo.findByRole("USER");
+	public User register(UserRegisteredDTO userRegisteredDTO) {
 		
+		Role role = roleRepo.findByName("USER");
 		User user = new User();
 		user.setEmail(userRegisteredDTO.getEmail());
 		user.setName(userRegisteredDTO.getUsername());
 		user.setPassword(passwordEncoder.encode(userRegisteredDTO.getPassword()));
-		user.setRoles(null);
-		
+		user.setRoles(Set.of(role));
+		user.setIsVerified(false);
+		generateOtp(user);
+		// userRepo.save(user);
 		return userRepo.save(user);
+	}
+
+	public String checkOTP(OTPCodeDTO otpCodeDTO){
+		try{
+		User user = userRepo.findByEmail(otpCodeDTO.getEmail());
+		Boolean existByEmail = userRepo.existsByEmail(otpCodeDTO.getEmail());
+		if(existByEmail &&(user.getOtp() == otpCodeDTO.getOtpCode())){
+			user.setIsVerified(true);
+			userRepo.save(user);
+			return "Register Successfully";
+		}
+		return "Cannot Register, Please check input again";
+	}catch (Exception e) {
+		e.printStackTrace();
+		return "error";
+	}
+	}
+
+	public User forgotPassword(ResetPasswordDTO resetPasswordDTO){
+		User user = userRepo.findByEmail(resetPasswordDTO.getEmail());
+		Boolean existByEmail = userRepo.existsByEmail(resetPasswordDTO.getEmail());
+		
+		if(existByEmail){
+			generateOtpForgorPassword(user);
+			return userRepo.save(user);
+		}
+		return null;
+	}
+
+	public String checkResetPasswordOTP(ResetPasswordDTO resetPasswordDTO){
+		try{
+		User user = userRepo.findByEmail(resetPasswordDTO.getEmail());
+		Boolean existByEmail = userRepo.existsByEmail(resetPasswordDTO.getEmail());
+		if(existByEmail &&(user.getOtp() == resetPasswordDTO.getOtpCode())){
+			user.setPassword(passwordEncoder.encode(resetPasswordDTO.getPassword()));
+			return "Reset Password Successfully";
+		}
+		return "Cannot Reset Password, Please check input again";
+	}catch (Exception e) {
+		e.printStackTrace();
+		return "error";
+	}
 	}
 
 	@Override
@@ -69,13 +115,35 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 		try {
 			int randomPIN = (int) (Math.random() * 9000) + 1000;
 			user.setOtp(randomPIN);
-			userRepo.save(user);
+			// userRepo.save(user);
 			SimpleMailMessage msg = new SimpleMailMessage();
-			msg.setFrom("");
+			msg.setFrom("duclade150172@fpt.edu.vn");
 			msg.setTo(user.getEmail());
 
-			msg.setSubject("Welcome To My Channel");
-			msg.setText("Hello \n\n" +"Your Login OTP :" + randomPIN + ".Please Verify. \n\n"+"Regards \n"+"ABC");
+			msg.setSubject("Welcome To FreshVeg");
+			msg.setText("Hello \n\n" +"Your Register OTP :" + randomPIN + ".Please Verify. \n\n"+"Regards \n"+"FreshVeg");
+
+			javaMailSender.send(msg);
+			
+			return "success";
+			}catch (Exception e) {
+				e.printStackTrace();
+				return "error";
+			}
+	}
+
+	@Override
+	public String generateOtpForgorPassword(User user) {
+		try {
+			int randomPIN = (int) (Math.random() * 9000) + 1000;
+			user.setOtp(randomPIN);
+			// userRepo.save(user);
+			SimpleMailMessage msg = new SimpleMailMessage();
+			msg.setFrom("duclade150172@fpt.edu.vn");
+			msg.setTo(user.getEmail());
+
+			msg.setSubject("Welcome To FreshVeg");
+			msg.setText("Hello \n\n" +"Your Reset Password OTP :" + randomPIN + ".Please reset password. \n\n"+"Regards \n"+"FreshVeg");
 
 			javaMailSender.send(msg);
 			

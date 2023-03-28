@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,21 +58,22 @@ public class OrderController {
                 }.getType()));
     }
 
-    @GetMapping("{userId}/all")
-    public ResponseEntity<List<OrderDTO>> getOrders(@PathVariable("userId") Long id) {
-        List<Order> orders = orderService.findAll();
-        return ResponseEntity.ok(
-                modelMapper.map(orders, new TypeToken<List<OrderDTO>>() {
-                }.getType()));
-    }
+    // @GetMapping("{userId}/all")
+    // public ResponseEntity<List<OrderDTO>> getOrders(@PathVariable("userId") Long id) {
+    //     List<Order> orders = orderService.findAll();
+    //     return ResponseEntity.ok(
+    //             modelMapper.map(orders, new TypeToken<List<OrderDTO>>() {
+    //             }.getType()));
+    // }
 
-    @GetMapping("{userId}/{id}")
-    public ResponseEntity<OrderDTO> getOrder(@PathVariable("userId") Long uid, @PathVariable("id") long id) {
-        Optional<Order> userOptional = orderService.findByID(id);
-        return userOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, OrderDTO.class)))
-                .orElse(ResponseEntity.notFound().build());
-    }
+    // @GetMapping("{userId}/{id}")
+    // public ResponseEntity<OrderDTO> getOrder(@PathVariable("userId") Long uid, @PathVariable("id") long id) {
+    //     Optional<Order> userOptional = orderService.findByID(id);
+    //     return userOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, OrderDTO.class)))
+    //             .orElse(ResponseEntity.notFound().build());
+    // }
 
+    // @PreAuthorize("#userId == authentication.principal.userId")
     @PostMapping()
     public ResponseEntity<OrderDTO> addOrder(@RequestBody OrderDTO orderDTO)
             throws BadRequest {
@@ -85,16 +87,15 @@ public class OrderController {
         return ResponseEntity.ok(modelMapper.map(order, OrderDTO.class));
     }
 
-
     @DeleteMapping()
-    public Boolean deleteOrder(@RequestBody Order order)
+    public ResponseEntity<String> deleteOrder(@RequestBody Order order)
     throws BadRequest {
     Boolean result = orderRepository.existsById(order.getOrderId());
     if (result) {
-    orderService.delete(order.getOrderId());
-    return true;
+        orderRepository.deleteById(order.getOrderId());
+    return ResponseEntity.ok("Order with ID" + order.getOrderId() + "has been deleted");
     }
-    return false;
+    return ResponseEntity.ok("Cannot delete");
 }
 
 

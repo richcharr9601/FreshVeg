@@ -58,5 +58,18 @@
         "id": 2
       }
     ]
+  },
+  {
+    "name": "Toàn",
+    "email": "richcharr9601@gmail.com",
+    "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
+    "avatar": "",
+    "isVerified": 1,
+    "registerDate": "20/2/2023",
+    "roles": [
+      {
+        "id": 2
+      }
+    ]
   }
 ]

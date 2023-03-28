@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -21,6 +23,8 @@ import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
 import com.example.demo.service.contract.IUserService;
 import com.example.demo.service.imp.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/user")
@@ -42,7 +46,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getUser(@PathVariable("id") long id) {
+    public ResponseEntity<UserDTO> getUser(@PathVariable("id") long id, HttpServletRequest request) {
         Optional<User> userOptional = userService.findByID(id);
         return userOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, UserDTO.class)))
                 .orElse(ResponseEntity.notFound().build());

@@ -17,22 +17,11 @@ public class OrderService extends EntityService<Order, Long> implements IOrderSe
         super(Order.class);
     }
 
-    @Autowired
-    private RepositoryWrapper repositoryWrapper;
 
     @Autowired
     private OrderRepository orderRepository;
 
-    @Override
-    public OrderDTO requestOrder(Long orderId, Long orderDetail) {
-        // // boolean orderExisted = repositoryWrapper.getOrderRepository().existsById(orderDetail.getId().getOrderId());
-        // // boolean productExisted = repositoryWrapper.getProductRepository().existsById(orderDetail.getId().getProductId());
-        // // if (orderExisted && productExisted) {
-        //     orderDetail.getId().setOrderId(orderId);
-        //     return repositoryWrapper.getOrderDetailRepository().save(orderDetail);
-        // // }
-        return null;
-    }
+
     
 
     public boolean confirmOrder(Long orderId, String status) {
