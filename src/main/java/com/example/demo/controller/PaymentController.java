@@ -2,13 +2,15 @@ package com.example.demo.controller;
 
 
 import java.io.UnsupportedEncodingException;
-
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -32,6 +34,9 @@ import com.example.demo.service.contract.IOrderService;
 import com.example.demo.service.contract.IUserService;
 import com.example.demo.service.imp.OrderService;
 import com.example.demo.service.imp.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -130,6 +135,44 @@ public class PaymentController {
 
 }
 
+@GetMapping("/checkout/return")
+public ResponseEntity<?>  ipnUrl () {
+     try{
+        URL url = new URL (PaymentConfig.vnp_apiUrl);
+        HttpURLConnection con = (HttpURLConnection)url.openConnection();
+        int responseCode = con.getResponseCode();
+        String hash_Data = PaymentConfig.getRandomNumber(8) + "|" + PaymentConfig.VERSIONVNPAY + "|" + PaymentConfig.COMMAND + "|" + PaymentConfig.TMNCODE + "|" + PaymentConfig.TXNREF + "|"  + PaymentConfig.IPDEFAULT + "|" + PaymentConfig.ORDERTYPE;
+        Map fields = new HashMap();   
+        String vnp_SecureHash = PaymentConfig.CHECKSUM;
+        if (fields.containsKey(PaymentConfig.hmacSHA512(vnp_SecureHash, hash_Data))) 
+        {
+            fields.remove("vnp_SecureHashType");
+        }
+        if (fields.containsKey("vnp_SecureHash")) 
+        {
+            fields.remove("vnp_SecureHash");
+        }
+		
+		// Check checksum
+        String signValue = PaymentConfig.hashAllFields(fields);          
+            if (signValue.equals(vnp_SecureHash)) {
+                if ("00".equals(responseCode)) {
+                    System.out.print("GD Thanh cong");
+                } else {
+                    System.out.print("GD Khong thanh cong");
+                }
+            
+            } else {
+                System.out.print("Chu ky khong hop le");
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.print("{\"RspCode\":\"99\",\"Message\":\"Unknow error\"}");
+        }
+        return ResponseEntity.ok("");
+
+}
 }
 
     

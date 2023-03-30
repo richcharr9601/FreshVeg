@@ -99,6 +99,7 @@ public class AddressController {
     @PreAuthorize("#userId == authentication.principal.userId")
     @GetMapping("/{userId}")
     public ResponseEntity<Set<Address>> getAddress(@PathVariable("userId") long userId) {
+        
         Optional<User> user = userService.findByID(userId);
         return ResponseEntity.ok(addressRepository.findByUser(user));
     }

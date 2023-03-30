@@ -5,6 +5,9 @@ package com.example.demo.entities;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -29,7 +32,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "address")
-
+@SQLDelete(sql = "UPDATE categories SET deleted = 1 WHERE category_id=?")
+@Where(clause = "deleted=false")
 public class Address {
    
 	@Id
@@ -39,6 +43,8 @@ public class Address {
 	private String receiverName;
     private String receiverPhone;
 	private String address;
+	private Boolean deleted = Boolean.FALSE;
+
 
 	@OneToMany(mappedBy = "address")
 	private Set<Order> orders;

@@ -3,7 +3,12 @@ package com.example.demo.config;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Formatter;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -28,6 +33,8 @@ public class PaymentConfig {
     public static final String VNPAYURL = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     public static final String TMNCODE = "ZI6PK569";
     public static final String IPDEFAULT = "0.0.0.0.0.0.0.1";
+    public static final String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
+
 
 
     public static String hmacSHA512(final String key, final String data) {
@@ -62,6 +69,27 @@ public class PaymentConfig {
         }
         return sb.toString();
     }
+
+    public static String hashAllFields(Map fields) {
+        List fieldNames = new ArrayList(fields.keySet());
+        Collections.sort(fieldNames);
+        StringBuilder sb = new StringBuilder();
+        Iterator itr = fieldNames.iterator();
+        while (itr.hasNext()) {
+            String fieldName = (String) itr.next();
+            String fieldValue = (String) fields.get(fieldName);
+            if ((fieldValue != null) && (fieldValue.length() > 0)) {
+                sb.append(fieldName);
+                sb.append("=");
+                sb.append(fieldValue);
+            }
+            if (itr.hasNext()) {
+                sb.append("&");
+            }
+        }
+        return hmacSHA512(CHECKSUM,sb.toString());
+    }
+    
 
 
     public static String md5(String message) {

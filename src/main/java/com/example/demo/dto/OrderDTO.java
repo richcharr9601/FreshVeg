@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +23,7 @@ public class OrderDTO {
     private String phone;
     private Double amount;
     private int status;
+    private Date orderDate;
     private Long addressId;
 
     @JsonManagedReference

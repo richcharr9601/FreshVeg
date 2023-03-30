@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,7 +78,9 @@ public class OrderController {
     @PostMapping()
     public ResponseEntity<OrderDTO> addOrder(@RequestBody OrderDTO orderDTO)
             throws BadRequest {
+                Date date = new Date();
         Order order = modelMapper.map(orderDTO, Order.class);
+        order.setOrderDate(date);
         orderService.add(order);
 
         order.getOrderDetails().forEach(od -> {
