@@ -1,6 +1,7 @@
 package com.example.demo.service.imp;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -58,11 +59,13 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 		
 		Role role = roleRepo.findByName("USER");
 		User user = new User();
+		Date date = new Date();
 		user.setEmail(userRegisteredDTO.getEmail());
 		user.setName(userRegisteredDTO.getUsername());
 		user.setPassword(passwordEncoder.encode(userRegisteredDTO.getPassword()));
 		user.setRoles(Set.of(role));
 		user.setIsVerified(false);
+		user.setRegisterDate(date);
 		generateOtp(user);
 		// userRepo.save(user);
 		return userRepo.save(user);

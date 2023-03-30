@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.annotations.Nationalized;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -32,17 +35,22 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "orders")
+@SQLDelete(sql = "UPDATE orders SET deleted = 1 WHERE order_id=?")
+@Where(clause = "deleted=false")
 public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderId;
 	@Temporal(TemporalType.DATE)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date orderDate;
 	private Double amount;
 	@Nationalized
 	private String phone;
 	private int status;
+	private Boolean deleted = Boolean.FALSE;
+
 
 	@OneToMany(mappedBy = "order")
 	private Set<OrderDetail> orderDetails;

@@ -4,8 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.hibernate.annotations.Nationalized;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,6 +32,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "products")
+@SQLDelete(sql = "UPDATE products SET deleted = 1 WHERE product_id=?")
+@Where(clause = "deleted=false")
 public class Product implements Serializable {
 
 	@Id
@@ -43,7 +50,8 @@ public class Product implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date enteredDate;
 	private Boolean status;
-	public boolean favorite;
+	private Boolean deleted = Boolean.FALSE;
+
 
 	@ManyToOne
 	@JoinColumn(name = "categoryId")

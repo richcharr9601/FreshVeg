@@ -8,7 +8,6 @@
         "description": "",
         "enteredDate": null,
         "status": true,
-        "favorite": false,
         "category": {
             "categoryId": 1,
             "categoryName": "Rau",
@@ -24,9 +23,8 @@
         "description": "",
         "enteredDate": null,
         "status": true,
-        "favorite": false,
         "category": {
-            "categoryId": 1,
+            "categoryId": 2,
             "categoryName": "Rau",
             "categoryImage": null
         }

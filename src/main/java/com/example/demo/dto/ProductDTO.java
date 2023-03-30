@@ -23,7 +23,6 @@ public class ProductDTO {
 	private String description;
 	private Date enteredDate;
 	private Boolean status;
-	public boolean favorite;
 
 	private Long categoryId;
 }

@@ -67,11 +67,18 @@ public class ProductController {
                 }.getType()));
     }
 
+    @GetMapping("/{productId}")
+    public ResponseEntity<ProductDTO> getProductsByProductId(@PathVariable("productId") long id) {
+        Optional<Product> findOptional = productService.findByID(id);
+        return findOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, ProductDTO.class)))
+        .orElse(ResponseEntity.notFound().build()); 
+    }
+
     
     @GetMapping("/all")
-    public ResponseEntity<List<Product>> getProducts() {
+    public ResponseEntity<List<ProductDTO>> getProducts() {
         return ResponseEntity.ok(
-                modelMapper.map(productService.findAll(), new TypeToken<List<Product>>() {
+                modelMapper.map(productService.findAll(), new TypeToken<List<ProductDTO>>() {
                 }.getType()));
     }
 
