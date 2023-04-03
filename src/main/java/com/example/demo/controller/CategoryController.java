@@ -51,7 +51,6 @@ public class CategoryController {
     public ResponseEntity<CategoryDTO> AddCategory(@RequestBody CategoryDTO categoryDTO) throws BadRequest {
 
         Category category = modelMapper.map(categoryDTO, Category.class);
-        System.out.println(categoryService.add(category));
         return ResponseEntity.ok(modelMapper.map(categoryService.add(category), CategoryDTO.class));
     }
 
@@ -76,5 +75,7 @@ public class CategoryController {
             throws BadRequest {
         return categoryService.deleteCategory(id) ? ResponseEntity.ok(true) : ResponseEntity.badRequest().build();
     }
+
+   
 
    }

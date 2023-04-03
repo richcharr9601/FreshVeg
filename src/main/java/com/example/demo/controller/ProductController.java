@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
 import com.example.demo.dto.ProductDTO;
+import com.example.demo.entities.Category;
 import com.example.demo.entities.Product;
 import com.example.demo.repository.entity.ProductRepository;
 import com.example.demo.service.contract.ICategoryService;
@@ -72,6 +74,12 @@ public class ProductController {
         Optional<Product> findOptional = productService.findByID(id);
         return findOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, ProductDTO.class)))
         .orElse(ResponseEntity.notFound().build()); 
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<List<ProductDTO>> getProductsByCategory(@RequestBody List<Category> categoryIds) {
+        return ResponseEntity.ok(modelMapper.map(productRepository.findByCategoryIn(categoryIds), new TypeToken<List<ProductDTO>>() {
+        }.getType()));
     }
 
     

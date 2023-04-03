@@ -96,7 +96,7 @@ public class OrderController {
     Boolean result = orderRepository.existsById(order.getOrderId());
     if (result) {
         orderRepository.deleteById(order.getOrderId());
-    return ResponseEntity.ok("Order with ID" + order.getOrderId() + "has been deleted");
+    return ResponseEntity.ok("Order with ID" + order.getOrderId() + " has been deleted");
     }
     return ResponseEntity.ok("Cannot delete");
 }

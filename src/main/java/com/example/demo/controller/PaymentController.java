@@ -21,42 +21,52 @@ import java.util.TimeZone;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.config.PaymentConfig;
+import com.example.demo.dto.OrderDTO;
+import com.example.demo.dto.TransactionStatusDTO;
 import com.example.demo.entities.Order;
+import com.example.demo.entities.User;
 import com.example.demo.model.Payment;
 import com.example.demo.model.PaymentRes;
+import com.example.demo.repository.entity.OrderRepository;
 import com.example.demo.repository.entity.UserRepository;
 import com.example.demo.service.contract.IOrderService;
 import com.example.demo.service.contract.IUserService;
 import com.example.demo.service.imp.OrderService;
 import com.example.demo.service.imp.UserService;
+
+import jakarta.mail.MessagingException;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-
+@RequiredArgsConstructor
 @RestController
 public class PaymentController {
 
-    ModelMapper modelMapper;
-    IOrderService orderService;
-    IUserService userService;
-    UserRepository userRepository;
+    final ModelMapper modelMapper;
+    private final OrderService orderService;
+    private final UserService userService;
+    private final UserRepository userRepository;
+    private final OrderRepository orderRepository;
 
-    public PaymentController(ModelMapper modelMapper, OrderService orderService, UserService userService) {
-        this.orderService = orderService;
-        this.userService = userService;
-
-    }
+  
 
 
-    @PostMapping("/checkout/create-payment")
-    public ResponseEntity<?> createPayment(@RequestBody Payment requestParams)  {
-                    String TXNREF = PaymentConfig.getRandomNumber(5);
+    @PostMapping("/checkout/create-payment/{userId}")
+    public ResponseEntity<?> createPayment(@PathVariable("userId") Long userId, @RequestBody Payment requestParams)  {
+                    // String TXNREF = PaymentConfig.getRandomNumber(5);
+                        User user =  userRepository.findByUserId(userId);
+        Order order = orderRepository.findByOrderIdAndUserUserId(requestParams.getOrderId(),user.getUserId());
+        
                     int amount = requestParams.getAmount() * 100;
                     Map<String, String> vnp_Params = new HashMap<>();
                     vnp_Params.put("vnp_Version", PaymentConfig.VERSIONVNPAY);
@@ -68,8 +78,8 @@ public class PaymentController {
                     vnp_Params.put("vnp_BankCode", requestParams.getBankCode());
                     vnp_Params.put("vnp_Locale", PaymentConfig.LOCALEDEFAULT);
                     // vnp_Params.put("vnp_CardType", PaymentConfig.CARDTYPE);
-                    vnp_Params.put("vnp_TxnRef", TXNREF);
-                    vnp_Params.put("vnp_OrderInfo", "Thanh toan hoa don" + TXNREF);
+                    vnp_Params.put("vnp_TxnRef", String.valueOf(order.getOrderId()));
+                    vnp_Params.put("vnp_OrderInfo", "Thanh toan hoa don" + order.getOrderId());
                     vnp_Params.put("vnp_OrderType", PaymentConfig.ORDERTYPE);
                     vnp_Params.put("vnp_ReturnUrl", PaymentConfig.RETURNURL);
                     vnp_Params.put("vnp_IpAddr", PaymentConfig.IPDEFAULT);
@@ -129,49 +139,57 @@ public class PaymentController {
     result.setStatus("00");
     result.setMessage("Success");
     result.setUrl(paymentUrl);
-    Optional<Order> order = orderService.findByID(requestParams.getOrderId());
-    order.get().setStatus(1);
     return ResponseEntity.status(HttpStatus.OK).body(result); 
-
 }
 
-@GetMapping("/checkout/return")
-public ResponseEntity<?>  ipnUrl () {
-     try{
-        URL url = new URL (PaymentConfig.vnp_apiUrl);
-        HttpURLConnection con = (HttpURLConnection)url.openConnection();
-        int responseCode = con.getResponseCode();
-        String hash_Data = PaymentConfig.getRandomNumber(8) + "|" + PaymentConfig.VERSIONVNPAY + "|" + PaymentConfig.COMMAND + "|" + PaymentConfig.TMNCODE + "|" + PaymentConfig.TXNREF + "|"  + PaymentConfig.IPDEFAULT + "|" + PaymentConfig.ORDERTYPE;
-        Map fields = new HashMap();   
-        String vnp_SecureHash = PaymentConfig.CHECKSUM;
-        if (fields.containsKey(PaymentConfig.hmacSHA512(vnp_SecureHash, hash_Data))) 
-        {
-            fields.remove("vnp_SecureHashType");
-        }
-        if (fields.containsKey("vnp_SecureHash")) 
-        {
-            fields.remove("vnp_SecureHash");
-        }
-		
-		// Check checksum
-        String signValue = PaymentConfig.hashAllFields(fields);          
-            if (signValue.equals(vnp_SecureHash)) {
-                if ("00".equals(responseCode)) {
-                    System.out.print("GD Thanh cong");
-                } else {
-                    System.out.print("GD Khong thanh cong");
-                }
-            
-            } else {
-                System.out.print("Chu ky khong hop le");
-            }
-        }
-        catch(Exception e)
-        {
-            System.out.print("{\"RspCode\":\"99\",\"Message\":\"Unknow error\"}");
-        }
-        return ResponseEntity.ok("");
 
+
+
+
+
+@GetMapping("/checkout/payment-information/{userId}")
+public ResponseEntity<?>  transactionHandle (
+    @RequestParam(value = "vnp_Amount", required = false) String amount,
+    @RequestParam(value = "vnp_BankCode", required = false) String bankCode,
+    @RequestParam(value = "vnp_BankTranNo", required = false) String bankTranNo,
+    @RequestParam(value = "vnp_CardType", required = false) String cardType,
+    @RequestParam(value = "vnp_PayDate", required = false) String payDate,
+    @RequestParam(value = "vnp_OrderInfo", required = false) String orderInfo,
+    @RequestParam(value = "vnp_ResponseCode", required = false) String responseCode,
+    @RequestParam(value = "vnp_TransactionNo", required = false) String transactionNo,
+    @RequestParam(value = "vnp_TxnRef", required = false) String txnRef,
+    @RequestParam(value = "vnp_SecureHash", required = false) String secureHash,
+    @RequestParam(value = "vnp_SecureHashType", required = false) String secureHashType,
+    @PathVariable("userId") Long userId
+) throws MessagingException{
+    TransactionStatusDTO result = new TransactionStatusDTO();
+    if (!responseCode.equalsIgnoreCase("00")){
+        result.setStatus("02");
+        result.setMessage("Checkout failed");
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
+    User user =  userRepository.findByUserId(userId);
+ 
+    if(orderRepository.findByOrderIdAndUserUserId(Long.parseLong(txnRef),user.getUserId())==null){
+        result.setStatus("01");
+        result.setMessage("Cannot find order");
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+        Order order = orderRepository.findByOrderIdAndUserUserId(Long.parseLong(txnRef),user.getUserId());
+    if(order.getStatus()==true){
+        result.setStatus("01");
+        result.setMessage("Order already paid");
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+    if(order.getOrderId().toString().equalsIgnoreCase(txnRef)){
+        order.setStatus(true);
+        orderRepository.save(order);
+        result.setStatus("00");
+        result.setMessage("Checkout successfully");
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+    return ResponseEntity.status(HttpStatus.OK).body(result);
 }
 }
 
