@@ -32,7 +32,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "address")
-@SQLDelete(sql = "UPDATE categories SET deleted = 1 WHERE category_id=?")
+@SQLDelete(sql = "UPDATE address SET deleted = 1 WHERE address_id=?")
 @Where(clause = "deleted=false")
 public class Address {
    

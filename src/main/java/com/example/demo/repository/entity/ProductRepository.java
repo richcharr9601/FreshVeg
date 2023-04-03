@@ -7,13 +7,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.dto.ProductDTO;
+import com.example.demo.entities.Category;
 import com.example.demo.entities.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
 
 	// List product by category
-	@Query(value = "SELECT * FROM products WHERE category_id = ?", nativeQuery = true)
+	@Query(value = "SELECT * FROM products WHERE category_id = ?;", nativeQuery = true)
 	public List<Product> listProductByCategory(Long categoryId);
 
 	// Top 10 product by category
@@ -47,5 +49,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 	@Query(value = "select * from products o where product_id in :ids", nativeQuery = true)
 	List<Product> findByInventoryIds(@Param("ids") List<Integer> listProductId);
+
+	List<Product> findByCategoryIn(List<Category> categoryIds);
 
 }

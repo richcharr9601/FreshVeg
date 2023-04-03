@@ -68,7 +68,7 @@ public class AddressController {
 
     @PreAuthorize("#userId == authentication.principal.userId")
     @PostMapping("/{userId}")
-    public ResponseEntity<AddressDTO> addAddress(@PathVariable Long userId, @RequestBody AddressDTO addressDTO)
+    public ResponseEntity<AddressDTO> addAddress(@PathVariable("userId") Long userId, @RequestBody AddressDTO addressDTO)
             throws BadRequest {
         boolean exist = userService.existsByID(userId);
 
@@ -85,7 +85,7 @@ public class AddressController {
 
     @PreAuthorize("#userId == authentication.principal.userId")
     @PutMapping("/{userId}/{addressId}")
-    public ResponseEntity<AddressDTO> editAddress(@PathVariable("addressId") Long aid,@PathVariable("id") Long userId, @RequestBody AddressDTO addressDTO)
+    public ResponseEntity<AddressDTO> editAddress(@PathVariable("addressId") Long aid,@PathVariable("userId") Long userId, @RequestBody AddressDTO addressDTO)
             throws BadRequest {               
         Address address = modelMapper.map(addressDTO, Address.class);
         User user = new User();
@@ -105,15 +105,15 @@ public class AddressController {
     }
 
 
-//     @PreAuthorize("#userId == authentication.principal.userId")
-//     @DeleteMapping()
-//     public ResponseEntity<String> deleteAddress(@RequestBody Address address)
-//     throws BadRequest {
-//     Boolean result = addressRepository.existsById(address.getAddressId());
-//     if (result) {
-//     addressService.delete(address.getAddressId());
-//     return ResponseEntity.ok("Address with ID" + address.getAddressId() + "has been deleted");
-//     }
-//     return ResponseEntity.ok("Cannot delete");
-// }
+    // @PreAuthorize("#userId == authentication.principal.userId")
+    @DeleteMapping()
+    public ResponseEntity<String> deleteAddress(@RequestBody Address address)
+    throws BadRequest {
+    Boolean result = addressRepository.existsById(address.getAddressId());
+    if (result) {
+    addressRepository.deleteById(address.getAddressId());
+    return ResponseEntity.ok("Address with ID " + address.getAddressId() + " has been deleted");
+    }
+    return ResponseEntity.ok("Cannot delete");
+}
 }
