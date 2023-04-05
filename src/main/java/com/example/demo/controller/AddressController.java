@@ -70,7 +70,7 @@ public class AddressController {
 
     // @PreAuthorize("#userId == authentication.principal.userId")
     @PostMapping("/{userId}")
-    public ResponseEntity<AddressDTO> addAddress(@RequestHeader("Authorization") String token,@PathVariable("userId") Long userId, @RequestBody AddressDTO addressDTO)
+    public ResponseEntity<AddressDTO> addAddress(@PathVariable("userId") Long userId, @RequestBody AddressDTO addressDTO)
             throws BadRequest {
         boolean exist = userService.existsByID(userId);
 
@@ -108,15 +108,16 @@ public class AddressController {
 
 
     // @PreAuthorize("#userId == authentication.principal.userId")
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<String> deleteAddress(@PathVariable("userId") Long userId, @RequestBody Address address)
+    @DeleteMapping("/{userId}/{addressId}")
+    public ResponseEntity<String> deleteAddress(@PathVariable("userId") Long userId, @PathVariable("addressId") Long addressId)
     throws BadRequest {
-    Boolean result = addressRepository.existsById(address.getAddressId());
+    Boolean result = addressRepository.existsById(addressId);
+    Address address = addressRepository.findByAddressId(addressId);
     if (result) {
         User user = userRepository.findByUserId(userId);
         user.setUserId(userId);
         address.setUser(user);
-    addressRepository.deleteById(address.getAddressId());
+    addressRepository.deleteById(addressId);
     return ResponseEntity.ok("Address with ID " + address.getAddressId() + " has been deleted");
     }
     return ResponseEntity.ok("Cannot delete");
