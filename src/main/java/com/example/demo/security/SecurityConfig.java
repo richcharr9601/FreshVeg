@@ -72,23 +72,24 @@ public class SecurityConfig {
     ;
 
     http.authorizeHttpRequests()
-            .requestMatchers("/product/all").permitAll()
-            .requestMatchers("/category/all").permitAll()
-            .requestMatchers("/all/{categoryId}").permitAll()
-            .requestMatchers("/product/{productId}").permitAll()
-            .requestMatchers("/auth/**").permitAll()
-            .requestMatchers("/oauth/**").permitAll()
-            .requestMatchers("localhost:8080/product").permitAll()
-            .requestMatchers("/checkout/payment-information/**").permitAll()
-            .requestMatchers("localhost:8080/address").hasAuthority("USER")
-            .requestMatchers("/address/**").hasAuthority("USER")
-            .requestMatchers("/product/**").hasAuthority("ADMIN")
-            .requestMatchers("/category/**").hasAuthority("ADMIN")
-            .requestMatchers("/statistic/**").hasAuthority("ADMIN")
-            .requestMatchers("/order").hasAuthority("USER")
-            .requestMatchers("/checkout/**").hasAuthority("USER")
-            .requestMatchers("/user/**").hasAuthority("USER")
-            .requestMatchers("/order/**").hasAuthority("USER");          
+    .requestMatchers("/**").permitAll();
+            // .requestMatchers("/product/all").permitAll()
+            // .requestMatchers("/category/all").permitAll()
+            // .requestMatchers("/all/{categoryId}").permitAll()
+            // .requestMatchers("/product/{productId}").permitAll()
+            // .requestMatchers("/auth/**").permitAll()
+            // .requestMatchers("/oauth/**").permitAll()
+            // .requestMatchers("localhost:8080/product").permitAll()
+            // .requestMatchers("/checkout/payment-information/**").permitAll()
+            // .requestMatchers("localhost:8080/address").hasAuthority("USER")
+            // .requestMatchers("/address/**").hasAuthority("USER")
+            // .requestMatchers("/product/**").hasAuthority("ADMIN")
+            // .requestMatchers("/category/**").hasAuthority("ADMIN")
+            // .requestMatchers("/statistic/**").hasAuthority("ADMIN")
+            // .requestMatchers("/order").hasAuthority("USER")
+            // .requestMatchers("/checkout/**").hasAuthority("USER")
+            // .requestMatchers("/user/**").hasAuthority("USER")
+            // .requestMatchers("/order/**").hasAuthority("USER");          
     return http.build();
   }
 

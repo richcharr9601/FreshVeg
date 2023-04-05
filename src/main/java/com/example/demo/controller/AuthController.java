@@ -74,7 +74,7 @@ public class AuthController {
                 else return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/callback")
+    @GetMapping("/login-with-google")
     public ResponseEntity<String> callback(@AuthenticationPrincipal OAuth2User oauth2User,
                                             OAuth2AuthenticationToken authentication) {
 

@@ -29,7 +29,7 @@ public class GoogleController {
 
     private final UserRepository userRepository;
     
-    @GetMapping("login/oauth2/code/google")
+    @GetMapping("login/oauth2/code/callback")
     public ResponseEntity<String> callback(@AuthenticationPrincipal OAuth2User oauth2User,
                                             OAuth2AuthenticationToken authentication) {
 
