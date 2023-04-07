@@ -3,6 +3,7 @@ package com.example.demo.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.annotations.Nationalized;
 import org.hibernate.annotations.OnDelete;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
@@ -55,7 +57,7 @@ public class Product implements Serializable {
 
 
 	@OneToMany(mappedBy = "product")
-    private List<ProductImage> productImage;
+    private Set<ProductImage> productImage;
 
 	@ManyToOne
 	@JoinColumn(name = "categoryId")

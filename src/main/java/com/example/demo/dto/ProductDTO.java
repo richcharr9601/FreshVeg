@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import com.example.demo.entities.Category;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -27,8 +28,8 @@ public class ProductDTO {
 	private Boolean status;
 
 
-	@JsonManagedReference
-	private List<ProductImageDTO> productImage;
+	// @JsonManagedReference
+	private Set<ProductImageDTO> productImage;
 
 	private Long categoryId;
 }

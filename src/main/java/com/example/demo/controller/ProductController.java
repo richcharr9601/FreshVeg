@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -68,12 +70,13 @@ public class ProductController {
     public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDto)
             throws BadRequest {
                 Product product = modelMapper.map(productDto, Product.class);
-                List<ProductImageDTO> productImageDTO = new ArrayList<ProductImageDTO>(); 
-                productImageDTO.addAll(productDto.getProductImage());
+
                 productService.add(product);
+
                 product.getProductImage().forEach(od -> {
                     productImageService.add(od);
                 });
+
                  return ResponseEntity.ok(modelMapper.map(product, ProductDTO.class));
 
     }

@@ -20,10 +20,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductImageDTO {
-    private String productImageId;
+    private Long productImageId;
     private String imageLink;
-	
 
     @JsonBackReference
-	private Product product;
+	private Long productId;
 }

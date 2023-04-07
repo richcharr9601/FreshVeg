@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,10 +32,11 @@ import lombok.AllArgsConstructor;
 @Table(name = "productImage")
 public class ProductImage implements Serializable{
     @Id
-	private String productImageId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long productImageId;
     private String imageLink;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne()
 	@JoinColumn(name = "productId")
 	private Product product;
 }
