@@ -23,6 +23,7 @@ public class OrderDTO {
     private String phone;
     private Double amount;
     private int status;
+    private String note;
     private Date orderDate;
     private Long addressId;
 

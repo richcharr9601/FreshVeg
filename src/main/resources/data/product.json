@@ -1,10 +1,11 @@
 [
     {
-        "productName": "Trần Quốc Khanh",
-        "quantity": 50,
+        "productName": "Tran Quoc Khanh",
+        "weight": 50,
         "price": 50000.0,
         "discount": 0,
-        "productImage": "",
+        "productImage": [
+        ],
         "description": "",
         "enteredDate": null,
         "status": true,
@@ -16,11 +17,11 @@
     },
     {
         "productName": "Hoang Tien Thinh",
-        "quantity": 50,
+        "weight": 50,
         "price": 50000.0,
         "discount": 0,
-        "productImage": "",
-        "description": "",
+        "productImage": [
+          ],
         "enteredDate": null,
         "status": true,
         "category": {

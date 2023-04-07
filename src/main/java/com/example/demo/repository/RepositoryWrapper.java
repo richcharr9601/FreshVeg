@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.example.demo.repository.entity.CategoryRepository;
 import com.example.demo.repository.entity.OrderDetailRepository;
 import com.example.demo.repository.entity.OrderRepository;
+import com.example.demo.repository.entity.ProductImageRepository;
 import com.example.demo.repository.entity.ProductRepository;
 import com.example.demo.repository.entity.RoleRepository;
 import com.example.demo.repository.entity.UserRepository;
@@ -46,6 +47,9 @@ public class RepositoryWrapper {
 
     @Autowired
     AddressRepository addressRepository;
+
+    @Autowired
+    ProductImageRepository productImageRepository;
 
     public <TEntity, TKey> JpaRepository<TEntity, TKey> repository(Class<?> type) {
         if (!checkEntity(type))

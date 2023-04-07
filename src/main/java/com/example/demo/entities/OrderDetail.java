@@ -33,7 +33,7 @@ public class OrderDetail implements Serializable {
 	@Id
 	@EmbeddedId
 	private OrderDetailKey id = new OrderDetailKey();
-	private int quantity;
+	private int weight;
 	private Double price;
 
 	@MapsId("productId")

@@ -48,6 +48,7 @@ public class Order implements Serializable {
 	private Double amount;
 	@Nationalized
 	private String phone;
+	private String note;
 	private Boolean status;
 	private Boolean deleted = Boolean.FALSE;
 

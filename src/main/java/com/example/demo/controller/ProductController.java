@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,15 +20,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
 import com.example.demo.dto.ProductDTO;
+import com.example.demo.dto.ProductImageDTO;
 import com.example.demo.entities.Category;
 import com.example.demo.entities.Product;
+import com.example.demo.entities.ProductImage;
+import com.example.demo.repository.entity.ProductImageRepository;
 import com.example.demo.repository.entity.ProductRepository;
 import com.example.demo.service.contract.ICategoryService;
 import com.example.demo.service.contract.IOrderDetailService;
 import com.example.demo.service.contract.IOrderService;
+import com.example.demo.service.contract.IProductImageService;
 import com.example.demo.service.contract.IProductService;
 import com.example.demo.service.imp.CategoryService;
 import com.example.demo.service.imp.OrderDetailService;
+import com.example.demo.service.imp.ProductImageService;
 import com.example.demo.service.imp.ProductService;
 
 @RestController
@@ -39,19 +45,22 @@ public class ProductController {
     IOrderDetailService orderDetailService;
     ICategoryService categoryService;
     IProductService productService;
+    IProductImageService productImageService; 
 
- 
-
-    public ProductController(ModelMapper modelMapper, CategoryService categoryService,ProductService productService, OrderDetailService orderDetailService) {
+    public ProductController(ModelMapper modelMapper, CategoryService categoryService,ProductService productService,ProductImageService productImageService, OrderDetailService orderDetailService) {
         this.modelMapper = modelMapper;
         this.categoryService = categoryService;
         this.orderDetailService = orderDetailService;
         this.productService = productService;
+        this.productImageService = productImageService;
 
     }
     
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ProductImageRepository productImageRepository;
 
     
     
@@ -59,7 +68,14 @@ public class ProductController {
     public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDto)
             throws BadRequest {
                 Product product = modelMapper.map(productDto, Product.class);
-        return ResponseEntity.ok(modelMapper.map(productService.add(product), ProductDTO.class));
+                List<ProductImageDTO> productImageDTO = new ArrayList<ProductImageDTO>(); 
+                productImageDTO.addAll(productDto.getProductImage());
+                productService.add(product);
+                product.getProductImage().forEach(od -> {
+                    productImageService.add(od);
+                });
+                 return ResponseEntity.ok(modelMapper.map(product, ProductDTO.class));
+
     }
 
     @GetMapping("/all/{categoryId}")
@@ -109,5 +125,7 @@ public class ProductController {
     return ResponseEntity.ok("Product with ID" + product.getProductId() + " has been deleted");
     }
     return ResponseEntity.ok("Cannot delete");
+
+    
 }
 }

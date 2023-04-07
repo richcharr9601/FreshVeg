@@ -33,6 +33,10 @@ public class Role implements Serializable {
 	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<User> users;
 
+	public Role(Long id) {
+		this.id = id;
+	}
+
     @Override
     public String toString() {
         return name;
