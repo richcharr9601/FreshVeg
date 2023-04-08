@@ -21,12 +21,12 @@ public class ProductMapping extends MappingConfig {
             mapper.map(src -> src.getCategoryId(), (dest, v) -> dest.getCategory().setCategoryId((Long)v));
         });
 
-        modelMapper.typeMap(ProductImage.class, ProductImageDTO.class).addMappings(mapper -> {
-            mapper.map(src -> src.getProduct().getProductId(), (dest, v) -> dest.setProductId((Long)v));
-        });
+        // modelMapper.typeMap(ProductImage.class, ProductImageDTO.class).addMappings(mapper -> {
+        //     mapper.map(src -> src.getProduct().getProductId(), (dest, v) -> dest.getProduct().setProductId((Long)v));
+        // });
 
-        modelMapper.typeMap(ProductImageDTO.class, ProductImage.class).addMappings(mapper -> {
-            mapper.map(src -> src.getProductId(), (dest, v) -> dest.getProduct().setProductId((Long)v));
-        });
+        // modelMapper.typeMap(ProductImageDTO.class, ProductImage.class).addMappings(mapper -> {
+        //     mapper.map(src -> src.getProduct().getProductId(), (dest, v) -> dest.getProduct().setProductId((Long)v));
+        // });
     }
 }

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -69,10 +70,10 @@ public class ProductController {
     @PostMapping()
     public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDto)
             throws BadRequest {
+                Date date = new Date();
                 Product product = modelMapper.map(productDto, Product.class);
-
+                product.setEnteredDate(date);
                 productService.add(product);
-
                 product.getProductImage().forEach(od -> {
                     productImageService.add(od);
                 });

@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.entities.Product;
+import com.example.demo.entities.ProductImage;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
 import com.example.demo.entities.Category;
@@ -34,7 +35,7 @@ public class DbInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Initialize(new Class[] { Role.class, User.class, Category.class, Product.class});
+        Initialize(new Class[] { Role.class, User.class, Category.class, Product.class, ProductImage.class});
     }
 
     private void Initialize(Class[] entityTypes) {

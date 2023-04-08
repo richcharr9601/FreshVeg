@@ -24,5 +24,5 @@ public class ProductImageDTO {
     private String imageLink;
 
     @JsonBackReference
-	private Long productId;
+	private ProductDTO product;
 }

@@ -81,8 +81,8 @@ public class OrderController {
                 Date date = new Date();
         Order order = modelMapper.map(orderDTO, Order.class);
         order.setOrderDate(date);
+        order.setStatusPayment(false);
         orderService.add(order);
-
         order.getOrderDetails().forEach(od -> {
             orderDetailService.add(od);
         });

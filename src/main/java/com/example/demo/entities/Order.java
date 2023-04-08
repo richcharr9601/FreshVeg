@@ -49,7 +49,7 @@ public class Order implements Serializable {
 	@Nationalized
 	private String phone;
 	private String note;
-	private Boolean status;
+	private Boolean statusPayment;
 	private Boolean deleted = Boolean.FALSE;
 
 

@@ -177,13 +177,13 @@ public ResponseEntity<?>  transactionHandle (
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
         Order order = orderRepository.findByOrderIdAndUserUserId(Long.parseLong(txnRef),user.getUserId());
-    if(order.getStatus()==true){
+    if(order.getStatusPayment()==true){
         result.setStatus("01");
         result.setMessage("Order already paid");
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
     if(order.getOrderId().toString().equalsIgnoreCase(txnRef)){
-        order.setStatus(true);
+        order.setStatusPayment(true);
         orderRepository.save(order);
         result.setStatus("00");
         result.setMessage("Checkout successfully");

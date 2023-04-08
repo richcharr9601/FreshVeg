@@ -30,7 +30,7 @@ public class OrderService extends EntityService<Order, Long> implements IOrderSe
 
         if (existsById) {
             Order order = orderRepository.findById(orderId).get();
-            order.setStatus(true);
+            order.setStatusPayment(true);
             orderRepository.save(order);
             return true;
         }

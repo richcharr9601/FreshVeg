@@ -5,6 +5,12 @@
         "price": 50000.0,
         "discount": 0,
         "productImage": [
+            {
+                "imageLink": "1231223"
+            },
+            {
+                "imageLink": "123123"
+            }
         ],
         "description": "",
         "enteredDate": null,
@@ -21,7 +27,13 @@
         "price": 50000.0,
         "discount": 0,
         "productImage": [
-          ],
+            {
+                "productImageId":1
+            },
+            {
+                "productImageId":2
+            }
+        ],
         "enteredDate": null,
         "status": true,
         "category": {

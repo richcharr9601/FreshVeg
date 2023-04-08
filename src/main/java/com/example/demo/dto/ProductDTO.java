@@ -28,7 +28,7 @@ public class ProductDTO {
 	private Boolean status;
 
 
-	// @JsonManagedReference
+	@JsonManagedReference
 	private Set<ProductImageDTO> productImage;
 
 	private Long categoryId;

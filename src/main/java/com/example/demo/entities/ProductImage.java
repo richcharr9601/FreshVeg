@@ -36,7 +36,7 @@ public class ProductImage implements Serializable{
 	private Long productImageId;
     private String imageLink;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "productId")
 	private Product product;
 }
