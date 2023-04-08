@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.example.demo.entities.Address;
+import com.example.demo.entities.Order.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -23,6 +24,7 @@ public class OrderDTO {
     private String phone;
     private Double amount;
     private Boolean statusPayment;
+    private OrderStatus statusOrder;
     private String note;
     private Date orderDate;
     private Long addressId;
