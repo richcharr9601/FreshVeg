@@ -31,7 +31,7 @@ public class OrderService extends EntityService<Order, Long> implements IOrderSe
 
         if (existsById) {
             Order order = orderRepository.findById(orderId).get();
-            order.setStatus(OrderStatus.confirmed);
+            order.setStatus(OrderStatus.Confirmed);
             orderRepository.save(order);
             return true;
         }
@@ -45,7 +45,7 @@ public class OrderService extends EntityService<Order, Long> implements IOrderSe
 
         if (existsById) {
             Order order = orderRepository.findById(orderId).get();
-            order.setStatus(OrderStatus.success);
+            order.setStatus(OrderStatus.Success);
             orderRepository.save(order);
             return true;
         }
@@ -58,7 +58,7 @@ public class OrderService extends EntityService<Order, Long> implements IOrderSe
 
         if (existsById) {
             Order order = orderRepository.findById(orderId).get();
-            order.setStatus(OrderStatus.failed);
+            order.setStatus(OrderStatus.Failed);
             orderRepository.save(order);
             return true;
         }
