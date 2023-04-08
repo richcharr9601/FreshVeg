@@ -107,21 +107,21 @@ public class OrderController {
     @PatchMapping("{orderId}/confirmed")
     public ResponseEntity<Object> confirmOrder(@PathVariable("orderId") Long id)
             throws BadRequest {
-        return orderService.confirmOrder(id, OrderStatus.confirmed) ? ResponseEntity.ok("Confirmed Order")
+        return orderService.confirmOrder(id, OrderStatus.Confirmed) ? ResponseEntity.ok("Confirmed Order")
                 : ResponseEntity.notFound().build();
     }
 
     @PatchMapping("{orderId}/success")
     public ResponseEntity<Object> orderSuccess(@PathVariable("orderId") Long id)
             throws BadRequest {
-        return orderService.confirmOrder(id, OrderStatus.success) ? ResponseEntity.ok("Successfully")
+        return orderService.confirmOrder(id, OrderStatus.Success) ? ResponseEntity.ok("Successfully")
                 : ResponseEntity.notFound().build();
     }
 
     @PatchMapping("{orderId}/failed")
     public ResponseEntity<Object> orderFailed(@PathVariable("orderId") Long id)
             throws BadRequest {
-        return orderService.confirmOrder(id, OrderStatus.failed) ? ResponseEntity.ok("Failed")
+        return orderService.confirmOrder(id, OrderStatus.Failed) ? ResponseEntity.ok("Failed")
                 : ResponseEntity.notFound().build();
     }
 
