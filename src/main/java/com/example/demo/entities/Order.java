@@ -10,6 +10,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -70,10 +71,12 @@ public class Order implements Serializable {
     }
 
 	@OneToMany(mappedBy = "order")
+	@JsonIgnore
 	private Set<OrderDetail> orderDetails;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "addressId")
+	@JsonIgnore
 	private Address address;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
