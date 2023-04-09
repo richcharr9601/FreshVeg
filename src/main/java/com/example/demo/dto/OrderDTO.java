@@ -24,7 +24,7 @@ public class OrderDTO {
     private String phone;
     private Double amount;
     private Boolean statusPayment;
-    private OrderStatus statusOrder;
+    private OrderStatus status;
     private String note;
     private Date orderDate;
     private Long addressId;
