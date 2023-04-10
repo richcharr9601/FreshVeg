@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.ChangePasswordDTO;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
 import com.example.demo.repository.entity.RoleRepository;
@@ -29,16 +30,20 @@ public class UserService extends EntityService<User, Long> implements IUserServi
 
 
     @Override
-    public boolean changePassword(Long userId, String passowrd) {
+    public String changePassword(Long userId, ChangePasswordDTO changePasswordDTO) {
         boolean existsById = userRepository.existsById(userId);
 
         if (existsById) {
             User user = userRepository.findById(userId).get();
-            user.setPassword(passwordEncoder.encode(passowrd));
+            boolean isPasswordMatch = passwordEncoder.matches(changePasswordDTO.getCurrentPassword(), user.getPassword());
+            if(isPasswordMatch == true){
+                user.setPassword(passwordEncoder.encode(changePasswordDTO.getNewPassword()));
             userRepository.save(user);
-            return true;
+            return "Change password successfully";
+               
+            }else return "Current password is not correct";
         }
-        return false;
+        return "User is not exist";
     }
 
     @Override

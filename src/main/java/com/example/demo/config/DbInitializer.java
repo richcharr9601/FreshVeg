@@ -35,7 +35,7 @@ public class DbInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Initialize(new Class[] { Role.class, User.class, Category.class,ProductImage.class, Product.class });
+        Initialize(new Class[] { Role.class, User.class,Category.class,ProductImage.class, Product.class });
     }
 
     private void Initialize(Class[] entityTypes) {

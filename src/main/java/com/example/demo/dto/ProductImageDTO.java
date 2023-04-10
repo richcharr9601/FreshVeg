@@ -20,6 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductImageDTO {
+    
     private Long productImageId;
     private String imageLink;
 

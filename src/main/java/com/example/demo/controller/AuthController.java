@@ -54,7 +54,7 @@ public class AuthController {
 
     @PostMapping("login")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<LoginResponse> loginByEmail(@RequestBody LoginRequest loginRequest) throws BadRequest {
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) throws BadRequest {
         
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())

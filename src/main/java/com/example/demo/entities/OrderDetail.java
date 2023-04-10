@@ -37,7 +37,7 @@ public class OrderDetail implements Serializable {
 	private Double price;
 
 	@MapsId("productId")
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "productId")
 	private Product product;
 
