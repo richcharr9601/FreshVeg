@@ -15,4 +15,5 @@ import com.example.demo.entities.User;
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long> {
     Set<Address> findByUser(Optional<User> user);
+    Address findByAddressId(Long addressId);
 }

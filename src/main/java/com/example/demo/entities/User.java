@@ -78,6 +78,8 @@ public class User implements Serializable, UserDetails {
 		return List.of(new SimpleGrantedAuthority(roles.toArray()[0].toString()));
 	}
 
+	
+
 	@Override
 	public String getPassword() {
 		return password;

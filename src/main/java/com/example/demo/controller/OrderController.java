@@ -27,6 +27,7 @@ import com.example.demo.dto.OrderDetailDTO;
 import com.example.demo.entities.Order;
 import com.example.demo.entities.OrderDetail;
 import com.example.demo.entities.OrderDetailKey;
+import com.example.demo.entities.Order.OrderStatus;
 import com.example.demo.repository.entity.OrderRepository;
 import com.example.demo.service.contract.IOrderService;
 import com.example.demo.service.contract.IOrderDetailService;
@@ -81,8 +82,9 @@ public class OrderController {
                 Date date = new Date();
         Order order = modelMapper.map(orderDTO, Order.class);
         order.setOrderDate(date);
+        order.setStatusPayment(false);
+        order.setStatus(OrderStatus.onWaitingConfirm);
         orderService.add(order);
-
         order.getOrderDetails().forEach(od -> {
             orderDetailService.add(od);
         });
@@ -102,10 +104,24 @@ public class OrderController {
 }
 
 
-    @PatchMapping("{orderId}")
-    public ResponseEntity<Object> confirmOrder(@PathVariable("orderId") long id, @RequestBody String status)
+    @PatchMapping("{orderId}/confirmed")
+    public ResponseEntity<Object> confirmOrder(@PathVariable("orderId") Long id)
             throws BadRequest {
-        return orderService.confirmOrder(id, status) ? ResponseEntity.ok("Confirmed Order")
+        return orderService.confirmOrder(id, OrderStatus.Confirmed) ? ResponseEntity.ok("Confirmed Order")
+                : ResponseEntity.notFound().build();
+    }
+
+    @PatchMapping("{orderId}/success")
+    public ResponseEntity<Object> orderSuccess(@PathVariable("orderId") Long id)
+            throws BadRequest {
+        return orderService.confirmOrder(id, OrderStatus.Success) ? ResponseEntity.ok("Successfully")
+                : ResponseEntity.notFound().build();
+    }
+
+    @PatchMapping("{orderId}/failed")
+    public ResponseEntity<Object> orderFailed(@PathVariable("orderId") Long id)
+            throws BadRequest {
+        return orderService.confirmOrder(id, OrderStatus.Failed) ? ResponseEntity.ok("Failed")
                 : ResponseEntity.notFound().build();
     }
 

@@ -9,6 +9,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -47,6 +48,7 @@ public class Address {
 
 
 	@OneToMany(mappedBy = "address")
+	@JsonIgnore
 	private Set<Order> orders;
 
 	@ManyToOne(cascade = CascadeType.MERGE)

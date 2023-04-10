@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
+import com.example.demo.dto.ChangePasswordDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
@@ -77,9 +78,10 @@ public class UserController {
     }
 
     @PatchMapping("/{id}/password")
-    public ResponseEntity<Object> changePassword(@PathVariable("id") long id, @RequestBody String password)
+    public ResponseEntity<Object> changePassword(@PathVariable("id") long id, @RequestBody ChangePasswordDTO changePasswordDTO)
             throws BadRequest {
-        return userService.changePassword(id, password) ? ResponseEntity.ok("password changed: " + password)
-                : ResponseEntity.notFound().build();
+                
+        return  ResponseEntity.ok(userService.changePassword(id, changePasswordDTO));
+               
     }
 }

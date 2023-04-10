@@ -10,16 +10,20 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -48,15 +52,31 @@ public class Order implements Serializable {
 	private Double amount;
 	@Nationalized
 	private String phone;
-	private Boolean status;
+	private String note;
+	private Boolean statusPayment;
+	@Enumerated(EnumType.STRING)
+    private OrderStatus status;
 	private Boolean deleted = Boolean.FALSE;
 
+	public enum OrderStatus {
+		Confirmed,
+		onWaitingConfirm,
+		Success,
+		Failed
+	}
+
+	@PrePersist
+    public void prePersist() {
+        this.status = OrderStatus.onWaitingConfirm;
+    }
 
 	@OneToMany(mappedBy = "order")
+	@JsonIgnore
 	private Set<OrderDetail> orderDetails;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "addressId")
+	@JsonIgnore
 	private Address address;
 
 	@ManyToOne(cascade = CascadeType.MERGE)

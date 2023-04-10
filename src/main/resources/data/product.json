@@ -1,32 +1,23 @@
 [
     {
-        "productName": "Trần Quốc Khanh",
-        "quantity": 50,
-        "price": 50000.0,
-        "discount": 0,
-        "productImage": "",
-        "description": "",
-        "enteredDate": null,
-        "status": true,
-        "category": {
-            "categoryId": 1,
-            "categoryName": "Rau",
-            "categoryImage": null
+    "productName": "Nguyen Nhat Minh",
+    "weight": 50,
+    "price": 50000.0,
+    "discount": 0,
+    "description": "",
+    "status": true,
+    "productImage": [
+        {
+            "productImageId": 1,
+            "imageLink": "123123"
+        },
+        {
+            "productImageId": 2,
+            "imageLink": "1231223"
         }
-    },
-    {
-        "productName": "Hoang Tien Thinh",
-        "quantity": 50,
-        "price": 50000.0,
-        "discount": 0,
-        "productImage": "",
-        "description": "",
-        "enteredDate": null,
-        "status": true,
-        "category": {
-            "categoryId": 2,
-            "categoryName": "Rau",
-            "categoryImage": null
-        }
+    ],
+    "category": {
+        "categoryId":1
     }
+}
 ]

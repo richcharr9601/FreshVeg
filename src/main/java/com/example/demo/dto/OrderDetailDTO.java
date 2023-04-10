@@ -16,7 +16,7 @@ import lombok.Setter;
 public class OrderDetailDTO {
     private Long orderId;
     private Long productId;
-    private int quantity;
+    private int weight;
     private Double price;
 
     @JsonBackReference

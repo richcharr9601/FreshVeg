@@ -13,7 +13,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.oauth2.jwt.JwtClaimNames;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +32,7 @@ import com.example.demo.dto.OTPCodeDTO;
 import com.example.demo.dto.ResetPasswordDTO;
 import com.example.demo.dto.UserRegisteredDTO;
 import com.example.demo.entities.User;
+import com.example.demo.repository.entity.UserRepository;
 import com.example.demo.service.contract.DefaultUserService;
 import com.nimbusds.jwt.JWTClaimsSet;
 
@@ -45,9 +51,10 @@ public class AuthController {
 
     private final JwtService jwtService;
 
+
     @PostMapping("login")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<LoginResponse> loginByEmail(@RequestBody LoginRequest loginRequest) throws BadRequest {
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) throws BadRequest {
         
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
@@ -63,11 +70,6 @@ public class AuthController {
                 .ok(new LoginResponse(jwt, modelMapper.map(user, User.class)));}
                 else return ResponseEntity.notFound().build();
     }
-
-    // @GetMapping
-    // public  Map<String, Object> currentUser(OAuth2AuthenticationToken oAuth2AuthenticationToken) {
-    //     return oAuth2AuthenticationToken.getPrincipal().getAttributes();
-    // }
     
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletRequest request) {
@@ -77,7 +79,6 @@ public class AuthController {
 
     @Autowired
     private DefaultUserService userService;
-
 	    @PostMapping("register")
 	    public ResponseEntity<User> registerUserAccount(@RequestBody
 	              UserRegisteredDTO registrationDto) {

@@ -56,7 +56,9 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 
 	@Override
 	public User register(UserRegisteredDTO userRegisteredDTO) {
-		
+		boolean existsByEmail = userRepo.existsByEmail(userRegisteredDTO.getEmail());
+
+		if(existsByEmail==false){
 		Role role = roleRepo.findByName("USER");
 		User user = new User();
 		Date date = new Date();
@@ -68,7 +70,8 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 		user.setRegisterDate(date);
 		generateOtp(user);
 		// userRepo.save(user);
-		return userRepo.save(user);
+		return userRepo.save(user);}
+		return null;
 	}
 
 	public String checkOTP(OTPCodeDTO otpCodeDTO){

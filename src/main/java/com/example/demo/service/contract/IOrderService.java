@@ -5,8 +5,10 @@ import com.example.demo.dto.OrderDTO;
 import com.example.demo.dto.OrderDetailDTO;
 import com.example.demo.entities.Order;
 import com.example.demo.entities.OrderDetail;
+import com.example.demo.entities.Order.OrderStatus;
 
 public interface IOrderService extends IService<Order, Long> {
-    boolean confirmOrder(Long orderId, String status);
-
+    Boolean confirmOrder(Long orderId, OrderStatus status);
+    Boolean orderSuccess(Long orderId, OrderStatus status);
+    Boolean orderFailed(Long orderId, OrderStatus status);
 }

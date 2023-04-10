@@ -65,8 +65,10 @@ public class AddressController {
 
     private final AddressRepository addressRepository;
 
+    private final UserRepository userRepository;
 
-    @PreAuthorize("#userId == authentication.principal.userId")
+
+    // @PreAuthorize("#userId == authentication.principal.userId")
     @PostMapping("/{userId}")
     public ResponseEntity<AddressDTO> addAddress(@PathVariable("userId") Long userId, @RequestBody AddressDTO addressDTO)
             throws BadRequest {
@@ -83,12 +85,12 @@ public class AddressController {
         } else return ResponseEntity.notFound().build();
     }
 
-    @PreAuthorize("#userId == authentication.principal.userId")
+    // @PreAuthorize("#userId == authentication.principal.userId")
     @PutMapping("/{userId}/{addressId}")
     public ResponseEntity<AddressDTO> editAddress(@PathVariable("addressId") Long aid,@PathVariable("userId") Long userId, @RequestBody AddressDTO addressDTO)
             throws BadRequest {               
         Address address = modelMapper.map(addressDTO, Address.class);
-        User user = new User();
+        User user = userRepository.findByUserId(userId);
         user.setUserId(userId);
         address.setUser(user);
         Optional<Address> updateOptional = addressService.update(aid, address);
@@ -96,7 +98,7 @@ public class AddressController {
             .orElse(ResponseEntity.notFound().build());
 }
     
-    @PreAuthorize("#userId == authentication.principal.userId")
+    // @PreAuthorize("#userId == authentication.principal.userId")
     @GetMapping("/{userId}")
     public ResponseEntity<Set<Address>> getAddress(@PathVariable("userId") long userId) {
         
@@ -106,12 +108,16 @@ public class AddressController {
 
 
     // @PreAuthorize("#userId == authentication.principal.userId")
-    @DeleteMapping()
-    public ResponseEntity<String> deleteAddress(@RequestBody Address address)
+    @DeleteMapping("/{userId}/{addressId}")
+    public ResponseEntity<String> deleteAddress(@PathVariable("userId") Long userId, @PathVariable("addressId") Long addressId)
     throws BadRequest {
-    Boolean result = addressRepository.existsById(address.getAddressId());
+    Boolean result = addressRepository.existsById(addressId);
+    Address address = addressRepository.findByAddressId(addressId);
     if (result) {
-    addressRepository.deleteById(address.getAddressId());
+        User user = userRepository.findByUserId(userId);
+        user.setUserId(userId);
+        address.setUser(user);
+    addressRepository.deleteById(addressId);
     return ResponseEntity.ok("Address with ID " + address.getAddressId() + " has been deleted");
     }
     return ResponseEntity.ok("Cannot delete");
