@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.domain.Page;
 
+import com.example.demo.dto.ProductDTO;
+import com.example.demo.entities.Category;
 import com.example.demo.entities.Product;
 import com.example.demo.repository.entity.ProductRepository;
 import com.example.demo.service.contract.IProductService;
@@ -42,4 +45,15 @@ public class ProductService extends EntityService<Product, Long> implements IPro
     //     productRepository.deleteById(categoryId);
     //     return result;
     // }
+
+    public Product updateProduct(Long id, ProductDTO productDTO) {
+        Product product = productRepository.findByProductId(id);
+        product.setProductName(productDTO.getProductName());
+        product.setDescription(productDTO.getDescription());
+        product.setPrice(productDTO.getPrice());
+        Category category = new Category();
+        category.setCategoryId(productDTO.getCategoryId());
+        product.setCategory(category);
+        return productRepository.save(product);
+    }
 }

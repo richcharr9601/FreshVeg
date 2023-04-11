@@ -55,7 +55,7 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 	}
 
 	@Override
-	public User register(UserRegisteredDTO userRegisteredDTO) {
+	public String register(UserRegisteredDTO userRegisteredDTO) {
 		boolean existsByEmail = userRepo.existsByEmail(userRegisteredDTO.getEmail());
 
 		if(existsByEmail==false){
@@ -70,8 +70,9 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 		user.setRegisterDate(date);
 		generateOtp(user);
 		// userRepo.save(user);
-		return userRepo.save(user);}
-		return null;
+		 userRepo.save(user);
+		 return "Can register";}
+		return "Email is already existed";
 	}
 
 	public String checkOTP(OTPCodeDTO otpCodeDTO){
@@ -90,14 +91,15 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 	}
 	}
 
-	public User forgotPassword(ResetPasswordDTO resetPasswordDTO){
+	public String forgotPassword(ResetPasswordDTO resetPasswordDTO){
 		User user = userRepo.findByEmail(resetPasswordDTO.getEmail());
 		Boolean existByEmail = userRepo.existsByEmail(resetPasswordDTO.getEmail());
 		if(existByEmail){
 			generateOtpForgorPassword(user);
-			return userRepo.save(user);
+			userRepo.save(user);
+			return "Email is valid";
 		}
-		return null;
+		return "Email is not exist";
 	}
 
 	public String checkResetPasswordOTP(ResetPasswordDTO resetPasswordDTO){

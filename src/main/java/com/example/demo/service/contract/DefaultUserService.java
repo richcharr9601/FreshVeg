@@ -13,7 +13,7 @@ import com.example.demo.entities.User;
 @Service
 public interface DefaultUserService extends UserDetailsService{
 
-	User register(UserRegisteredDTO userRegisteredDTO);
+	String register(UserRegisteredDTO userRegisteredDTO);
 
 	String generateOtp(User user);
 
@@ -21,7 +21,7 @@ public interface DefaultUserService extends UserDetailsService{
 	
 	String generateOtpForgorPassword(User user);
 
-	User forgotPassword(ResetPasswordDTO resetPasswordDTO);
+	String forgotPassword(ResetPasswordDTO resetPasswordDTO);
 	
 	String checkResetPasswordOTP(ResetPasswordDTO resetPasswordDTO);
 

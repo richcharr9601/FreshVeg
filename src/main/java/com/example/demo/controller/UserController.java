@@ -67,14 +67,10 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> editUser(@PathVariable("id") long id, @RequestBody UserDTO userDto)
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserDTO> editUser(@PathVariable("userId") Long userId, @RequestBody UserDTO userDto)
             throws BadRequest {
-        User user = modelMapper.map(userDto, User.class);
-        Optional<User> updateOptional = userService.update(id, user);
-
-        return updateOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, UserDTO.class)))
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(modelMapper.map(userService.editUser(userId,userDto), UserDTO.class));
     }
 
     @PatchMapping("/{id}/password")
