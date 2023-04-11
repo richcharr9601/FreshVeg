@@ -93,7 +93,6 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 	public User forgotPassword(ResetPasswordDTO resetPasswordDTO){
 		User user = userRepo.findByEmail(resetPasswordDTO.getEmail());
 		Boolean existByEmail = userRepo.existsByEmail(resetPasswordDTO.getEmail());
-		
 		if(existByEmail){
 			generateOtpForgorPassword(user);
 			return userRepo.save(user);
@@ -107,6 +106,7 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 		Boolean existByEmail = userRepo.existsByEmail(resetPasswordDTO.getEmail());
 		if(existByEmail &&(user.getOtp() == resetPasswordDTO.getOtpCode())){
 			user.setPassword(passwordEncoder.encode(resetPasswordDTO.getPassword()));
+			userRepo.save(user);
 			return "Reset Password Successfully";
 		}
 		return "Cannot Reset Password, Please check input again";

@@ -91,7 +91,7 @@ public class AuthController {
         }
         
         @PostMapping("rspassword")
-        public ResponseEntity<User> resetPassword(@RequestBody ResetPasswordDTO resetPasswordDTO ){
+        public ResponseEntity<User> forgotPassword(@RequestBody ResetPasswordDTO resetPasswordDTO ){
                 return ResponseEntity.ok(defaultUserService.forgotPassword(resetPasswordDTO));
             }
         @PostMapping("check-rspassword-otp")
