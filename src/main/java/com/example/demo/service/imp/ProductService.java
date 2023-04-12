@@ -1,5 +1,6 @@
 package com.example.demo.service.imp;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -40,17 +41,16 @@ public class ProductService extends EntityService<Product, Long> implements IPro
         return  products;
     }
 
-    // public Boolean deleteProduct(Long categoryId) {
-    //     Boolean result = productRepository.existsById(categoryId);
-    //     productRepository.deleteById(categoryId);
-    //     return result;
-    // }
-
-    public Product updateProduct(Long id, ProductDTO productDTO) {
+    public Product editProduct(Long id, ProductDTO productDTO) {
+        Date date = new Date();
         Product product = productRepository.findByProductId(id);
         product.setProductName(productDTO.getProductName());
         product.setDescription(productDTO.getDescription());
         product.setPrice(productDTO.getPrice());
+        product.setWeight(productDTO.getWeight());
+        product.setDiscount(productDTO.getDiscount());
+        product.setEnteredDate(date);
+        product.setStatus(productDTO.getStatus());
         Category category = new Category();
         category.setCategoryId(productDTO.getCategoryId());
         product.setCategory(category);
