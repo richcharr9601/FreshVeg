@@ -1,5 +1,8 @@
 package com.example.demo.service.imp;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -64,8 +67,20 @@ public class UserService extends EntityService<User, Long> implements IUserServi
     }
 
     public User editUser (Long userId, UserDTO userDTO){
+        
         User user = userRepository.findByUserId(userId);
+        String formattedDateStr = userDTO.getBirthday();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date date;
+        try {
+            date = formatter.parse(formattedDateStr);
+            long unixTime = date.getTime() / 1000L;
+            user.setBirthday(unixTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         user.setAvatar(userDTO.getAvatar());
         user.setName(userDTO.getName());
-        return userRepository.save(user);    }
+        return userRepository.save(user);
+    }
 }

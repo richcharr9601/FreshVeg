@@ -24,7 +24,7 @@ public class ProductDTO {
 	private double price;
 	private int discount;
 	private String description;
-	private Date enteredDate;
+	private long enteredDate;
 	private Boolean status;
 
 

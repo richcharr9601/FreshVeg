@@ -50,8 +50,8 @@ public class Product implements Serializable {
 	private int discount;
 	@Nationalized
 	private String description;
-	@Temporal(TemporalType.DATE)
-	private Date enteredDate;
+	// @Temporal(TemporalType.DATE)
+	private Long enteredDate;
 	private Boolean status;
 	private Boolean deleted = Boolean.FALSE;
 

@@ -26,7 +26,7 @@ public class OrderDTO {
     private Boolean statusPayment;
     private OrderStatus status;
     private String note;
-    private Date orderDate;
+    private Long orderDate;
     private Long addressId;
 
     @JsonManagedReference

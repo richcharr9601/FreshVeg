@@ -79,9 +79,10 @@ public class OrderController {
     @PostMapping()
     public ResponseEntity<OrderDTO> addOrder(@RequestBody OrderDTO orderDTO)
             throws BadRequest {
-                Date date = new Date();
+
+        long unixTime = System.currentTimeMillis() / 1000L;
         Order order = modelMapper.map(orderDTO, Order.class);
-        order.setOrderDate(date);
+        order.setOrderDate(unixTime);
         order.setStatusPayment(false);
         order.setStatus(OrderStatus.onWaitingConfirm);
         orderService.add(order);

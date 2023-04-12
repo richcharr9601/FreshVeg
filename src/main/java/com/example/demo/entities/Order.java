@@ -46,9 +46,9 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderId;
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date orderDate;
+	// @Temporal(TemporalType.DATE)
+	// @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Long orderDate;
 	private Double amount;
 	@Nationalized
 	private String phone;

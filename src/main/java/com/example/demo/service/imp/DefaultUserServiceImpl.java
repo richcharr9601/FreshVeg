@@ -61,13 +61,13 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 		if(existsByEmail==false){
 		Role role = roleRepo.findByName("USER");
 		User user = new User();
-		Date date = new Date();
+		long unixTime = System.currentTimeMillis() / 1000L;
 		user.setEmail(userRegisteredDTO.getEmail());
 		user.setName(userRegisteredDTO.getUsername());
 		user.setPassword(passwordEncoder.encode(userRegisteredDTO.getPassword()));
 		user.setRoles(Set.of(role));
 		user.setIsVerified(false);
-		user.setRegisterDate(date);
+		user.setRegisterDate(unixTime);
 		generateOtp(user);
 		// userRepo.save(user);
 		 userRepo.save(user);

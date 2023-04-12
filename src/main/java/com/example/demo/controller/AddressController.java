@@ -73,14 +73,11 @@ public class AddressController {
     public ResponseEntity<AddressDTO> addAddress(@PathVariable("userId") Long userId, @RequestBody AddressDTO addressDTO)
             throws BadRequest {
         boolean exist = userService.existsByID(userId);
-
-                
         if(exist) {
             Address address = modelMapper.map(addressDTO, Address.class);
             User user = new User();
             user.setUserId(userId);
             address.setUser(user);
-            
             return ResponseEntity.ok(modelMapper.map(addressService.add(address), AddressDTO.class));
         } else return ResponseEntity.notFound().build();
     }

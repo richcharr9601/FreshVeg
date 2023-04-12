@@ -4,7 +4,6 @@
     "email": "thiencho@gmal.com",
     "password": "123",
     "avatar": "",
-    "registerDate": "20/2/2023",
     "roles": [
       {
         "id": 1
@@ -16,7 +15,6 @@
     "email": "chukhanhdoan@gmal.com",
     "password": "123",
     "avatar": "",
-    "registerDate": "20/2/2023",
     "roles": [
       {
         "id": 1
@@ -28,7 +26,6 @@
     "email": "hoangdeptrai@gmal.com",
     "password": "123",
     "avatar": "",
-    "registerDate": "20/2/2023",
     "roles": [
       {
         "id": 2
@@ -40,7 +37,6 @@
     "email": "namnghien@gmal.com",
     "password": "123",
     "avatar": "",
-    "registerDate": "20/2/2023",
     "roles": [
       {
         "id": 2
@@ -52,7 +48,6 @@
     "email": "khanhbeo@gmal.com",
     "password": "123",
     "avatar": "",
-    "registerDate": "20/2/2023",
     "roles": [
       {
         "id": 2
@@ -65,7 +60,6 @@
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
     "isVerified": 1,
-    "registerDate": "20/2/2023",
     "roles": [
       {
         "id": 2
@@ -78,7 +72,6 @@
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
     "isVerified": 1,
-    "registerDate": "20/2/2023",
     "roles": [
       {
         "id": 1

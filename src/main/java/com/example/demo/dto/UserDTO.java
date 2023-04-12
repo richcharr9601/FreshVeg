@@ -16,4 +16,5 @@ public class UserDTO {
     private String avatar;
     private Boolean status;
     private String roleName;
+    private String birthday;
 }

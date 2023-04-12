@@ -52,11 +52,11 @@ public class User implements Serializable, UserDetails {
 	private String password;
 	private String avatar;
 	private int otp;
+	// @Temporal(TemporalType.DATE)
+	// @JsonFormat(pattern = "dd/MM/yyyy")
+	private Long birthday;
 	private Boolean isVerified;
-	
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private Date registerDate;
+	private Long registerDate;
 	private Boolean status;
 
 	@OneToMany(mappedBy = "user")
