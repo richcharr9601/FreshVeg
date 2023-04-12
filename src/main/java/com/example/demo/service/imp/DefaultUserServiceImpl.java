@@ -122,6 +122,7 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 		User user = userRepo.findByEmail(resetPasswordDTO.getEmail());
 		{
 			user.setPassword(passwordEncoder.encode(resetPasswordDTO.getPassword()));
+			userRepo.save(user);
 			return "Reset password successfully";
 		}
 	}catch (Exception e) {

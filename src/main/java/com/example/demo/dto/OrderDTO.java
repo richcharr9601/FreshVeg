@@ -27,7 +27,7 @@ public class OrderDTO {
     private OrderStatus status;
     private String note;
     private Long orderDate;
-    private Long addressId;
+    private Address address;
 
     @JsonManagedReference
     private Set<OrderDetailDTO> orderDetails;
