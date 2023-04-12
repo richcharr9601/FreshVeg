@@ -107,16 +107,28 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 		User user = userRepo.findByEmail(resetPasswordDTO.getEmail());
 		Boolean existByEmail = userRepo.existsByEmail(resetPasswordDTO.getEmail());
 		if(existByEmail &&(user.getOtp() == resetPasswordDTO.getOtpCode())){
-			user.setPassword(passwordEncoder.encode(resetPasswordDTO.getPassword()));
-			userRepo.save(user);
-			return "Reset Password Successfully";
+
+			return "OTP is correct";
 		}
-		return "Cannot Reset Password, Please check input again";
+		return "OTP is not correct";
 	}catch (Exception e) {
 		e.printStackTrace();
 		return "error";
 	}
 	}
+
+	public String ResetPasswordOTP(ResetPasswordDTO resetPasswordDTO){
+		try{
+		User user = userRepo.findByEmail(resetPasswordDTO.getEmail());
+		{
+			user.setPassword(passwordEncoder.encode(resetPasswordDTO.getPassword()));
+			return "Reset password successfully";
+		}
+	}catch (Exception e) {
+		e.printStackTrace();
+		return "error";
+	}
+}
 
 	@Override
 	public String generateOtp(User user) {

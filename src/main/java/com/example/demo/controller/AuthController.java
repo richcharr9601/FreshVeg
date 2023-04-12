@@ -98,4 +98,9 @@ public class AuthController {
         public ResponseEntity<String> checkResetPasswordOTP(@RequestBody ResetPasswordDTO resetPasswordDTO ){
             return ResponseEntity.ok(defaultUserService.checkResetPasswordOTP(resetPasswordDTO));
         }
+
+        @PostMapping("rspassword-otp")
+        public ResponseEntity<String> ResetPassword(@RequestBody ResetPasswordDTO resetPasswordDTO ){
+            return ResponseEntity.ok(defaultUserService.ResetPasswordOTP(resetPasswordDTO));
+        }
 }

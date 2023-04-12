@@ -25,4 +25,6 @@ public interface DefaultUserService extends UserDetailsService{
 	
 	String checkResetPasswordOTP(ResetPasswordDTO resetPasswordDTO);
 
+	String ResetPasswordOTP(ResetPasswordDTO resetPasswordDTO);
+
 }
