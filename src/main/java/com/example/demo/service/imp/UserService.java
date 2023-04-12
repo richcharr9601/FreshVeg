@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ChangePasswordDTO;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
 import com.example.demo.repository.entity.RoleRepository;
@@ -61,4 +62,10 @@ public class UserService extends EntityService<User, Long> implements IUserServi
         }
         return Optional.empty();
     }
+
+    public User editUser (Long userId, UserDTO userDTO){
+        User user = userRepository.findByUserId(userId);
+        user.setAvatar(userDTO.getAvatar());
+        user.setName(userDTO.getName());
+        return userRepository.save(user);    }
 }

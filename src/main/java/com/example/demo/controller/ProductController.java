@@ -114,11 +114,8 @@ public class ProductController {
     public ResponseEntity<ProductDTO> editProduct(@PathVariable("productId") Long id,
             @RequestBody ProductDTO productDTO)
             throws BadRequest {
-            Product product = modelMapper.map(productDTO, Product.class);
-            Optional<Product> updateOptional = productService.update(id, product);
-        return updateOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, ProductDTO.class)))
-        .orElse(ResponseEntity.notFound().build());
-    }
+            return ResponseEntity.ok(modelMapper.map(productService.editProduct(id,productDTO), ProductDTO.class));
+            }
 
     @DeleteMapping()
     public ResponseEntity<String> deleteProduct(@RequestBody Product product)

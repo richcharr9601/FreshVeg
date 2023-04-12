@@ -80,7 +80,7 @@ public class AuthController {
     @Autowired
     private DefaultUserService userService;
 	    @PostMapping("register")
-	    public ResponseEntity<User> registerUserAccount(@RequestBody
+	    public ResponseEntity<String> registerUserAccount(@RequestBody
 	              UserRegisteredDTO registrationDto) {
 	        	    return ResponseEntity.ok(userService.register(registrationDto)); 
 	    }
@@ -91,7 +91,7 @@ public class AuthController {
         }
         
         @PostMapping("rspassword")
-        public ResponseEntity<User> resetPassword(@RequestBody ResetPasswordDTO resetPasswordDTO ){
+        public ResponseEntity<String> forgotPassword(@RequestBody ResetPasswordDTO resetPasswordDTO ){
                 return ResponseEntity.ok(defaultUserService.forgotPassword(resetPasswordDTO));
             }
         @PostMapping("check-rspassword-otp")
