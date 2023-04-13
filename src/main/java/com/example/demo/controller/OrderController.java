@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -22,12 +23,16 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
+import com.example.demo.dto.AddressDTO;
 import com.example.demo.dto.OrderDTO;
 import com.example.demo.dto.OrderDetailDTO;
+import com.example.demo.dto.UserDTO;
+import com.example.demo.entities.Address;
 import com.example.demo.entities.Order;
 import com.example.demo.entities.OrderDetail;
 import com.example.demo.entities.OrderDetailKey;
 import com.example.demo.entities.Order.OrderStatus;
+import com.example.demo.repository.entity.AddressRepository;
 import com.example.demo.repository.entity.OrderRepository;
 import com.example.demo.service.contract.IOrderService;
 import com.example.demo.service.contract.IOrderDetailService;
@@ -52,9 +57,41 @@ public class OrderController {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private AddressRepository addressRepository;
+
     @GetMapping("all")
     public ResponseEntity<List<OrderDTO>> getOrders() {
         List<Order> orders = orderService.findAll();
+        List<OrderDTO> orderDtos = new ArrayList<>();
+    
+    // Iterate over each Order and create an OrderDto object with only the desired fields
+    for (Order order : orders) {
+        OrderDTO orderDto = new OrderDTO();
+        orderDto.setOrderId(order.getOrderId());
+        orderDto.setOrderDate(order.getOrderDate());
+        orderDto.setAmount(order.getAmount());
+        orderDto.setPhone(order.getPhone());
+        orderDto.setNote(order.getNote());
+        orderDto.setStatusPayment(order.getStatusPayment());
+        orderDto.setStatus(order.getStatus());
+        // orderDto.setOrderDetails(order.getOrderDetails());
+        // Check if the associated Address has been soft deleted
+        Address address = addressRepository.findAddressByOrderId(order.getOrderId());
+        if (address.getDeleted()==true) {
+            AddressDTO addressDto = new AddressDTO();
+            addressDto.setAddressId(address.getAddressId());
+            addressDto.setReceiverName(address.getReceiverName());
+            addressDto.setReceiverPhone(address.getReceiverPhone());
+            addressDto.setAddress(address.getAddress());
+            addressDto.setUserId(order.getUser().getUserId());
+            orderDto.setAddress(addressDto);
+        }
+   
+        orderDto.setUserId(order.getUser().getUserId());
+        
+        orderDtos.add(orderDto);
+    }
         return ResponseEntity.ok(
                 modelMapper.map(orders, new TypeToken<List<OrderDTO>>() {
                 }.getType()));

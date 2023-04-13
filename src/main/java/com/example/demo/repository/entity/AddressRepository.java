@@ -16,4 +16,7 @@ import com.example.demo.entities.User;
 public interface AddressRepository extends JpaRepository<Address, Long> {
     Set<Address> findByUser(Optional<User> user);
     Address findByAddressId(Long addressId);
+
+    @Query("SELECT o.address FROM Order o WHERE o.orderId = :orderId")
+    Address findAddressByOrderId(@Param("orderId") Long orderId);
 }

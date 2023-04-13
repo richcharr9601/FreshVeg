@@ -81,13 +81,6 @@ public class AuthController {
         return ResponseEntity.ok("Logout successful");
     }
 
-    @Autowired
-    private DefaultUserService userService;
-	    @PostMapping("register")
-	    public ResponseEntity<String> registerUserAccount(@RequestBody
-	              UserRegisteredDTO registrationDto) {
-	        	    return ResponseEntity.ok(userService.register(registrationDto)); 
-	    }
         
         @PostMapping("rspassword")
         public ResponseEntity<String> forgotPassword(@RequestBody ResetPasswordDTO resetPasswordDTO ){
@@ -98,7 +91,6 @@ public class AuthController {
             return ResponseEntity.ok(defaultUserService.checkResetPasswordOTP(resetPasswordDTO));
         }
         
-
         @PostMapping("rspassword-otp")
         public ResponseEntity<String> ResetPassword(@RequestBody ResetPasswordDTO resetPasswordDTO ){
             return ResponseEntity.ok(defaultUserService.ResetPasswordOTP(resetPasswordDTO));
@@ -112,8 +104,8 @@ public class AuthController {
         return ResponseEntity.ok("Generate OTP successfully");
     }
 
-    @PostMapping("verify-otp")
-    public ResponseEntity<String> verifyOtp(@RequestBody UserRegisteredDTO userRegisteredDTO) throws BadRequest{
+        @PostMapping("verify-otp")
+        public ResponseEntity<String> verifyOtp(@RequestBody UserRegisteredDTO userRegisteredDTO) throws BadRequest{
         String email = userRegisteredDTO.getEmail();
         String otp = userRegisteredDTO.getOtp();
         if (otpStore.containsKey(email) && otpStore.get(email).equals(otp)) {
