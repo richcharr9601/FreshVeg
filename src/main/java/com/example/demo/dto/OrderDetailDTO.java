@@ -15,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class OrderDetailDTO {
     private Long orderId;
-    private Long productId;
+    private Product product;
     private int weight;
     private Double price;
 

@@ -95,7 +95,7 @@ public class OrderController {
         for (OrderDetail orderDetail : orderDetails) {
             OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
             orderDetailDTO.setOrderId(orderDetail.getOrder().getOrderId());
-            orderDetailDTO.setProductId(orderDetail.getProduct().getProductId());
+            orderDetailDTO.setProduct(orderDetail.getProduct());
             orderDetailDTO.setWeight(orderDetail.getWeight());
             orderDetailDTO.setPrice(orderDetail.getPrice());
             orderDetailDTOs.add(orderDetailDTO);

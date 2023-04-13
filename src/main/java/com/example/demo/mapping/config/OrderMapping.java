@@ -13,12 +13,12 @@ public class OrderMapping extends MappingConfig {
     @Override
     public void configure() {
         modelMapper.typeMap(OrderDetail.class, OrderDetailDTO.class).addMappings(mapper -> {
-            mapper.map(src -> src.getProduct().getProductId(), OrderDetailDTO::setProductId);
+            mapper.map(src -> src.getProduct().getProductId(), (dest, v) -> dest.getProduct().setProductId((Long)v));
             mapper.map(src -> src.getOrder().getOrderId(), OrderDetailDTO::setOrderId);
         });
 
         modelMapper.typeMap(OrderDetailDTO.class, OrderDetail.class).addMappings(mapper -> {
-            mapper.map(src -> src.getProductId(), (dest, v) -> dest.getProduct().setProductId((Long)v));
+            mapper.map(src -> src.getProduct().getProductId(), (dest, v) -> dest.getProduct().setProductId((Long)v));
         });
 
         modelMapper.typeMap(OrderDTO.class, Order.class).addMappings(mapper -> {
