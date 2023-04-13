@@ -16,9 +16,7 @@ public interface DefaultUserService extends UserDetailsService{
 
 	String register(UserRegisteredDTO userRegisteredDTO);
 
-	String generateOtp(UserDTO user);
-
-	String checkOTP(OTPCodeDTO otpCodeDTO);
+	String generateOtp(UserRegisteredDTO userRegisteredDTO);
 	
 	String generateOtpForgorPassword(User user);
 

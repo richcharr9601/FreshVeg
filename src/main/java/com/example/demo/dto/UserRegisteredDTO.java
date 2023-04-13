@@ -15,6 +15,8 @@ public class UserRegisteredDTO {
 	
 	private String email;
 	
+	private String otp;
+	
 	private String password;
 	
 	// String role;

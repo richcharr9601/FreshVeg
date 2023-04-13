@@ -2,6 +2,7 @@ package com.example.demo.service.imp;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -39,7 +40,6 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	
-	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 	
@@ -67,29 +67,13 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 		user.setName(userRegisteredDTO.getUsername());
 		user.setPassword(passwordEncoder.encode(userRegisteredDTO.getPassword()));
 		user.setRoles(Set.of(role));
-		user.setIsVerified(false);
+		user.setIsVerified(true);
 		user.setRegisterDate(unixTime);
 		// generateOtp(user);
 		// userRepo.save(user);
 		 userRepo.save(user);
 		 return "Can register";}
 		return "Email is already existed";
-	}
-
-	public String checkOTP(OTPCodeDTO otpCodeDTO){
-		try{
-		User user = userRepo.findByEmail(otpCodeDTO.getEmail());
-		Boolean existByEmail = userRepo.existsByEmail(otpCodeDTO.getEmail());
-		if(existByEmail &&(user.getOtp() == otpCodeDTO.getOtpCode())){
-			user.setIsVerified(true);
-			userRepo.save(user);
-			return "Register Successfully";
-		}
-		return "Cannot Register, Please check input again";
-	}catch (Exception e) {
-		e.printStackTrace();
-		return "error";
-	}
 	}
 
 	public String forgotPassword(ResetPasswordDTO resetPasswordDTO){
@@ -133,25 +117,21 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 }
 
 	@Override
-	public String generateOtp(UserDTO user) {
-		try {
-			int randomPIN = (int) (Math.random() * 9000) + 1000;
-			// user.setOtp(randomPIN);
-			// userRepo.save(user);
+	public String generateOtp(UserRegisteredDTO userRegisteredDTO) {
+			
+		 	int randomPIN = (int) (Math.random() * 9000) + 1000;
+			String stringRandomPIN = String.valueOf(randomPIN);
+			
 			SimpleMailMessage msg = new SimpleMailMessage();
 			msg.setFrom("duclade150172@fpt.edu.vn");
-			msg.setTo(user.getEmail());
+			msg.setTo(userRegisteredDTO.getEmail());
 
 			msg.setSubject("Welcome To FreshVeg");
-			msg.setText("Hello \n\n" +"Your Register OTP :" + randomPIN + ".Please Verify. \n\n"+"Regards \n"+"FreshVeg");
+			msg.setText("Hello \n\n" +"Your Register OTP :" + stringRandomPIN + ".Please Verify. \n\n"+"Regards \n"+"FreshVeg");
 
 			javaMailSender.send(msg);
 			
-			return "success";
-			}catch (Exception e) {
-				e.printStackTrace();
-				return "error";
-			}
+			return stringRandomPIN;
 	}
 
 	@Override

@@ -72,7 +72,7 @@ public class SecurityConfig {
     ;
 
     http.authorizeHttpRequests()
-    .requestMatchers("/**").permitAll();
+   .requestMatchers("/**").permitAll();
             // .requestMatchers("/product/all").permitAll()
             // .requestMatchers("/category/all").permitAll()
             // .requestMatchers("/all/{categoryId}").permitAll()

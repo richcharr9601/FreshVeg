@@ -52,7 +52,7 @@ public class AuthController {
 
     private final JwtService jwtService;
 
-    private final Map<String, String> otpStore;
+    private final Map<String, String> otpStore = new HashMap<>();
 
 
 
@@ -88,11 +88,6 @@ public class AuthController {
 	              UserRegisteredDTO registrationDto) {
 	        	    return ResponseEntity.ok(userService.register(registrationDto)); 
 	    }
-
-        @PostMapping("check-otp")
-        public ResponseEntity<String> checkOTP(@RequestBody OTPCodeDTO otpCodeDTO ){
-            return ResponseEntity.ok(defaultUserService.checkOTP(otpCodeDTO));
-        }
         
         @PostMapping("rspassword")
         public ResponseEntity<String> forgotPassword(@RequestBody ResetPasswordDTO resetPasswordDTO ){
@@ -102,6 +97,7 @@ public class AuthController {
         public ResponseEntity<String> checkResetPasswordOTP(@RequestBody ResetPasswordDTO resetPasswordDTO ){
             return ResponseEntity.ok(defaultUserService.checkResetPasswordOTP(resetPasswordDTO));
         }
+        
 
         @PostMapping("rspassword-otp")
         public ResponseEntity<String> ResetPassword(@RequestBody ResetPasswordDTO resetPasswordDTO ){
@@ -109,11 +105,25 @@ public class AuthController {
         }
 
         @PostMapping("/generate-otp")
-        public ResponseEntity<?> generateOtp(@RequestBody UserDTO userDto) {
-        String email = userDto.getEmail();
-        String otp = defaultUserService.generateOtp(userDto);
+        public ResponseEntity<String> generateOtp(@RequestBody UserRegisteredDTO userRegisteredDTO) {
+        String email = userRegisteredDTO.getEmail();
+        String otp = defaultUserService.generateOtp(userRegisteredDTO);
         otpStore.put(email, otp);
+        return ResponseEntity.ok("Generate OTP successfully");
+    }
 
-        return ResponseEntity.ok().build();
+    @PostMapping("verify-otp")
+    public ResponseEntity<String> verifyOtp(@RequestBody UserRegisteredDTO userRegisteredDTO) throws BadRequest{
+        String email = userRegisteredDTO.getEmail();
+        String otp = userRegisteredDTO.getOtp();
+        if (otpStore.containsKey(email) && otpStore.get(email).equals(otp)) {
+            // Xác thực thành công, tạo người dùng mới
+            defaultUserService.register(userRegisteredDTO);
+            otpStore.remove(email);
+            return ResponseEntity.ok("OTP is correct");
+        } else {
+            // Xác thực thất bại
+            return ResponseEntity.ok("OTP is not correct");
+        }
     }
 }
