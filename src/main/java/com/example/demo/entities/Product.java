@@ -11,6 +11,8 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
@@ -57,10 +59,12 @@ public class Product implements Serializable {
 
 
 	@OneToMany(mappedBy = "product")
+	@JsonIgnore
     private Set<ProductImage> productImage;
 
 	@ManyToOne
 	@JoinColumn(name = "categoryId")
+	@JsonIgnore
 	private Category category;
 
 }

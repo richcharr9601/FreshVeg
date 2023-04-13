@@ -4,6 +4,7 @@ package com.example.demo.entities;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.EmbeddedId;
@@ -39,10 +40,12 @@ public class OrderDetail implements Serializable {
 	@MapsId("productId")
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "productId")
+	@JsonIgnore
 	private Product product;
 
 	@MapsId("orderId")
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "orderId")
+	@JsonIgnore
 	private Order order;
 }

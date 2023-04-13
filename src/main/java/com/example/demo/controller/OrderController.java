@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -63,37 +65,50 @@ public class OrderController {
     @GetMapping("all")
     public ResponseEntity<List<OrderDTO>> getOrders() {
         List<Order> orders = orderService.findAll();
-    //     List<OrderDTO> orderDtos = new ArrayList<>();
+        List<OrderDTO> orderDtos = new ArrayList<>();
     
-    // // Iterate over each Order and create an OrderDto object with only the desired fields
-    // for (Order order : orders) {
-    //     OrderDTO orderDto = new OrderDTO();
-    //     orderDto.setOrderId(order.getOrderId());
-    //     orderDto.setOrderDate(order.getOrderDate());
-    //     orderDto.setAmount(order.getAmount());
-    //     orderDto.setPhone(order.getPhone());
-    //     orderDto.setNote(order.getNote());
-    //     orderDto.setStatusPayment(order.getStatusPayment());
-    //     orderDto.setStatus(order.getStatus());
-    //     // orderDto.setOrderDetails(order.getOrderDetails());
-    //     // Check if the associated Address has been soft deleted
-    //     Address address = addressRepository.findAddressByOrderId(order.getOrderId());
-    //     if (address.getDeleted()==true) {
-    //         AddressDTO addressDto = new AddressDTO();
-    //         addressDto.setAddressId(address.getAddressId());
-    //         addressDto.setReceiverName(address.getReceiverName());
-    //         addressDto.setReceiverPhone(address.getReceiverPhone());
-    //         addressDto.setAddress(address.getAddress());
-    //         addressDto.setUserId(order.getUser().getUserId());
-    //         orderDto.setAddress(addressDto);
-    //     }
-   
-    //     orderDto.setUserId(order.getUser().getUserId());
+    // Iterate over each Order and create an OrderDto object with only the desired fields
+    for (Order order : orders) {
+        OrderDTO orderDto = new OrderDTO();
+        orderDto.setOrderId(order.getOrderId());
+        orderDto.setOrderDate(order.getOrderDate());
+        orderDto.setAmount(order.getAmount());
+        orderDto.setPhone(order.getPhone());
+        orderDto.setNote(order.getNote());
+        orderDto.setStatusPayment(order.getStatusPayment());
+        orderDto.setStatus(order.getStatus());
         
-    //     orderDtos.add(orderDto);
-    // }
+        // Check if the associated Address has been soft deleted
+        Address address = addressRepository.findAddressByOrderId(order.getOrderId());
+         {
+            AddressDTO addressDto = new AddressDTO();
+            addressDto.setAddressId(address.getAddressId());
+            addressDto.setReceiverName(address.getReceiverName());
+            addressDto.setReceiverPhone(address.getReceiverPhone());
+            addressDto.setAddress(address.getAddress());
+            addressDto.setUserId(order.getUser().getUserId());
+            orderDto.setAddress(addressDto);
+        }
+        Set<OrderDetail> orderDetails = order.getOrderDetails();
+        Set<OrderDetailDTO> orderDetailDTOs = new HashSet<>();
+
+        for (OrderDetail orderDetail : orderDetails) {
+            OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
+            orderDetailDTO.setOrderId(orderDetail.getOrder().getOrderId());
+            orderDetailDTO.setProductId(orderDetail.getProduct().getProductId());
+            orderDetailDTO.setWeight(orderDetail.getWeight());
+            orderDetailDTO.setPrice(orderDetail.getPrice());
+            orderDetailDTOs.add(orderDetailDTO);
+        }
+
+        orderDto.setOrderDetails(orderDetailDTOs);
+
+        orderDto.setUserId(order.getUser().getUserId());
+        
+        orderDtos.add(orderDto);
+    }
         return ResponseEntity.ok(
-                modelMapper.map(orders, new TypeToken<List<OrderDTO>>() {
+                modelMapper.map(orderDtos, new TypeToken<List<OrderDTO>>() {
                 }.getType()));
     }
 

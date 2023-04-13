@@ -79,6 +79,7 @@ public class Order implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "userId")
+	@JsonIgnore
 	private User user;
 
 }
