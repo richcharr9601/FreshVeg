@@ -54,7 +54,7 @@ public class AuthController {
 
     private final Map<String, String> otpStore = new HashMap<>();
 
-
+    private final UserRepository userRepository;
 
     @PostMapping("login")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -99,9 +99,13 @@ public class AuthController {
         @PostMapping("/generate-otp")
         public ResponseEntity<String> generateOtp(@RequestBody UserRegisteredDTO userRegisteredDTO) {
         String email = userRegisteredDTO.getEmail();
+        boolean existsByEmail = userRepository.existsByEmail(userRegisteredDTO.getEmail());
+
+		if(existsByEmail==false){
         String otp = defaultUserService.generateOtp(userRegisteredDTO);
         otpStore.put(email, otp);
-        return ResponseEntity.ok("Generate OTP successfully");
+        return ResponseEntity.ok("Generate OTP successfully");}
+        else return ResponseEntity.ok("Email is already existed");
     }
 
         @PostMapping("verify-otp")

@@ -118,8 +118,7 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 
 	@Override
 	public String generateOtp(UserRegisteredDTO userRegisteredDTO) {
-		boolean existsByEmail = userRepo.existsByEmail(userRegisteredDTO.getEmail());
-		if(existsByEmail==false){
+			
 		 	int randomPIN = (int) (Math.random() * 9000) + 1000;
 			String stringRandomPIN = String.valueOf(randomPIN);
 			
@@ -131,10 +130,8 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 			msg.setText("Hello \n\n" +"Your Register OTP :" + stringRandomPIN + ".Please Verify. \n\n"+"Regards \n"+"FreshVeg");
 
 			javaMailSender.send(msg);
+			
 			return stringRandomPIN;
-		}
-		return "Email is already existed";
-
 	}
 
 	@Override
