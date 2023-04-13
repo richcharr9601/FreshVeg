@@ -69,16 +69,16 @@ public class UserService extends EntityService<User, Long> implements IUserServi
     public User editUser (Long userId, UserDTO userDTO){
         
         User user = userRepository.findByUserId(userId);
-        String formattedDateStr = userDTO.getBirthday();
+        // String formattedDateStr = userDTO.getBirthday();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date;
-        try {
-            date = formatter.parse(formattedDateStr);
-            long unixTime = date.getTime() / 1000L;
-            user.setBirthday(unixTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     // date = formatter.parse(formattedDateStr);
+        //     // long unixTime = date.getTime() / 1000L;
+        //     // user.setBirthday(unixTime);
+        // } catch (ParseException e) {
+        //     e.printStackTrace();
+        // }
         user.setAvatar(userDTO.getAvatar());
         user.setName(userDTO.getName());
         return userRepository.save(user);
