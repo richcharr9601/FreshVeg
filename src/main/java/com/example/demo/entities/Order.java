@@ -76,7 +76,7 @@ public class Order implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "addressId")
-	@JsonIgnore
+	@JsonIgnoreProperties("deleted")
 	private Address address;
 
 	@ManyToOne(cascade = CascadeType.MERGE)

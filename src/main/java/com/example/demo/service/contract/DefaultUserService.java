@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.OTPCodeDTO;
 import com.example.demo.dto.ResetPasswordDTO;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.dto.UserRegisteredDTO;
 import com.example.demo.entities.User;
 
@@ -15,7 +16,7 @@ public interface DefaultUserService extends UserDetailsService{
 
 	String register(UserRegisteredDTO userRegisteredDTO);
 
-	String generateOtp(User user);
+	String generateOtp(UserDTO user);
 
 	String checkOTP(OTPCodeDTO otpCodeDTO);
 	

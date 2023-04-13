@@ -70,7 +70,7 @@ public class UserService extends EntityService<User, Long> implements IUserServi
         
         User user = userRepository.findByUserId(userId);
         String formattedDateStr = userDTO.getBirthday();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date;
         try {
             date = formatter.parse(formattedDateStr);

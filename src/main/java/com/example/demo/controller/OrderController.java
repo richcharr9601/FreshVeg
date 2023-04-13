@@ -68,12 +68,10 @@ public class OrderController {
     //             }.getType()));
     // }
 
-    // @GetMapping("{userId}/{id}")
-    // public ResponseEntity<OrderDTO> getOrder(@PathVariable("userId") Long uid, @PathVariable("id") long id) {
-    //     Optional<Order> userOptional = orderService.findByID(id);
-    //     return userOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, OrderDTO.class)))
-    //             .orElse(ResponseEntity.notFound().build());
-    // }
+    @GetMapping("{orderId}")
+    public ResponseEntity<OrderDTO> getOrderByOrderId( @PathVariable("orderId")Long oid) {
+        return ResponseEntity.ok(modelMapper.map(orderRepository.findByOrderId(oid), OrderDTO.class));
+    }
 
     // @PreAuthorize("#userId == authentication.principal.userId")
     @PostMapping()

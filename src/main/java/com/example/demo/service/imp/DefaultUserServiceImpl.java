@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.OTPCodeDTO;
 import com.example.demo.dto.ResetPasswordDTO;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.dto.UserRegisteredDTO;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
@@ -68,7 +69,7 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 		user.setRoles(Set.of(role));
 		user.setIsVerified(false);
 		user.setRegisterDate(unixTime);
-		generateOtp(user);
+		// generateOtp(user);
 		// userRepo.save(user);
 		 userRepo.save(user);
 		 return "Can register";}
@@ -132,10 +133,10 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 }
 
 	@Override
-	public String generateOtp(User user) {
+	public String generateOtp(UserDTO user) {
 		try {
 			int randomPIN = (int) (Math.random() * 9000) + 1000;
-			user.setOtp(randomPIN);
+			// user.setOtp(randomPIN);
 			// userRepo.save(user);
 			SimpleMailMessage msg = new SimpleMailMessage();
 			msg.setFrom("duclade150172@fpt.edu.vn");

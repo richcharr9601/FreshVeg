@@ -30,6 +30,7 @@ import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
 import com.example.demo.dto.OTPCodeDTO;
 import com.example.demo.dto.ResetPasswordDTO;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.dto.UserRegisteredDTO;
 import com.example.demo.entities.User;
 import com.example.demo.repository.entity.UserRepository;
@@ -50,6 +51,9 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
 
     private final JwtService jwtService;
+
+    private final Map<String, String> otpStore;
+
 
 
     @PostMapping("login")
@@ -103,4 +107,13 @@ public class AuthController {
         public ResponseEntity<String> ResetPassword(@RequestBody ResetPasswordDTO resetPasswordDTO ){
             return ResponseEntity.ok(defaultUserService.ResetPasswordOTP(resetPasswordDTO));
         }
+
+        @PostMapping("/generate-otp")
+        public ResponseEntity<?> generateOtp(@RequestBody UserDTO userDto) {
+        String email = userDto.getEmail();
+        String otp = defaultUserService.generateOtp(userDto);
+        otpStore.put(email, otp);
+
+        return ResponseEntity.ok().build();
+    }
 }

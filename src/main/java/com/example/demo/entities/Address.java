@@ -49,6 +49,7 @@ public class Address {
 
 	@OneToMany(mappedBy = "address")
 	@JsonIgnore
+	@JsonIgnoreProperties("address.deleted")
 	private Set<Order> orders;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
