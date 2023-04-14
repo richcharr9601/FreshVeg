@@ -35,9 +35,6 @@ public class UserService extends EntityService<User, Long> implements IUserServi
 
     @Override
     public String changePassword(Long userId, ChangePasswordDTO changePasswordDTO) {
-        boolean existsById = userRepository.existsById(userId);
-
-        if (existsById) {
             User user = userRepository.findById(userId).get();
             boolean isPasswordMatch = passwordEncoder.matches(changePasswordDTO.getCurrentPassword(), user.getPassword());
             if(isPasswordMatch == true){
@@ -46,8 +43,6 @@ public class UserService extends EntityService<User, Long> implements IUserServi
             return "Change password successfully";
                
             }else return "Current password is not correct";
-        }
-        return "User is not exist";
     }
 
     @Override

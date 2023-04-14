@@ -65,4 +65,17 @@ public class OrderService extends EntityService<Order, Long> implements IOrderSe
         return false;
     }
 
+    public Boolean orderCancel(Long orderId, OrderStatus status) {
+
+        boolean existsById = orderRepository.existsById(orderId);
+
+        if (existsById) {
+            Order order = orderRepository.findById(orderId).get();
+            order.setStatus(OrderStatus.Cancel);
+            orderRepository.save(order);
+            return true;
+        }
+        return false;
+    }
+
 }

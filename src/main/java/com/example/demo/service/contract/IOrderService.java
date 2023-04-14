@@ -11,4 +11,5 @@ public interface IOrderService extends IService<Order, Long> {
     Boolean confirmOrder(Long orderId, OrderStatus status);
     Boolean orderSuccess(Long orderId, OrderStatus status);
     Boolean orderFailed(Long orderId, OrderStatus status);
+    Boolean orderCancel(Long orderId, OrderStatus status);
 }

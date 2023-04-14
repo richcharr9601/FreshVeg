@@ -60,7 +60,8 @@ public class Order implements Serializable {
 		Confirmed,
 		onWaitingConfirm,
 		Success,
-		Failed
+		Failed,
+		Cancel
 	}
 
 	@PrePersist
