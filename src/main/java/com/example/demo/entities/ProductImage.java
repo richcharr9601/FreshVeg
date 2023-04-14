@@ -9,6 +9,7 @@ import java.io.Serializable;
 import org.hibernate.annotations.SQLDelete;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -38,5 +39,6 @@ public class ProductImage implements Serializable{
 
     @ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "productId")
+    @JsonIgnore
 	private Product product;
 }

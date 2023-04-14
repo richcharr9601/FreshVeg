@@ -9,11 +9,11 @@
     "productImage": [
         {
             "productImageId": 1,
-            "imageLink": "123123"
+            "imageLink": "https://example.com/image1.jpg"
         },
         {
             "productImageId": 2,
-            "imageLink": "1231223"
+            "imageLink": "https://example.com/image2.jpg"
         }
     ],
     "category": {

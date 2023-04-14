@@ -16,17 +16,10 @@ public class ProductMapping extends MappingConfig {
         modelMapper.typeMap(Product.class, ProductDTO.class).addMappings(mapper -> {
             mapper.map(src -> src.getCategory().getCategoryId(), (dest, v) -> dest.setCategoryId((Long)v));
         });
-
+        
         modelMapper.typeMap(ProductDTO.class, Product.class).addMappings(mapper -> {
             mapper.map(src -> src.getCategoryId(), (dest, v) -> dest.getCategory().setCategoryId((Long)v));
         });
 
-        // modelMapper.typeMap(ProductImage.class, ProductImageDTO.class).addMappings(mapper -> {
-        //     mapper.map(src -> src.getProduct().getProductId(), (dest, v) -> dest.getProduct().setProductId((Long)v));
-        // });
-
-        // modelMapper.typeMap(ProductImageDTO.class, ProductImage.class).addMappings(mapper -> {
-        //     mapper.map(src -> src.getProduct().getProductId(), (dest, v) -> dest.getProduct().setProductId((Long)v));
-        // });
     }
 }

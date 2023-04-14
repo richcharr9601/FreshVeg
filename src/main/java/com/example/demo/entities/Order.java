@@ -47,7 +47,7 @@ public class Order implements Serializable {
 	// @Temporal(TemporalType.DATE)
 	// @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Long orderDate;
-	private Double amount;
+	private int amount;
 	@Nationalized
 	private String phone;
 	private String note;

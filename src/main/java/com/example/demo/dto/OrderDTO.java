@@ -22,7 +22,7 @@ public class OrderDTO {
     private Long orderId;
     private Long userId;
     private String phone;
-    private Double amount;
+    private int amount;
     private Boolean statusPayment;
     private OrderStatus status;
     private String note;

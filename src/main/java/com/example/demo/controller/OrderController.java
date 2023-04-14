@@ -112,17 +112,48 @@ public class OrderController {
                 }.getType()));
     }
 
-    // @GetMapping("{userId}/all")
-    // public ResponseEntity<List<OrderDTO>> getOrders(@PathVariable("userId") Long id) {
-    //     List<Order> orders = orderService.findAll();
-    //     return ResponseEntity.ok(
-    //             modelMapper.map(orders, new TypeToken<List<OrderDTO>>() {
-    //             }.getType()));
-    // }
-
     @GetMapping("{orderId}")
     public ResponseEntity<OrderDTO> getOrderByOrderId( @PathVariable("orderId")Long oid) {
-        return ResponseEntity.ok(modelMapper.map(orderRepository.findByOrderId(oid), OrderDTO.class));
+        Order order = orderRepository.findByOrderId(oid);
+    
+    
+        OrderDTO orderDto = new OrderDTO();
+        orderDto.setOrderId(order.getOrderId());
+        orderDto.setOrderDate(order.getOrderDate());
+        orderDto.setAmount(order.getAmount());
+        orderDto.setPhone(order.getPhone());
+        orderDto.setNote(order.getNote());
+        orderDto.setStatusPayment(order.getStatusPayment());
+        orderDto.setStatus(order.getStatus());
+        
+        Address address = addressRepository.findAddressByOrderId(order.getOrderId());
+         {
+            AddressDTO addressDto = new AddressDTO();
+            addressDto.setAddressId(address.getAddressId());
+            addressDto.setReceiverName(address.getReceiverName());
+            addressDto.setReceiverPhone(address.getReceiverPhone());
+            addressDto.setAddress(address.getAddress());
+            addressDto.setUserId(order.getUser().getUserId());
+            orderDto.setAddress(addressDto);
+        }
+        Set<OrderDetail> orderDetails = order.getOrderDetails();
+        Set<OrderDetailDTO> orderDetailDTOs = new HashSet<>();
+
+        for (OrderDetail orderDetail : orderDetails) {
+            OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
+            orderDetailDTO.setOrderId(orderDetail.getOrder().getOrderId());
+            orderDetailDTO.setProduct(orderDetail.getProduct());
+            orderDetailDTO.setWeight(orderDetail.getWeight());
+            orderDetailDTO.setPrice(orderDetail.getPrice());
+            orderDetailDTOs.add(orderDetailDTO);
+        }
+
+        orderDto.setOrderDetails(orderDetailDTOs);
+
+        orderDto.setUserId(order.getUser().getUserId());
+
+    return ResponseEntity.ok(modelMapper.map(orderDto, OrderDTO.class));
+  
     }
 
     // @PreAuthorize("#userId == authentication.principal.userId")

@@ -12,8 +12,13 @@ public class ProductImageMapping extends MappingConfig {
     @Override
     public void configure() {
 
+        modelMapper.typeMap(ProductImage.class, ProductImageDTO.class).addMappings(mapper -> {
+            mapper.map(src -> src.getProduct().getProductId(), (dest, v) -> dest.getProduct().setProductId((Long)v));
+        });
         
-
+        modelMapper.typeMap(ProductImageDTO.class, ProductImage.class).addMappings(mapper -> {
+            mapper.map(src -> src.getProduct().getProductId(), (dest, v) -> dest.getProduct().setProductId((Long)v));
+        });
     }
 
 }

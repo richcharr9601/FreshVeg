@@ -67,7 +67,7 @@ public class PaymentController {
                         User user =  userRepository.findByUserId(userId);
         Order order = orderRepository.findByOrderIdAndUserUserId(requestParams.getOrderId(),user.getUserId());
         
-                    int amount = requestParams.getAmount() * 100;
+                    int amount = order.getAmount() * 100;
                     Map<String, String> vnp_Params = new HashMap<>();
                     vnp_Params.put("vnp_Version", PaymentConfig.VERSIONVNPAY);
                     vnp_Params.put("vnp_Command", PaymentConfig.COMMAND);

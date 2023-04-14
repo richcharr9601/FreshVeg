@@ -54,7 +54,7 @@ public class User implements Serializable, UserDetails {
 	private int otp;
 	// @Temporal(TemporalType.DATE)
 	// @JsonFormat(pattern = "dd/MM/yyyy")
-	// private Long birthday;
+	private Long birthday;
 	private Boolean isVerified;
 	private Long registerDate;
 	private Boolean status;
