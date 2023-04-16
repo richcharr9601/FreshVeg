@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
@@ -38,7 +39,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         DefaultOAuth2User oauthUser = (DefaultOAuth2User) authentication.getPrincipal();
-//        String email = oauthUser.getEmail();
+    //    String email = oauthUser.getEmail();
         String email = oauthUser.getAttribute("email");
         String name = oauthUser.getAttribute("name");
 
@@ -54,7 +55,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         }           
 
 
-        // Build the response body
+//         // Build the response body
         Map<String, Object> responseBody = new HashMap<>();
         responseBody.put("email", email);
         responseBody.put("name", name);
@@ -64,12 +65,13 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             String jwt = jwtService.generateToken(Map.of("authorities", user1.getAuthorities()), user);
         responseBody.put("accessToken", jwt);
     }
-
+    
         // Write the response entity to the response
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpServletResponse.SC_OK);
-        // response.sendRedirect("/auth/login");
-
+        // response.sendRedirect("/auth/login-google");
+        // String redirectUrl = request.
+        // response.sendRedirect(redirectUrl);
         new ObjectMapper().writeValue(response.getOutputStream(), responseBody);
-    }
+    }    
 }

@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import com.example.demo.security.payload.LoginRequest;
 import com.example.demo.security.payload.LoginResponse;
@@ -13,21 +15,33 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
+import org.springframework.http.MediaType;
+
 
 import com.example.demo.dto.ResetPasswordDTO;
 import com.example.demo.dto.UserRegisteredDTO;
+import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
 import com.example.demo.repository.entity.UserRepository;
 import com.example.demo.service.contract.DefaultUserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/auth")
@@ -45,6 +59,8 @@ public class AuthController {
     private final Map<String, String> otpStore = new HashMap<>();
 
     private final UserRepository userRepository;
+
+    private OAuth2AuthorizedClientService clientService;
 
     @PostMapping("login")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -112,4 +128,8 @@ public class AuthController {
             return ResponseEntity.ok("OTP is not correct");
         }
     }
-}
+
+    
+    
+
+        }

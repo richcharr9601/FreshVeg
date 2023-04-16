@@ -77,6 +77,7 @@ public class SecurityConfig {
             // .requestMatchers("/category/all").permitAll()
             // .requestMatchers("/all/{categoryId}").permitAll()
             // .requestMatchers("/product/{productId}").permitAll()
+            // .requestMatchers("/user/**").hasAuthority("ADMIN")
             // .requestMatchers("/auth/**").permitAll()
             // .requestMatchers("/oauth/**").permitAll()
             // .requestMatchers("localhost:8080/product").permitAll()

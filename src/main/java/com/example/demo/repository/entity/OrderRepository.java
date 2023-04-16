@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.dto.OrderDTO;
 import com.example.demo.entities.Order;
+import com.example.demo.entities.User;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
@@ -19,5 +20,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
 	Order findByOrderId(Long orderId);
 	
+	List<Order> findByUserUserId(Long userId);
 
 }

@@ -125,7 +125,7 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 			SimpleMailMessage msg = new SimpleMailMessage();
 			msg.setFrom("duclade150172@fpt.edu.vn");
 			msg.setTo(userRegisteredDTO.getEmail());
-
+			
 			msg.setSubject("Welcome To FreshVeg");
 			msg.setText("Hello \n\n" +"Your Register OTP :" + stringRandomPIN + ".Please Verify. \n\n"+"Regards \n"+"FreshVeg");
 
