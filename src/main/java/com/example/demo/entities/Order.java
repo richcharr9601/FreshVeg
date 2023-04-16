@@ -46,14 +46,14 @@ public class Order implements Serializable {
 	private Long orderId;
 	// @Temporal(TemporalType.DATE)
 	// @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Long orderDate;
+	// private Long orderDate;
 	private int amount;
 	@Nationalized
 	private String phone;
 	private String note;
 	private Boolean statusPayment;
 	@Enumerated(EnumType.STRING)
-    private OrderStatus status;
+	private OrderStatus status;
 	private Boolean deleted = Boolean.FALSE;
 
 	public enum OrderStatus {
@@ -65,9 +65,9 @@ public class Order implements Serializable {
 	}
 
 	@PrePersist
-    public void prePersist() {
-        this.status = OrderStatus.onWaitingConfirm;
-    }
+	public void prePersist() {
+		this.status = OrderStatus.onWaitingConfirm;
+	}
 
 	@OneToMany(mappedBy = "order")
 	@JsonIgnore
@@ -75,7 +75,7 @@ public class Order implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "addressId")
-	@JsonIgnoreProperties(value = {"deleted"}, allowGetters = true)
+	@JsonIgnoreProperties(value = { "deleted" }, allowGetters = true)
 	private Address address;
 
 	@ManyToOne(cascade = CascadeType.MERGE)

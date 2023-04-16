@@ -19,5 +19,25 @@
     "category": {
         "categoryId":1
     }
+},  {
+    "productName": "Nguyen Tien THinh",
+    "weight": 50,
+    "price": 50000.0,
+    "discount": 0,
+    "description": "",
+    "status": true,
+    "productImage": [
+        {
+            "productImageId": 1,
+            "imageLink": "https://example.com/image1.jpg"
+        },
+        {
+            "productImageId": 2,
+            "imageLink": "https://example.com/image2.jpg"
+        }
+    ],
+    "category": {
+        "categoryId":1
+    }
 }
 ]

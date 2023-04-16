@@ -13,7 +13,6 @@ import java.util.Random;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
-
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -28,14 +27,12 @@ public class PaymentConfig {
     public static final String LOCALEDEFAULT = "vn";
     public static final String CARDTYPE = "01";
     // public static final String TXNREF = "VNPAY123";
-    public static final String RETURNURL = "http://localhost:8080/checkout/payment-information/6";
+    public static final String RETURNURL = "http://localhost:5173/order-success";
     public static final String CHECKSUM = "LNYDNBPZCOVMSIVTCEJHYLZZKAKTSWHB";
     public static final String VNPAYURL = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     public static final String TMNCODE = "ZI6PK569";
     public static final String IPDEFAULT = "0.0.0.0.0.0.0.1";
     public static final String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
-
-
 
     public static String hmacSHA512(final String key, final String data) {
         try {
@@ -87,10 +84,8 @@ public class PaymentConfig {
                 sb.append("&");
             }
         }
-        return hmacSHA512(CHECKSUM,sb.toString());
+        return hmacSHA512(CHECKSUM, sb.toString());
     }
-    
-
 
     public static String md5(String message) {
         String digest = null;

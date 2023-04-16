@@ -66,68 +66,68 @@ public class OrderController {
     public ResponseEntity<List<OrderDTO>> getOrders() {
         List<Order> orders = orderService.findAll();
         List<OrderDTO> orderDtos = new ArrayList<>();
-    
-    // Iterate over each Order and create an OrderDto object with only the desired fields
-    for (Order order : orders) {
-        OrderDTO orderDto = new OrderDTO();
-        orderDto.setOrderId(order.getOrderId());
-        orderDto.setOrderDate(order.getOrderDate());
-        orderDto.setAmount(order.getAmount());
-        orderDto.setPhone(order.getPhone());
-        orderDto.setNote(order.getNote());
-        orderDto.setStatusPayment(order.getStatusPayment());
-        orderDto.setStatus(order.getStatus());
-        
-        // Check if the associated Address has been soft deleted
-        Address address = addressRepository.findAddressByOrderId(order.getOrderId());
-         {
-            AddressDTO addressDto = new AddressDTO();
-            addressDto.setAddressId(address.getAddressId());
-            addressDto.setReceiverName(address.getReceiverName());
-            addressDto.setReceiverPhone(address.getReceiverPhone());
-            addressDto.setAddress(address.getAddress());
-            addressDto.setUserId(order.getUser().getUserId());
-            orderDto.setAddress(addressDto);
+
+        // Iterate over each Order and create an OrderDto object with only the desired
+        // fields
+        for (Order order : orders) {
+            OrderDTO orderDto = new OrderDTO();
+            orderDto.setOrderId(order.getOrderId());
+            // orderDto.setOrderDate(order.getOrderDate());
+            orderDto.setAmount(order.getAmount());
+            orderDto.setPhone(order.getPhone());
+            orderDto.setNote(order.getNote());
+            orderDto.setStatusPayment(order.getStatusPayment());
+            orderDto.setStatus(order.getStatus());
+
+            // Check if the associated Address has been soft deleted
+            Address address = addressRepository.findAddressByOrderId(order.getOrderId());
+            {
+                AddressDTO addressDto = new AddressDTO();
+                addressDto.setAddressId(address.getAddressId());
+                addressDto.setReceiverName(address.getReceiverName());
+                addressDto.setReceiverPhone(address.getReceiverPhone());
+                addressDto.setAddress(address.getAddress());
+                addressDto.setUserId(order.getUser().getUserId());
+                orderDto.setAddress(addressDto);
+            }
+            Set<OrderDetail> orderDetails = order.getOrderDetails();
+            Set<OrderDetailDTO> orderDetailDTOs = new HashSet<>();
+
+            for (OrderDetail orderDetail : orderDetails) {
+                OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
+                orderDetailDTO.setOrderId(orderDetail.getOrder().getOrderId());
+                orderDetailDTO.setProduct(orderDetail.getProduct());
+                orderDetailDTO.setWeight(orderDetail.getWeight());
+                orderDetailDTO.setPrice(orderDetail.getPrice());
+                orderDetailDTOs.add(orderDetailDTO);
+            }
+
+            orderDto.setOrderDetails(orderDetailDTOs);
+
+            orderDto.setUserId(order.getUser().getUserId());
+
+            orderDtos.add(orderDto);
         }
-        Set<OrderDetail> orderDetails = order.getOrderDetails();
-        Set<OrderDetailDTO> orderDetailDTOs = new HashSet<>();
-
-        for (OrderDetail orderDetail : orderDetails) {
-            OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
-            orderDetailDTO.setOrderId(orderDetail.getOrder().getOrderId());
-            orderDetailDTO.setProduct(orderDetail.getProduct());
-            orderDetailDTO.setWeight(orderDetail.getWeight());
-            orderDetailDTO.setPrice(orderDetail.getPrice());
-            orderDetailDTOs.add(orderDetailDTO);
-        }
-
-        orderDto.setOrderDetails(orderDetailDTOs);
-
-        orderDto.setUserId(order.getUser().getUserId());
-        
-        orderDtos.add(orderDto);
-    }
         return ResponseEntity.ok(
                 modelMapper.map(orderDtos, new TypeToken<List<OrderDTO>>() {
                 }.getType()));
     }
 
     @GetMapping("{orderId}")
-    public ResponseEntity<OrderDTO> getOrderByOrderId( @PathVariable("orderId")Long oid) {
+    public ResponseEntity<OrderDTO> getOrderByOrderId(@PathVariable("orderId") Long oid) {
         Order order = orderRepository.findByOrderId(oid);
-    
-    
+
         OrderDTO orderDto = new OrderDTO();
         orderDto.setOrderId(order.getOrderId());
-        orderDto.setOrderDate(order.getOrderDate());
+        // orderDto.setOrderDate(order.getOrderDate());
         orderDto.setAmount(order.getAmount());
         orderDto.setPhone(order.getPhone());
         orderDto.setNote(order.getNote());
         orderDto.setStatusPayment(order.getStatusPayment());
         orderDto.setStatus(order.getStatus());
-        
+
         Address address = addressRepository.findAddressByOrderId(order.getOrderId());
-         {
+        {
             AddressDTO addressDto = new AddressDTO();
             addressDto.setAddressId(address.getAddressId());
             addressDto.setReceiverName(address.getReceiverName());
@@ -152,8 +152,8 @@ public class OrderController {
 
         orderDto.setUserId(order.getUser().getUserId());
 
-    return ResponseEntity.ok(modelMapper.map(orderDto, OrderDTO.class));
-  
+        return ResponseEntity.ok(modelMapper.map(orderDto, OrderDTO.class));
+
     }
 
     // @PreAuthorize("#userId == authentication.principal.userId")
@@ -163,28 +163,27 @@ public class OrderController {
 
         long unixTime = System.currentTimeMillis() / 1000L;
         Order order = modelMapper.map(orderDTO, Order.class);
-        order.setOrderDate(unixTime);
+        // order.setOrderDate(unixTime);
         order.setStatusPayment(false);
         order.setStatus(OrderStatus.onWaitingConfirm);
         orderService.add(order);
         order.getOrderDetails().forEach(od -> {
             orderDetailService.add(od);
         });
-        
+
         return ResponseEntity.ok(modelMapper.map(order, OrderDTO.class));
     }
 
     @DeleteMapping()
     public ResponseEntity<String> deleteOrder(@RequestBody Order order)
-    throws BadRequest {
-    Boolean result = orderRepository.existsById(order.getOrderId());
-    if (result) {
-        orderRepository.deleteById(order.getOrderId());
-    return ResponseEntity.ok("Order with ID" + order.getOrderId() + " has been deleted");
+            throws BadRequest {
+        Boolean result = orderRepository.existsById(order.getOrderId());
+        if (result) {
+            orderRepository.deleteById(order.getOrderId());
+            return ResponseEntity.ok("Order with ID" + order.getOrderId() + " has been deleted");
+        }
+        return ResponseEntity.ok("Cannot delete");
     }
-    return ResponseEntity.ok("Cannot delete");
-}
-
 
     @PatchMapping("{orderId}/confirmed")
     public ResponseEntity<Object> confirmOrder(@PathVariable("orderId") Long id)
@@ -215,4 +214,3 @@ public class OrderController {
     }
 
 }
-

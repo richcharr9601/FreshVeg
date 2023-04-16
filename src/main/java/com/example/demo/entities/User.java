@@ -54,7 +54,7 @@ public class User implements Serializable, UserDetails {
 	private int otp;
 	// @Temporal(TemporalType.DATE)
 	// @JsonFormat(pattern = "dd/MM/yyyy")
-	private Long birthday;
+	// private Long birthday;
 	private Boolean isVerified;
 	private Long registerDate;
 	private Boolean status;
@@ -77,8 +77,6 @@ public class User implements Serializable, UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return List.of(new SimpleGrantedAuthority(roles.toArray()[0].toString()));
 	}
-
-	
 
 	@Override
 	public String getPassword() {
@@ -115,7 +113,7 @@ public class User implements Serializable, UserDetails {
 		return true;
 	}
 
-    public Object stream() {
-        return null;
-    }
+	public Object stream() {
+		return null;
+	}
 }

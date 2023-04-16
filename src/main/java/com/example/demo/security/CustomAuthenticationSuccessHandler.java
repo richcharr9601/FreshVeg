@@ -33,17 +33,16 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     private final JwtService jwtService;
 
-
-
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+            Authentication authentication) throws IOException, ServletException {
         DefaultOAuth2User oauthUser = (DefaultOAuth2User) authentication.getPrincipal();
-//        String email = oauthUser.getEmail();
+        // String email = oauthUser.getEmail();
         String email = oauthUser.getAttribute("email");
         String name = oauthUser.getAttribute("name");
 
         User user = userRepository.findByEmail(email);
-        if(user == null) {
+        if (user == null) {
             User newUser = new User();
             newUser.setName(name);
             newUser.setEmail(email);
@@ -51,8 +50,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             Role userRole = new Role(Long.valueOf(2));
             newUser.setRoles(Set.of(userRole));
             user = userRepository.save(newUser);
-        }           
-
+        }
 
         // Build the response body
         Map<String, Object> responseBody = new HashMap<>();
@@ -60,15 +58,15 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         responseBody.put("name", name);
         User user1 = userRepository.findByEmail(email);
 
-        if(user1 != null && user.getIsVerified()==true){
+        if (user1 != null && user.getIsVerified() == true) {
             String jwt = jwtService.generateToken(Map.of("authorities", user1.getAuthorities()), user);
-        responseBody.put("accessToken", jwt);
-    }
+            responseBody.put("accessToken", jwt);
+        }
 
         // Write the response entity to the response
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpServletResponse.SC_OK);
-        // response.sendRedirect("/auth/login");
+        // response.sendRedirect("http://localhost:5173/");
 
         new ObjectMapper().writeValue(response.getOutputStream(), responseBody);
     }
