@@ -20,6 +20,5 @@ public class ProductMapping extends MappingConfig {
         modelMapper.typeMap(ProductDTO.class, Product.class).addMappings(mapper -> {
             mapper.map(src -> src.getCategoryId(), (dest, v) -> dest.getCategory().setCategoryId((Long)v));
         });
-
     }
 }

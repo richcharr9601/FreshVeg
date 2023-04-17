@@ -58,11 +58,11 @@ public class Product implements Serializable {
 	private Boolean deleted = Boolean.FALSE;
 
 
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
 	@JsonIgnore
     private Set<ProductImage> productImage;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "categoryId")
 	@JsonIgnore
 	private Category category;

@@ -65,13 +65,12 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             String jwt = jwtService.generateToken(Map.of("authorities", user1.getAuthorities()), user);
         responseBody.put("accessToken", jwt);
     }
-    
+        request.authenticate(response);
         // Write the response entity to the response
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpServletResponse.SC_OK);
-        // response.sendRedirect("/auth/login-google");
-        // String redirectUrl = request.
-        // response.sendRedirect(redirectUrl);
+        // response.sendRedirect("http://localhost:5173");
+        response.sendRedirect("/auth/login-google");
         new ObjectMapper().writeValue(response.getOutputStream(), responseBody);
     }    
 }
