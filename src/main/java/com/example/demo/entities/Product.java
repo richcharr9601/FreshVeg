@@ -1,21 +1,17 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import org.hibernate.annotations.Nationalized;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,13 +19,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-
-import lombok.Setter;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Getter
@@ -58,13 +51,12 @@ public class Product implements Serializable {
 	private Boolean deleted = Boolean.FALSE;
 
 
-	@OneToMany(mappedBy = "product")
-	@JsonIgnore
-    private Set<ProductImage> productImage;
+	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+	@JsonManagedReference
+    private Set<ProductImage> productImages;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "categoryId")
-	@JsonIgnore
 	private Category category;
 
 }

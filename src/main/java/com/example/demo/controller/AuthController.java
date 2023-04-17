@@ -20,6 +20,7 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
+import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -126,10 +127,16 @@ public class AuthController {
         } else {
             // Xác thực thất bại
             return ResponseEntity.ok("OTP is not correct");
-        }
+        }   
     }
 
+    @GetMapping("login-google")
+public Map<String, Object> loginGoogle(OAuth2AuthenticationToken oAuth2AuthenticationToken){
+    return oAuth2AuthenticationToken.getPrincipal().getAttributes();
+}
     
     
 
         }
+    
+    

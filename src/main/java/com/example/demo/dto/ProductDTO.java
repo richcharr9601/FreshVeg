@@ -29,7 +29,7 @@ public class ProductDTO {
 
 
 	@JsonManagedReference
-	private Set<ProductImageDTO> productImage;
+	private Set<ProductImageDTO> productImages;
 
 	private Long categoryId;
 }
