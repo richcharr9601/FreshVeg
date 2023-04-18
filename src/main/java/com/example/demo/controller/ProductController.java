@@ -74,7 +74,7 @@ public class ProductController {
                 long unixTime = System.currentTimeMillis() / 1000L;
                 product.setEnteredDate(unixTime);
                 productService.add(product);
-                product.getProductImage().forEach(od -> {
+                product.getProductImages().forEach(od -> {
                     productImageService.add(od);
                 });
 
@@ -106,7 +106,9 @@ public class ProductController {
     @GetMapping("/all")
     public ResponseEntity<List<ProductDTO>> getProducts() {
         return ResponseEntity.ok(
-                modelMapper.map(productService.findAll(), new TypeToken<List<ProductDTO>>() {
+                modelMapper.map(
+                    productService.findAll(),
+                    new TypeToken<List<ProductDTO>>() {
                 }.getType()));
     }
 

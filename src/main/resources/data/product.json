@@ -1,23 +1,59 @@
 [
     {
-    "productName": "Nguyen Nhat Minh",
-    "weight": 50,
-    "price": 50000.0,
-    "discount": 0,
-    "description": "",
-    "status": true,
-    "productImage": [
-        {
-            "productImageId": 1,
-            "imageLink": "https://example.com/image1.jpg"
-        },
-        {
-            "productImageId": 2,
-            "imageLink": "https://example.com/image2.jpg"
+        "productName": "Nguyen Nhat Minh",
+        "weight": 50,
+        "price": 50000.0,
+        "discount": 0,
+        "description": "",
+        "status": true,
+        "productImages": [
+            {
+                "imageLink": "https://imgix.bustle.com/uploads/image/2021/10/1/db9e8505-ee93-4c3a-9073-f922e45783dd-e6tso_fwqay-aao.jpeg"
+            },
+            {
+                "imageLink": "https://gameranx.com/wp-content/uploads/2023/03/dehya-gameplay-genshin-impact.jpg"
+            }
+        ],
+        "category": {
+            "categoryId": 1
         }
-    ],
-    "category": {
-        "categoryId":1
+    },
+    {
+        "productName": "Hoang Tien Thinh",
+        "weight": 40,
+        "price": 30000.0,
+        "discount": 0.2,
+        "description": "nguoi hue",
+        "status": true,
+        "productImages": [
+            {
+                "imageLink": "https://imgix.bustle.com/uploads/image/2021/10/1/db9e8505-ee93-4c3a-9073-f922e45783dd-e6tso_fwqay-aao.jpeg"
+            },
+            {
+                "imageLink": "https://gameranx.com/wp-content/uploads/2023/03/dehya-gameplay-genshin-impact.jpg"
+            }
+        ],
+        "category": {
+            "categoryId": 2
+        }
+    },
+    {
+        "productName": "Nguyen Phuong Nam",
+        "weight": 60,
+        "price": 70000.0,
+        "discount": 0.9,
+        "description": "khoi lua hoa xuan",
+        "status": true,
+        "productImages": [
+            {
+                "imageLink": "https://imgix.bustle.com/uploads/image/2021/10/1/db9e8505-ee93-4c3a-9073-f922e45783dd-e6tso_fwqay-aao.jpeg"
+            },
+            {
+                "imageLink": "https://gameranx.com/wp-content/uploads/2023/03/dehya-gameplay-genshin-impact.jpg"
+            }
+        ],
+        "category": {
+            "categoryId": 1
+        }
     }
-}
 ]

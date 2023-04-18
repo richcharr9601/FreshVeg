@@ -1,18 +1,15 @@
 package com.example.demo.config;
 
-import java.security.InvalidKeyException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Formatter;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
