@@ -1,59 +1,95 @@
 [
     {
-        "productName": "Nguyen Nhat Minh",
-        "weight": 50,
-        "price": 50000.0,
+        "productName": "Củ cần Tây Đà Lạt",
+        "weight": 10,
+        "price": 60000,
         "discount": 0,
-        "description": "",
         "status": true,
         "productImages": [
             {
-                "imageLink": "https://imgix.bustle.com/uploads/image/2021/10/1/db9e8505-ee93-4c3a-9073-f922e45783dd-e6tso_fwqay-aao.jpeg"
+                "imageLink": "https://www.khoeplus24h.vn/wp-content/uploads/2022/05/cu-can-tay-co-tac-dung-gi-cu-can-tay-mua-o-dau-goi-y-nau-cu-can-tay-ngon-thumnail.jpg"
             },
             {
-                "imageLink": "https://gameranx.com/wp-content/uploads/2023/03/dehya-gameplay-genshin-impact.jpg"
-            }
-        ],
-        "category": {
-            "categoryId": 1
-        }
-    },
-    {
-        "productName": "Hoang Tien Thinh",
-        "weight": 40,
-        "price": 30000.0,
-        "discount": 0.2,
-        "description": "nguoi hue",
-        "status": true,
-        "productImages": [
-            {
-                "imageLink": "https://imgix.bustle.com/uploads/image/2021/10/1/db9e8505-ee93-4c3a-9073-f922e45783dd-e6tso_fwqay-aao.jpeg"
+                "imageLink": "https://kenh14cdn.com/2018/10/28/celery-15406603028801409050025.jpg"
             },
-            {
-                "imageLink": "https://gameranx.com/wp-content/uploads/2023/03/dehya-gameplay-genshin-impact.jpg"
+{
+                "imageLink": "https://farm-fr.desigusxpro.com/wp-content/uploads/2019/07/polza-seldereya-dlya-zdorovya-zhenschin-6.jpg"
             }
         ],
         "category": {
             "categoryId": 2
         }
-    },
-    {
-        "productName": "Nguyen Phuong Nam",
-        "weight": 60,
-        "price": 70000.0,
-        "discount": 0.9,
-        "description": "khoi lua hoa xuan",
+},
+{
+        "productName": "Cà chua bi Gia Lai",
+        "weight": 20,
+        "price": 35000,
+        "discount": 0,
         "status": true,
         "productImages": [
             {
-                "imageLink": "https://imgix.bustle.com/uploads/image/2021/10/1/db9e8505-ee93-4c3a-9073-f922e45783dd-e6tso_fwqay-aao.jpeg"
+                "imageLink": "https://image-us.eva.vn/upload/1-2021/images/2021-02-11/mua-ca-chua-bi-nen-chon-qua-tron-hay-nhon-dau-bep-mach-meo-chon-deu-ngot-va-ngon-4d3ce98dd2cf482a873a4808a08575a0-1613000711-258-width700height580.jpg"
             },
             {
-                "imageLink": "https://gameranx.com/wp-content/uploads/2023/03/dehya-gameplay-genshin-impact.jpg"
+                "imageLink": "https://image-us.eva.vn/upload/1-2021/images/2021-02-11/mua-ca-chua-bi-nen-chon-qua-tron-hay-nhon-dau-bep-mach-meo-chon-deu-ngot-va-ngon-4d3ce98dd2cf482a873a4808a08575a0-1613000711-258-width700height580.jpg"
+            },
+            {
+                "imageLink": "https://www.monngon.tv/uploads/images/images/salad-rau-tron-dau-giam-4.jpg"
+            },
+            {
+                "imageLink": "https://hatgiongtot.net/image/catalog/Tintuc/ca-chua/trong-ca-chua-bi-vao-thang-may.jpg"
+            }
+        ],
+        "category": {
+            "categoryId": 3
+        }
+    },
+{
+        "productName": "Cà rốt Đà Lạt",
+        "weight": 1,
+        "price": 22000,
+        "discount": 0,
+        "status": true,
+        "productImages": [
+            {
+                "imageLink": "https://file.hstatic.net/200000240163/article/ca_rot_huu_co_b4b636bd8ac5431db8b3f8957634d14d_1024x1024.jpg"
+            },
+            {
+                "imageLink": "https://images2.thanhnien.vn/Uploaded/ngocthanh/2022_03_03/ca-rot-2275.jpg"
+            },
+            {
+                "imageLink": "https://cdn11.dienmaycholon.vn/filewebdmclnew/public//userupload/images/cach-lam-nuoc-ep-ca-rot-don-gian-1.jpg"
+            },
+            {
+                "imageLink": "https://images2.thanhnien.vn/Uploaded/ngocquy/2021_11_24/1-ca-rot-shutterstock-8244.jpg"
+            }
+        ],
+        "category": {
+            "categoryId": 2
+        }
+},
+{
+        "productName": "Cải xoăn Kale Đà Lạt",
+        "weight": 10,
+        "price": 45000,
+        "discount": 0,
+        "status": true,
+        "productImages": [
+            {
+                "imageLink": "https://anh.eva.vn/upload/4-2017/images/2017-12-12/avaa-1513069798-604-width640height480.jpg"
+            },
+            {
+                "imageLink": "https://vinmec-prod.s3.amazonaws.com/images/20201110_053230_447366_cai-kale.max-1800x1800.jpg"
+            },
+            {
+                "imageLink": "https://kingfucoidan.vn/sites/default/files/cai-xoan-xao-toi.jpg"
+            },
+            {
+                "imageLink": "https://www.wellway.vn/wp-content/uploads/2020/05/kale-compressor.jpg"
             }
         ],
         "category": {
             "categoryId": 1
         }
-    }
+}
 ]

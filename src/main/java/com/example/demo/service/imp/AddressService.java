@@ -43,7 +43,4 @@ public class AddressService extends EntityService<Address, Long> implements IAdd
 
     @Autowired
     private UserRepository userRepository;
-
-
-
 }

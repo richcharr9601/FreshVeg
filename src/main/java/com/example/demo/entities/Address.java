@@ -5,6 +5,9 @@ package com.example.demo.entities;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -34,7 +37,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "address")
 @SQLDelete(sql = "UPDATE address SET deleted = 1 WHERE address_id=?")
-@Where(clause = "deleted=false")
+@FilterDef(name = "deleteAddressFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
+@Filter(name = "deleteAddressFilter", condition = "deleted = :isDeleted")
 public class Address {
    
 	@Id

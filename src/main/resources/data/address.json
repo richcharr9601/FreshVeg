@@ -1,0 +1,17 @@
+[{
+    "receiverName":"minh",
+    "receiverPhone":"123123123",
+	"address":"khue my",
+    "user":{
+    "userId":5
+}
+},
+{
+    "receiverName":"minh",
+    "receiverPhone":"123123123",
+	"address":"khue my",
+    "user":{
+        "userId":6
+    }
+    }
+]

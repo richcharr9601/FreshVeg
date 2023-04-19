@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.hibernate.Filter;
+import org.hibernate.Session;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +40,7 @@ import com.example.demo.service.imp.OrderService;
 import com.example.demo.service.imp.ProductService;
 import com.example.demo.service.imp.UserService;
 
-
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 
 
@@ -46,6 +48,9 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/address")
 @RequiredArgsConstructor
 public class AddressController {
+
+    @Autowired
+    private EntityManager entityManager;
 
     final ModelMapper modelMapper;
     
@@ -60,6 +65,7 @@ public class AddressController {
     private final ProductService productService;
 
     private final OrderService orderService;
+    
 
     private final UserService userService;
 
@@ -96,11 +102,17 @@ public class AddressController {
 }
     
     // @PreAuthorize("#userId == authentication.principal.userId")
-    @GetMapping("/{userId}")
+    @GetMapping("user/{userId}")
     public ResponseEntity<Set<Address>> getAddress(@PathVariable("userId") long userId) {
-        
         Optional<User> user = userService.findByID(userId);
-        return ResponseEntity.ok(addressRepository.findByUser(user));
+
+        Session session = entityManager.unwrap(Session.class);
+        Filter filter = session.enableFilter("deleteAddressFilter");
+        filter.setParameter("isDeleted", false);
+        Set<Address> addresses = addressRepository.findByUser(user);
+        session.disableFilter("deleteAddressFilter");
+
+        return ResponseEntity.ok(addresses);
     }
 
 

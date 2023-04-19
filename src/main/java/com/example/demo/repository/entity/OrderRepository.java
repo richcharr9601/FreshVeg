@@ -2,6 +2,8 @@ package com.example.demo.repository.entity;
 
 import java.util.List;
 
+import org.hibernate.annotations.Filter;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
 	Order findByOrderId(Long orderId);
 	
-	List<Order> findByUserUserId(Long userId);
 
+	@EntityGraph(attributePaths = {"user", "address", "orderDetails"}) // Optional: Use entity graph to fetch related entities
+    @Filter(name = "deletedOrderFilter", condition = "deleted = false") // Enable the filter to exclude soft deleted records
+	List<Order> findByUserUserId(Long userId);
 }
