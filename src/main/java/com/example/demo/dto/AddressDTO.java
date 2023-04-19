@@ -23,6 +23,4 @@ public class AddressDTO {
 	private String receiverName;
     private String receiverPhone;
 	private String address;
-	
-	private Long userId;
 }

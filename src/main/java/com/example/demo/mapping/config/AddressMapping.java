@@ -12,13 +12,13 @@ public class AddressMapping extends MappingConfig {
     @Override
     public void configure() {
 
-        modelMapper.typeMap(Address.class, AddressDTO.class).addMappings(mapper -> {
-            mapper.map(src -> src.getUser().getUserId(), (dest, v) -> dest.setUserId((Long)v));
-        });
+        // modelMapper.typeMap(Address.class, AddressDTO.class).addMappings(mapper -> {
+        //     mapper.map(src -> src.getUser().getUserId(), (dest, v) -> dest.setUserId((Long)v));
+        // });
 
-        modelMapper.typeMap(AddressDTO.class, Address.class).addMappings(mapper -> {
-            mapper.map(src -> src.getUserId(), (dest, v) -> dest.getUser().setUserId((Long)v));
-        });
+        // modelMapper.typeMap(AddressDTO.class, Address.class).addMappings(mapper -> {
+        //     mapper.map(src -> src.getUserId(), (dest, v) -> dest.getUser().setUserId((Long)v));
+        // });
 
     }
 
