@@ -2,50 +2,41 @@ package com.example.demo.controller;
 
 
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.TimeZone;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.config.PaymentConfig;
-import com.example.demo.dto.OrderDTO;
 import com.example.demo.dto.TransactionStatusDTO;
 import com.example.demo.entities.Order;
-import com.example.demo.entities.User;
 import com.example.demo.model.Payment;
 import com.example.demo.model.PaymentRes;
 import com.example.demo.repository.entity.OrderRepository;
 import com.example.demo.repository.entity.UserRepository;
-import com.example.demo.service.contract.IOrderService;
-import com.example.demo.service.contract.IUserService;
 import com.example.demo.service.imp.OrderService;
 import com.example.demo.service.imp.UserService;
 
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RequiredArgsConstructor
@@ -61,11 +52,10 @@ public class PaymentController {
   
 
 
-    @PostMapping("/checkout/create-payment/{userId}")
-    public ResponseEntity<?> createPayment(@PathVariable("userId") Long userId, @RequestBody Payment requestParams)  {
+    @PostMapping("/checkout/create-payment")
+    public ResponseEntity<?> createPayment(@RequestBody Payment requestParams)  {
                     // String TXNREF = PaymentConfig.getRandomNumber(5);
-                        User user =  userRepository.findByUserId(userId);
-        Order order = orderRepository.findByOrderIdAndUserUserId(requestParams.getOrderId(),user.getUserId());
+        Order order = orderRepository.findByOrderId(requestParams.getOrderId());
         
                     int amount = order.getAmount() * 100;
                     Map<String, String> vnp_Params = new HashMap<>();
@@ -147,7 +137,7 @@ public class PaymentController {
 
 
 
-@GetMapping("/checkout/payment-information/{userId}")
+@GetMapping("/checkout/payment-information")
 public ResponseEntity<?>  transactionHandle (
     @RequestParam(value = "vnp_Amount", required = false) String amount,
     @RequestParam(value = "vnp_BankCode", required = false) String bankCode,
@@ -159,8 +149,7 @@ public ResponseEntity<?>  transactionHandle (
     @RequestParam(value = "vnp_TransactionNo", required = false) String transactionNo,
     @RequestParam(value = "vnp_TxnRef", required = false) String txnRef,
     @RequestParam(value = "vnp_SecureHash", required = false) String secureHash,
-    @RequestParam(value = "vnp_SecureHashType", required = false) String secureHashType,
-    @PathVariable("userId") Long userId
+    @RequestParam(value = "vnp_SecureHashType", required = false) String secureHashType
 ) throws MessagingException{
     TransactionStatusDTO result = new TransactionStatusDTO();
     if (!responseCode.equalsIgnoreCase("00")){
@@ -169,14 +158,13 @@ public ResponseEntity<?>  transactionHandle (
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    User user =  userRepository.findByUserId(userId);
+    Order order = orderRepository.findByOrderId(Long.parseLong(txnRef));
  
-    if(orderRepository.findByOrderIdAndUserUserId(Long.parseLong(txnRef),user.getUserId())==null){
+    if(order==null){
         result.setStatus("01");
         result.setMessage("Cannot find order");
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
-        Order order = orderRepository.findByOrderIdAndUserUserId(Long.parseLong(txnRef),user.getUserId());
     if(order.getStatusPayment()==true){
         result.setStatus("01");
         result.setMessage("Order already paid");
@@ -187,10 +175,8 @@ public ResponseEntity<?>  transactionHandle (
         orderRepository.save(order);
         result.setStatus("00");
         result.setMessage("Checkout successfully");
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("http://localhost:5173/order-success")).body(result);
     }
     return ResponseEntity.status(HttpStatus.OK).body(result);
 }
 }
-
-    
