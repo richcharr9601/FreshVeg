@@ -42,14 +42,14 @@ public class ProductService extends EntityService<Product, Long> implements IPro
     }
 
     public Product editProduct(Long id, ProductDTO productDTO) {
-        long unixTime = System.currentTimeMillis() / 1000L;
+        Date date = new Date();
         Product product = productRepository.findByProductId(id);
         product.setProductName(productDTO.getProductName());
         product.setDescription(productDTO.getDescription());
         product.setPrice(productDTO.getPrice());
         product.setWeight(productDTO.getWeight());
         product.setDiscount(productDTO.getDiscount());
-        product.setEnteredDate(unixTime);
+        product.setEnteredDate(date);
         product.setStatus(productDTO.getStatus());
         Category category = new Category();
         category.setCategoryId(productDTO.getCategoryId());

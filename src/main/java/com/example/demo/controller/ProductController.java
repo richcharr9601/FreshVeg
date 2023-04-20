@@ -70,9 +70,9 @@ public class ProductController {
     @PostMapping()
     public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDto)
             throws BadRequest {
+                Date date = new Date();
                 Product product = modelMapper.map(productDto, Product.class);
-                long unixTime = System.currentTimeMillis() / 1000L;
-                product.setEnteredDate(unixTime);
+                product.setEnteredDate(date);
                 productService.add(product);
                 product.getProductImages().forEach(od -> {
                     productImageService.add(od);

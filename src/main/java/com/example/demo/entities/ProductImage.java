@@ -35,6 +35,5 @@ public class ProductImage implements Serializable{
 
     @ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "productId")
-    @JsonBackReference
 	private Product product;
 }

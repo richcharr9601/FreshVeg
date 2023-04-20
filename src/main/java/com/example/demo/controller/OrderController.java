@@ -61,12 +61,6 @@ public class OrderController {
     @Autowired
     private OrderRepository orderRepository;
 
-    @Autowired
-    private AddressRepository addressRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
     @GetMapping("all")
     public ResponseEntity<List<OrderDTO>> getOrders() {
         List<Order> orders = orderService.findAll();
@@ -110,10 +104,10 @@ public class OrderController {
     @PostMapping()
     public ResponseEntity<OrderDTO> addOrder(@RequestBody OrderDTO orderDTO)
             throws BadRequest {
-
-        long unixTime = System.currentTimeMillis() / 1000L;
+        
+                Date date = new Date();
         Order order = modelMapper.map(orderDTO, Order.class);
-        order.setOrderDate(unixTime);
+        order.setOrderDate(date);
         order.setStatusPayment(false);
         order.setStatus(OrderStatus.onWaitingConfirm);
         orderService.add(order);

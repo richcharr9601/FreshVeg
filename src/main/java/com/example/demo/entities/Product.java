@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import org.hibernate.annotations.Nationalized;
@@ -19,6 +20,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,14 +48,13 @@ public class Product implements Serializable {
 	private int discount;
 	@Nationalized
 	private String description;
-	// @Temporal(TemporalType.DATE)
-	private Long enteredDate;
+	@Temporal(TemporalType.DATE)
+	private Date enteredDate;
 	private Boolean status;
 	private Boolean deleted = Boolean.FALSE;
 
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
-	@JsonManagedReference
+	@OneToMany(mappedBy = "product")
     private Set<ProductImage> productImages;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
