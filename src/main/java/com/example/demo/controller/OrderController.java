@@ -33,14 +33,18 @@ import com.example.demo.entities.Address;
 import com.example.demo.entities.Order;
 import com.example.demo.entities.OrderDetail;
 import com.example.demo.entities.OrderDetailKey;
+import com.example.demo.entities.Product;
 import com.example.demo.entities.User;
 import com.example.demo.entities.Order.OrderStatus;
 import com.example.demo.repository.entity.AddressRepository;
 import com.example.demo.repository.entity.OrderRepository;
+import com.example.demo.repository.entity.ProductRepository;
 import com.example.demo.repository.entity.UserRepository;
 import com.example.demo.service.contract.IOrderService;
+import com.example.demo.service.contract.IProductService;
 import com.example.demo.service.contract.IOrderDetailService;
 import com.example.demo.service.imp.OrderService;
+import com.example.demo.service.imp.ProductService;
 import com.example.demo.service.imp.OrderDetailService;
 
 @RestController
@@ -50,17 +54,21 @@ public class OrderController {
     ModelMapper modelMapper;
     IOrderService orderService;
     IOrderDetailService orderDetailService;
+    IProductService productService;
 
-    public OrderController(ModelMapper modelMapper, OrderService orderService, OrderDetailService orderDetailService) {
+
+    public OrderController(ProductService productService,ModelMapper modelMapper, OrderService orderService, OrderDetailService orderDetailService) {
         this.modelMapper = modelMapper;
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
-
+        this.productService = productService;
     }
 
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
     @GetMapping("all")
     public ResponseEntity<List<OrderDTO>> getOrders() {
         List<Order> orders = orderService.findAll();
@@ -104,8 +112,7 @@ public class OrderController {
     @PostMapping()
     public ResponseEntity<OrderDTO> addOrder(@RequestBody OrderDTO orderDTO)
             throws BadRequest {
-        
-                Date date = new Date();
+        Date date = new Date();
         Order order = modelMapper.map(orderDTO, Order.class);
         order.setOrderDate(date);
         order.setStatusPayment(false);
@@ -114,8 +121,27 @@ public class OrderController {
         order.getOrderDetails().forEach(od -> {
             orderDetailService.add(od);
         });
-
-        return ResponseEntity.ok(modelMapper.map(order, OrderDTO.class));
+        for (OrderDetail orderDetail : order.getOrderDetails()) {
+            Product product = orderDetail.getProduct();
+            Product product1 = productRepository.findByProductId(product.getProductId());
+            int remainingWeight = product1.getWeight() - orderDetail.getWeight();
+            if (remainingWeight < 0) {
+                ResponseEntity.badRequest();
+            }
+            product1.setWeight(remainingWeight);
+            product1.setCategory(product1.getCategory());
+            product1.setDeleted(product1.getDeleted());
+            product1.setDescription(product1.getDescription());
+            product1.setDiscount(product1.getDiscount());
+            product1.setEnteredDate(product1.getEnteredDate());
+            product1.setPrice(product1.getPrice());
+            product1.setProductId(product1.getProductId());
+            product1.setProductImages(product1.getProductImages());
+            product1.setProductName(product1.getProductName());
+            product1.setStatus(product1.getStatus());
+            productRepository.save(product1);
+        }
+      return ResponseEntity.ok(modelMapper.map(order, OrderDTO.class));
     }
 
     @DeleteMapping()

@@ -3,14 +3,19 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.APIResponse;
+import com.example.demo.dto.ProductDTO;
 import com.example.demo.entities.Product;
+import com.example.demo.repository.entity.ProductRepository;
 import com.example.demo.service.contract.ICategoryService;
 import com.example.demo.service.contract.IProductService;
 import com.example.demo.service.imp.CategoryService;
@@ -33,6 +38,9 @@ public class StatisticController {
 
     }
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @GetMapping("/{field}")
     public APIResponse<List<Product>> getProductWithSort(@PathVariable String field) {
         List<Product> allProducts = productService.findProductsWithSorting(field);
@@ -52,5 +60,12 @@ public class StatisticController {
                 pageSize, field);
         return new APIResponse<>(findProductsWithPaginationAndSorting.getSize(), findProductsWithPaginationAndSorting);
     }
+
+//     @GetMapping("/product-new")
+//     public ResponseEntity<List<ProductDTO>> getProductNew() {
+//         List<Product> newProducts = productRepository.findNewProducts();
+//     return ResponseEntity.ok(modelMapper.map(productRepository.listProductNew20().subList(0, Math.min(newProducts.size(), 10), new TypeToken<List<ProductDTO>>() {
+//     }.getType()));
+// }
 
 }

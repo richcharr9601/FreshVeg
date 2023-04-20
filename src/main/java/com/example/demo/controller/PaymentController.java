@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.config.PaymentConfig;
 import com.example.demo.dto.TransactionStatusDTO;
 import com.example.demo.entities.Order;
+import com.example.demo.entities.Order.OrderStatus;
 import com.example.demo.model.Payment;
 import com.example.demo.model.PaymentRes;
 import com.example.demo.repository.entity.OrderRepository;
@@ -152,20 +153,27 @@ public ResponseEntity<?>  transactionHandle (
     @RequestParam(value = "vnp_SecureHashType", required = false) String secureHashType
 ) throws MessagingException{
     TransactionStatusDTO result = new TransactionStatusDTO();
+    Order order = orderRepository.findByOrderId(Long.parseLong(txnRef));
+
     if (!responseCode.equalsIgnoreCase("00")){
+        order.setStatus(OrderStatus.Failed);
+        orderRepository.save(order);
         result.setStatus("02");
         result.setMessage("Checkout failed");
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    Order order = orderRepository.findByOrderId(Long.parseLong(txnRef));
  
     if(order==null){
+        order.setStatus(OrderStatus.Failed);
+        orderRepository.save(order);
         result.setStatus("01");
         result.setMessage("Cannot find order");
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
     if(order.getStatusPayment()==true){
+        order.setStatus(OrderStatus.Failed);
+        orderRepository.save(order);
         result.setStatus("01");
         result.setMessage("Order already paid");
         return ResponseEntity.status(HttpStatus.OK).body(result);

@@ -23,7 +23,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	List<Product> listProductByCategory10(Long categoryId);
 
 	// List product new
-	@Query(value = "SELECT * FROM products ORDER BY entered_date DESC limit 20;", nativeQuery = true)
+	@Query(value = "SELECT * FROM products ORDER BY entered_date DESC;", nativeQuery = true)
 	public List<Product> listProductNew20();
 
 	// Search Product
@@ -53,5 +53,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	List<Product> findByCategoryIn(List<Category> categoryIds);
 
 	Product findByProductId(Long productId);
+
+
+
 
 }

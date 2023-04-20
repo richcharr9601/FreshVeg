@@ -128,7 +128,6 @@ public class ProductController {
     return ResponseEntity.ok("Product with ID" + product.getProductId() + " has been deleted");
     }
     return ResponseEntity.ok("Cannot delete");
-
-    
 }
+
 }
