@@ -172,6 +172,27 @@ public class OrderController {
     @PatchMapping("{orderId}/failed")
     public ResponseEntity<Object> orderFailed(@PathVariable("orderId") Long id)
             throws BadRequest {
+                Order order = orderRepository.findByOrderId(id);
+                for (OrderDetail orderDetail : order.getOrderDetails()) {
+                    Product product = orderDetail.getProduct();
+                    Product product1 = productRepository.findByProductId(product.getProductId());
+                    int remainingWeight = product1.getWeight() + orderDetail.getWeight();
+                    if (remainingWeight < 0) {
+                        ResponseEntity.badRequest();
+                    }
+                    product1.setWeight(remainingWeight);
+                    product1.setCategory(product1.getCategory());
+                    product1.setDeleted(product1.getDeleted());
+                    product1.setDescription(product1.getDescription());
+                    product1.setDiscount(product1.getDiscount());
+                    product1.setEnteredDate(product1.getEnteredDate());
+                    product1.setPrice(product1.getPrice());
+                    product1.setProductId(product1.getProductId());
+                    product1.setProductImages(product1.getProductImages());
+                    product1.setProductName(product1.getProductName());
+                    product1.setStatus(product1.getStatus());
+                    productRepository.save(product1);
+                }
         return orderService.orderFailed(id, OrderStatus.Failed) ? ResponseEntity.ok("Failed")
                 : ResponseEntity.notFound().build();
     }
