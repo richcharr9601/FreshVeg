@@ -61,11 +61,10 @@ public class StatisticController {
         return new APIResponse<>(findProductsWithPaginationAndSorting.getSize(), findProductsWithPaginationAndSorting);
     }
 
-//     @GetMapping("/product-new")
-//     public ResponseEntity<List<ProductDTO>> getProductNew() {
-//         List<Product> newProducts = productRepository.findNewProducts();
-//     return ResponseEntity.ok(modelMapper.map(productRepository.listProductNew20().subList(0, Math.min(newProducts.size(), 10), new TypeToken<List<ProductDTO>>() {
-//     }.getType()));
-// }
-
+    @GetMapping("/product-new")
+    public ResponseEntity<List<ProductDTO>> getProductNew() {
+        List<Product> newProducts = productRepository.listProductNew20();
+        return ResponseEntity.ok(modelMapper.map(productRepository.listProductNew20(), new TypeToken<List<ProductDTO>>() {
+        }.getType()));
+    }
 }
