@@ -171,6 +171,14 @@ public class OrderController {
 
     @PatchMapping("{orderId}/failed")
     public ResponseEntity<Object> orderFailed(@PathVariable("orderId") Long id)
+            throws BadRequest {              
+        return orderService.orderFailed(id, OrderStatus.Failed) ? ResponseEntity.ok("Failed")
+                : ResponseEntity.notFound().build();
+    }
+    
+
+    @PatchMapping("{orderId}/cancel")
+    public ResponseEntity<Object> orderCancel(@PathVariable("orderId") Long id)
             throws BadRequest {
                 Order order = orderRepository.findByOrderId(id);
                 for (OrderDetail orderDetail : order.getOrderDetails()) {
@@ -191,17 +199,12 @@ public class OrderController {
                     product1.setProductImages(product1.getProductImages());
                     product1.setProductName(product1.getProductName());
                     product1.setStatus(product1.getStatus());
-                    productRepository.save(product1);
-                }
-        return orderService.orderFailed(id, OrderStatus.Failed) ? ResponseEntity.ok("Failed")
-                : ResponseEntity.notFound().build();
-    }
-
-    @PatchMapping("{orderId}/cancel")
-    public ResponseEntity<Object> orderCancel(@PathVariable("orderId") Long id)
-            throws BadRequest {
+    productRepository.save(product1);}
         return orderService.orderCancel(id, OrderStatus.Cancel) ? ResponseEntity.ok("Cancel")
                 : ResponseEntity.notFound().build();
-    }
 
 }
+}
+
+
+
