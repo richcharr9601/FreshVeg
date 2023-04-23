@@ -123,7 +123,7 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 			String stringRandomPIN = String.valueOf(randomPIN);
 			
 			SimpleMailMessage msg = new SimpleMailMessage();
-			msg.setFrom("duclade150172@fpt.edu.vn");
+			msg.setFrom("freshveg.cooperation@gmail.com");
 			msg.setTo(userRegisteredDTO.getEmail());
 			
 			msg.setSubject("Welcome To FreshVeg");
@@ -141,7 +141,7 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 			user.setOtp(randomPIN);
 			// userRepo.save(user);
 			SimpleMailMessage msg = new SimpleMailMessage();
-			msg.setFrom("duclade150172@fpt.edu.vn");
+			msg.setFrom("freshveg.cooperation@gmail.com");
 			msg.setTo(user.getEmail());
 
 			msg.setSubject("Welcome To FreshVeg");
