@@ -28,10 +28,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.example.demo.config.PaymentConfig;
 import com.example.demo.dto.TransactionStatusDTO;
 import com.example.demo.entities.Order;
+import com.example.demo.entities.OrderDetail;
+import com.example.demo.entities.Product;
 import com.example.demo.entities.Order.OrderStatus;
 import com.example.demo.model.Payment;
 import com.example.demo.model.PaymentRes;
 import com.example.demo.repository.entity.OrderRepository;
+import com.example.demo.repository.entity.ProductRepository;
 import com.example.demo.repository.entity.UserRepository;
 import com.example.demo.service.imp.OrderService;
 import com.example.demo.service.imp.UserService;
@@ -48,6 +51,7 @@ public class PaymentController {
     private final UserService userService;
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
+    private final ProductRepository productRepository;
 
     @PostMapping("/checkout/create-payment")
     public ResponseEntity<?> createPayment(@RequestBody Payment requestParams) {
@@ -148,7 +152,26 @@ public ResponseEntity<?>  transactionHandle (
     Order order = orderRepository.findByOrderId(Long.parseLong(txnRef));
 
     if (!responseCode.equalsIgnoreCase("00")){
-        order.setStatus(OrderStatus.Failed);
+        for (OrderDetail orderDetail : order.getOrderDetails()) {
+            Product product = orderDetail.getProduct();
+            Product product1 = productRepository.findByProductId(product.getProductId());
+            double remainingWeight = product1.getWeight() + orderDetail.getWeight();
+            if (remainingWeight < 0) {
+                ResponseEntity.badRequest();
+            }
+            product1.setWeight(remainingWeight);
+            product1.setCategory(product1.getCategory());
+            product1.setDeleted(product1.getDeleted());
+            product1.setDescription(product1.getDescription());
+            product1.setDiscount(product1.getDiscount());
+            product1.setEnteredDate(product1.getEnteredDate());
+            product1.setPrice(product1.getPrice());
+            product1.setProductId(product1.getProductId());
+            product1.setProductImages(product1.getProductImages());
+            product1.setProductName(product1.getProductName());
+            product1.setStatus(product1.getStatus());
+        }
+        order.setStatus(OrderStatus.Cancel);
         orderRepository.save(order);
         result.setStatus("02");
         result.setMessage("Checkout failed");
@@ -157,14 +180,52 @@ public ResponseEntity<?>  transactionHandle (
 
  
     if(order==null){
-        order.setStatus(OrderStatus.Failed);
+        for (OrderDetail orderDetail : order.getOrderDetails()) {
+            Product product = orderDetail.getProduct();
+            Product product1 = productRepository.findByProductId(product.getProductId());
+            double remainingWeight = product1.getWeight() + orderDetail.getWeight();
+            if (remainingWeight < 0) {
+                ResponseEntity.badRequest();
+            }
+            product1.setWeight(remainingWeight);
+            product1.setCategory(product1.getCategory());
+            product1.setDeleted(product1.getDeleted());
+            product1.setDescription(product1.getDescription());
+            product1.setDiscount(product1.getDiscount());
+            product1.setEnteredDate(product1.getEnteredDate());
+            product1.setPrice(product1.getPrice());
+            product1.setProductId(product1.getProductId());
+            product1.setProductImages(product1.getProductImages());
+            product1.setProductName(product1.getProductName());
+            product1.setStatus(product1.getStatus());
+        }
+        order.setStatus(OrderStatus.Cancel);
         orderRepository.save(order);
         result.setStatus("01");
         result.setMessage("Cannot find order");
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
     if(order.getStatusPayment()==true){
-        order.setStatus(OrderStatus.Failed);
+        for (OrderDetail orderDetail : order.getOrderDetails()) {
+            Product product = orderDetail.getProduct();
+            Product product1 = productRepository.findByProductId(product.getProductId());
+            double remainingWeight = product1.getWeight() + orderDetail.getWeight();
+            if (remainingWeight < 0) {
+                ResponseEntity.badRequest();
+            }
+            product1.setWeight(remainingWeight);
+            product1.setCategory(product1.getCategory());
+            product1.setDeleted(product1.getDeleted());
+            product1.setDescription(product1.getDescription());
+            product1.setDiscount(product1.getDiscount());
+            product1.setEnteredDate(product1.getEnteredDate());
+            product1.setPrice(product1.getPrice());
+            product1.setProductId(product1.getProductId());
+            product1.setProductImages(product1.getProductImages());
+            product1.setProductName(product1.getProductName());
+            product1.setStatus(product1.getStatus());
+        }
+        order.setStatus(OrderStatus.Cancel);
         orderRepository.save(order);
         result.setStatus("01");
         result.setMessage("Order already paid");

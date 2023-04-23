@@ -20,7 +20,7 @@ import lombok.Setter;
 public class ProductDTO {
     private Long productId;
 	private String productName;
-	private int weight;
+	private Double weight;
 	private double price;
 	private int discount;
 	private String description;

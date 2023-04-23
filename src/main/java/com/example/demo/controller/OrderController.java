@@ -124,7 +124,7 @@ public class OrderController {
         for (OrderDetail orderDetail : order.getOrderDetails()) {
             Product product = orderDetail.getProduct();
             Product product1 = productRepository.findByProductId(product.getProductId());
-            int remainingWeight = product1.getWeight() - orderDetail.getWeight();
+            Double remainingWeight = product1.getWeight() - orderDetail.getWeight();
             if (remainingWeight < 0) {
                 ResponseEntity.badRequest();
             }
@@ -184,7 +184,7 @@ public class OrderController {
                 for (OrderDetail orderDetail : order.getOrderDetails()) {
                     Product product = orderDetail.getProduct();
                     Product product1 = productRepository.findByProductId(product.getProductId());
-                    int remainingWeight = product1.getWeight() + orderDetail.getWeight();
+                    double remainingWeight = product1.getWeight() + orderDetail.getWeight();
                     if (remainingWeight < 0) {
                         ResponseEntity.badRequest();
                     }

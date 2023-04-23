@@ -43,7 +43,7 @@ public class Product implements Serializable {
 	private Long productId;
 	@Nationalized
 	private String productName;
-	private int weight;
+	private Double weight;
 	private double price;
 	private int discount;
 	@Nationalized
