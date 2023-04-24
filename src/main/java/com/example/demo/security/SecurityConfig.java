@@ -69,6 +69,8 @@ public class SecurityConfig {
         .oauth2Login()
             .successHandler(customAuthenticationSuccessHandler)
             .failureHandler((request, response, exception) -> response.setStatus(HttpServletResponse.SC_BAD_REQUEST))
+        .and()
+        .cors()
     ;
 
     http.authorizeHttpRequests()
@@ -98,7 +100,7 @@ public class SecurityConfig {
   CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
     List<String> list = new ArrayList<String>();
-    list.add("*");
+    list.add("http://localhost:5173/");
     configuration.setAllowedOrigins(list);
     configuration.addAllowedHeader("*");
     configuration.addAllowedMethod("*");
