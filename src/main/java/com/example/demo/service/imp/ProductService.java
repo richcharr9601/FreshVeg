@@ -52,7 +52,7 @@ public class ProductService extends EntityService<Product, Long> implements IPro
         product.setEnteredDate(date);
         product.setStatus(productDTO.getStatus());
         Category category = new Category();
-        category.setCategoryId(productDTO.getCategoryId());
+        // category.setCategoryId(productDTO.getCategory());
         product.setCategory(category);
         return productRepository.save(product);
     }

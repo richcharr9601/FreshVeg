@@ -31,5 +31,5 @@ public class ProductDTO {
 	@JsonManagedReference
 	private Set<ProductImageDTO> productImages;
 
-	private Long categoryId;
+	private CategoryDTO category;
 }

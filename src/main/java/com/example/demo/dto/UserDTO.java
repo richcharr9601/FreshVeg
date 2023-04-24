@@ -17,6 +17,5 @@ public class UserDTO {
     private String email;
     private String avatar;
     private Boolean status;
-    private String roleName;
     private Date birthday;
 }

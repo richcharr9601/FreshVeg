@@ -13,13 +13,13 @@ import com.example.demo.mapping.config.contract.MappingConfig;
 public class ProductMapping extends MappingConfig {
     @Override
     public void configure() {
-        modelMapper.typeMap(Product.class, ProductDTO.class).addMappings(mapper -> {
-            mapper.map(src -> src.getCategory().getCategoryId(), (dest, v) -> dest.setCategoryId((Long)v));
-        });
+        // modelMapper.typeMap(Product.class, ProductDTO.class).addMappings(mapper -> {
+        //     mapper.map(src -> src.getCategory().getCategoryId(), (dest, v) -> dest.setCategoryId((Long)v));
+        // });
         
-        modelMapper.typeMap(ProductDTO.class, Product.class).addMappings(mapper -> {
-            mapper.map(src -> src.getCategoryId(), (dest, v) -> dest.getCategory().setCategoryId((Long)v));
-        });
+        // modelMapper.typeMap(ProductDTO.class, Product.class).addMappings(mapper -> {
+        //     mapper.map(src -> src.getCategoryId(), (dest, v) -> dest.getCategory().setCategoryId((Long)v));
+        // });
 
     }
 }

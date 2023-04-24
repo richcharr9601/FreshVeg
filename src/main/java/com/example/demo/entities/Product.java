@@ -54,7 +54,8 @@ public class Product implements Serializable {
 	private Boolean deleted = Boolean.FALSE;
 
 
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+	@JsonManagedReference
     private Set<ProductImage> productImages;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
