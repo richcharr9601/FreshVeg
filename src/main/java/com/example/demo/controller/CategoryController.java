@@ -49,7 +49,6 @@ public class CategoryController {
     
     @PostMapping()
     public ResponseEntity<CategoryDTO> AddCategory(@RequestBody CategoryDTO categoryDTO) throws BadRequest {
-
         Category category = modelMapper.map(categoryDTO, Category.class);
         return ResponseEntity.ok(modelMapper.map(categoryService.add(category), CategoryDTO.class));
     }

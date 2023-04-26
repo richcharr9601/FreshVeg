@@ -1,7 +1,7 @@
 [
   {
     "name": "Hồ Hữu Tình",
-    "email": "thien@gmal.com",
+    "email": "thien@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
     "roles": [
@@ -12,7 +12,7 @@
   },
   {
     "name": "Chu Khánh Đoan",
-    "email": "chukhanhdoan@gmal.com",
+    "email": "chukhanhdoan@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
     "roles": [
@@ -23,7 +23,7 @@
   },
   {
     "name": "Phạm Tấn Hoàng",
-    "email": "hoangdeptrai@gmal.com",
+    "email": "hoangdeptrai@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
     "roles": [
@@ -34,7 +34,7 @@
   },
   {
     "name": "Nguyễn Phương Nam",
-    "email": "namnghien@gmal.com",
+    "email": "namnghien@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
     "roles": [
@@ -45,7 +45,7 @@
   },
   {
     "name": "Trần Quốc Khanh",
-    "email": "khanhbeo@gmal.com",
+    "email": "khanhbeo@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
     "roles": [
