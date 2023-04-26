@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
@@ -27,6 +28,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Component
+@RestController
 @RequiredArgsConstructor
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
@@ -37,6 +39,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
 
     @Override
+    @GetMapping("login-google")
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         DefaultOAuth2User oauthUser = (DefaultOAuth2User) authentication.getPrincipal();
     //    String email = oauthUser.getEmail();

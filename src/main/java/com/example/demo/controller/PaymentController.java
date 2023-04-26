@@ -175,7 +175,7 @@ public ResponseEntity<?>  transactionHandle (
         orderRepository.save(order);
         result.setStatus("02");
         result.setMessage("Checkout failed");
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("http://localhost:5173/error-page")).body(result);
     }
 
  
@@ -203,7 +203,7 @@ public ResponseEntity<?>  transactionHandle (
         orderRepository.save(order);
         result.setStatus("01");
         result.setMessage("Cannot find order");
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("http://localhost:5173/error-page")).body(result);
     }
     if(order.getStatusPayment()==true){
         for (OrderDetail orderDetail : order.getOrderDetails()) {
@@ -229,7 +229,7 @@ public ResponseEntity<?>  transactionHandle (
         orderRepository.save(order);
         result.setStatus("01");
         result.setMessage("Order already paid");
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("http://localhost:5173/error-page")).body(result);
     }
     if(order.getOrderId().toString().equalsIgnoreCase(txnRef)){
         order.setStatusPayment(true);

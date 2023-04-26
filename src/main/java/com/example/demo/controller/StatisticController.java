@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -15,11 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.APIResponse;
 import com.example.demo.dto.ProductDTO;
 import com.example.demo.entities.Product;
+import com.example.demo.entities.User;
 import com.example.demo.repository.entity.ProductRepository;
+import com.example.demo.repository.entity.UserRepository;
 import com.example.demo.service.contract.ICategoryService;
 import com.example.demo.service.contract.IProductService;
 import com.example.demo.service.imp.CategoryService;
 import com.example.demo.service.imp.ProductService;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 @RestController
 @RequestMapping("/statistic")
@@ -40,6 +48,9 @@ public class StatisticController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/{field}")
     public APIResponse<List<Product>> getProductWithSort(@PathVariable String field) {
