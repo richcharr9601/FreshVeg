@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -82,7 +81,6 @@ public class SecurityConfig {
             .requestMatchers("/user/**").hasAuthority("ADMIN")
             .requestMatchers("/auth/**").permitAll()
             .requestMatchers("/oauth/**").permitAll()
-            .requestMatchers("localhost:8080/product").permitAll()
             .requestMatchers("/checkout/payment-information/**").permitAll()
             .requestMatchers("localhost:8080/address").hasAuthority("USER")
             .requestMatchers("/address/**").hasAuthority("USER")

@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.APIResponse;
 import com.example.demo.dto.ProductDTO;
+import com.example.demo.dto.StatisticUserDTO;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.entities.Product;
 import com.example.demo.entities.User;
+import com.example.demo.repository.entity.OrderRepository;
 import com.example.demo.repository.entity.ProductRepository;
 import com.example.demo.repository.entity.UserRepository;
 import com.example.demo.service.contract.ICategoryService;
@@ -52,6 +55,10 @@ public class StatisticController {
     @Autowired
     private UserRepository userRepository;
 
+    
+    @Autowired
+    private OrderRepository orderRepository;
+
     @GetMapping("/{field}")
     public APIResponse<List<Product>> getProductWithSort(@PathVariable String field) {
         List<Product> allProducts = productService.findProductsWithSorting(field);
@@ -72,10 +79,16 @@ public class StatisticController {
         return new APIResponse<>(findProductsWithPaginationAndSorting.getSize(), findProductsWithPaginationAndSorting);
     }
 
-    @GetMapping("/product-new")
-    public ResponseEntity<List<ProductDTO>> getProductNew() {
-        List<Product> newProducts = productRepository.listProductNew20();
-        return ResponseEntity.ok(modelMapper.map(productRepository.listProductNew20(), new TypeToken<List<ProductDTO>>() {
+    @GetMapping("top10UserWithMostOrder")
+    public ResponseEntity<List<StatisticUserDTO>> top10UserWithMostOrder() {
+        var top10 = userRepository.list10UserWithMostOrder();
+        return ResponseEntity.ok(modelMapper.map(top10, new TypeToken<List<StatisticUserDTO>>() {
+        }.getType()));
+    }
+    
+    @GetMapping("product-new")
+    public ResponseEntity<List<Product>> getProductNew() {
+        return ResponseEntity.ok(modelMapper.map(productRepository.list10NewestProduct(), new TypeToken<List<ProductDTO>>() {
         }.getType()));
     }
 }

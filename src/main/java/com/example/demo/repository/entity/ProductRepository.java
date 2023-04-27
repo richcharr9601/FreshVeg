@@ -54,7 +54,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 	Product findByProductId(Long productId);
 
-
+	@Query(value= "SELECT * FROM products ORDER BY entered_date DESC FETCH FIRST 10 ROWS ONLY", nativeQuery = true)
+	List<Product> list10NewestProduct();
 
 
 }

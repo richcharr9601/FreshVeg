@@ -23,4 +23,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	@EntityGraph(attributePaths = {"user", "address", "orderDetails"}) // Optional: Use entity graph to fetch related entities
     @Filter(name = "deletedOrderFilter", condition = "deleted = false") // Enable the filter to exclude soft deleted records
 	List<Order> findByUserUserId(Long userId);
+
+	
 }

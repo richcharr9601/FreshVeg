@@ -21,7 +21,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedNativeQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SqlResultSetMapping;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -35,6 +37,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @SuppressWarnings("serial")
+@NamedNativeQuery(name = "User.top10UserWithMostOrder",
+                  query = "SELECT u.NAME, COUNT(*) AS ORDER_COUNT FROM USERS u JOIN ORDERS o ON u.USER_ID = o.USER_ID GROUP BY u.NAME ORDER BY ORDER_COUNT DESC FETCH FIRST 10 ROWS ONLY"
+                  )
+
 @Entity
 @Getter
 @Setter
