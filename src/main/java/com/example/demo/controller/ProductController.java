@@ -48,9 +48,10 @@ public class ProductController {
     IOrderDetailService orderDetailService;
     ICategoryService categoryService;
     IProductService productService;
-    IProductImageService productImageService; 
+    IProductImageService productImageService;
 
-    public ProductController(ModelMapper modelMapper, CategoryService categoryService,ProductService productService,ProductImageService productImageService, OrderDetailService orderDetailService) {
+    public ProductController(ModelMapper modelMapper, CategoryService categoryService, ProductService productService,
+            ProductImageService productImageService, OrderDetailService orderDetailService) {
         this.modelMapper = modelMapper;
         this.categoryService = categoryService;
         this.orderDetailService = orderDetailService;
@@ -58,28 +59,21 @@ public class ProductController {
         this.productImageService = productImageService;
 
     }
-    
+
     @Autowired
     private ProductRepository productRepository;
 
     @Autowired
     private ProductImageRepository productImageRepository;
 
-    
-    
     @PostMapping()
     public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDto)
             throws BadRequest {
-                Date date = new Date();
-                Product product = modelMapper.map(productDto, Product.class);
-                product.setEnteredDate(date);
-                productService.add(product);
-                product.getProductImages().forEach(od -> {
-                    productImageService.add(od);
-                });
-
-                 return ResponseEntity.ok(modelMapper.map(product, ProductDTO.class));
-
+        Date date = new Date();
+        Product product = modelMapper.map(productDto, Product.class);
+        product.setEnteredDate(date);
+        Product addProduct = productService.add(product);
+        return ResponseEntity.ok(modelMapper.map(addProduct, ProductDTO.class));
     }
 
     @GetMapping("/all/{categoryId}")
@@ -93,41 +87,41 @@ public class ProductController {
     public ResponseEntity<ProductDTO> getProductsByProductId(@PathVariable("productId") long id) {
         Optional<Product> findOptional = productService.findByID(id);
         return findOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, ProductDTO.class)))
-        .orElse(ResponseEntity.notFound().build()); 
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/get")
     public ResponseEntity<List<ProductDTO>> getProductsByCategory(@RequestBody List<Category> categoryIds) {
-        return ResponseEntity.ok(modelMapper.map(productRepository.findByCategoryIn(categoryIds), new TypeToken<List<ProductDTO>>() {
-        }.getType()));
+        return ResponseEntity
+                .ok(modelMapper.map(productRepository.findByCategoryIn(categoryIds), new TypeToken<List<ProductDTO>>() {
+                }.getType()));
     }
 
-    
     @GetMapping("/all")
     public ResponseEntity<List<ProductDTO>> getProducts() {
         return ResponseEntity.ok(
                 modelMapper.map(
-                    productService.findAll(),
-                    new TypeToken<List<ProductDTO>>() {
-                }.getType()));
+                        productService.findAll(),
+                        new TypeToken<List<ProductDTO>>() {
+                        }.getType()));
     }
 
     @PutMapping("{productId}")
     public ResponseEntity<ProductDTO> editProduct(@PathVariable("productId") Long id,
             @RequestBody ProductDTO productDTO)
             throws BadRequest {
-            return ResponseEntity.ok(modelMapper.map(productService.editProduct(id,productDTO), ProductDTO.class));
-            }
+        return ResponseEntity.ok(modelMapper.map(productService.editProduct(id, productDTO), ProductDTO.class));
+    }
 
     @DeleteMapping()
     public ResponseEntity<String> deleteProduct(@RequestBody Product product)
-    throws BadRequest {
-    Boolean result = productRepository.existsById(product.getProductId());
-    if (result) {
-    productRepository.deleteById(product.getProductId());
-    return ResponseEntity.ok("Product with ID" + product.getProductId() + " has been deleted");
+            throws BadRequest {
+        Boolean result = productRepository.existsById(product.getProductId());
+        if (result) {
+            productRepository.deleteById(product.getProductId());
+            return ResponseEntity.ok("Product with ID" + product.getProductId() + " has been deleted");
+        }
+        return ResponseEntity.ok("Cannot delete");
     }
-    return ResponseEntity.ok("Cannot delete");
-}
 
 }
