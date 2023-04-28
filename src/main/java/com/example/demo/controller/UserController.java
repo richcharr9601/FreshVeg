@@ -39,19 +39,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<UserDTO>> getUsers() {
-        return ResponseEntity.ok(
-                modelMapper.map(userService.findAll(), new TypeToken<List<UserDTO>>() {
-                }.getType()));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getUser(@PathVariable("id") long id, HttpServletRequest request) {
-        Optional<User> userOptional = userService.findByID(id);
-        return userOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, UserDTO.class)))
-                .orElse(ResponseEntity.notFound().build());
-    }
+    
 
     @PostMapping()
     public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO userDTO) throws BadRequest {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -26,11 +27,14 @@ import com.example.demo.repository.entity.ProductRepository;
 import com.example.demo.repository.entity.UserRepository;
 import com.example.demo.service.contract.ICategoryService;
 import com.example.demo.service.contract.IProductService;
+import com.example.demo.service.contract.IUserService;
 import com.example.demo.service.imp.CategoryService;
 import com.example.demo.service.imp.ProductService;
+import com.example.demo.service.imp.UserService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/statistic")
@@ -39,13 +43,16 @@ public class StatisticController {
     ModelMapper modelMapper;
     ICategoryService categoryService;
     IProductService productService;
+    IUserService userService;
+
 
 
     public StatisticController(ModelMapper modelMapper, CategoryService categoryService,
-            ProductService productService) {
+            ProductService productService,UserService userService) {
         this.modelMapper = modelMapper;
         this.categoryService = categoryService;
         this.productService = productService;
+        this.userService = userService;
 
     }
 
@@ -90,5 +97,19 @@ public class StatisticController {
     public ResponseEntity<List<Product>> getProductNew() {
         return ResponseEntity.ok(modelMapper.map(productRepository.list10NewestProduct(), new TypeToken<List<ProductDTO>>() {
         }.getType()));
+    }
+
+    @GetMapping("user/all")
+    public ResponseEntity<List<UserDTO>> getUsers() {
+        return ResponseEntity.ok(
+                modelMapper.map(userService.findAll(), new TypeToken<List<UserDTO>>() {
+                }.getType()));
+    }
+
+    @GetMapping("user/{id}")
+    public ResponseEntity<UserDTO> getUser(@PathVariable("id") long id, HttpServletRequest request) {
+        Optional<User> userOptional = userService.findByID(id);
+        return userOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, UserDTO.class)))
+                .orElse(ResponseEntity.notFound().build());
     }
 }

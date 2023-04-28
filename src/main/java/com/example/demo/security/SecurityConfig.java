@@ -73,24 +73,22 @@ public class SecurityConfig {
     ;
 
     http.authorizeHttpRequests()
-   .requestMatchers("/**").permitAll();
-            // .requestMatchers("/product/all").permitAll()
-            // .requestMatchers("/category/all").permitAll()
-            // .requestMatchers("/all/{categoryId}").permitAll()
-            // .requestMatchers("/product/{productId}").permitAll()
-            // .requestMatchers("/user/**").hasAuthority("ADMIN")
-            // .requestMatchers("/auth/**").permitAll()
-            // .requestMatchers("/oauth/**").permitAll()
-            // .requestMatchers("/checkout/payment-information/**").permitAll()
-            // .requestMatchers("localhost:8080/address").hasAuthority("USER")
-            // .requestMatchers("/address/**").hasAuthority("USER")
-            // .requestMatchers("/product/**").hasAuthority("ADMIN")
-            // .requestMatchers("/category/**").hasAuthority("ADMIN")
-            // .requestMatchers("/statistic/**").hasAuthority("ADMIN")
-            // .requestMatchers("/order").hasAuthority("USER")
-            // .requestMatchers("/checkout/**").hasAuthority("USER")
-            // .requestMatchers("/user/**").hasAuthority("USER")
-            // .requestMatchers("/order/**").hasAuthority("USER");          
+  //  .requestMatchers("/**").permitAll();
+            .requestMatchers("/product/all").permitAll()
+            .requestMatchers("/category/all").permitAll()
+            .requestMatchers("/all/{categoryId}").permitAll()
+            .requestMatchers("/product/{productId}").permitAll()
+            .requestMatchers("/user/**").hasAuthority("USER")
+            .requestMatchers("/auth/**").permitAll()
+            .requestMatchers("/oauth/**").permitAll()
+            .requestMatchers("/checkout/payment-information/**").hasAuthority("USER")
+            .requestMatchers("/address/**").hasAuthority("USER")
+            .requestMatchers("/product/**").hasAuthority("ADMIN")
+            .requestMatchers("/category/**").hasAuthority("ADMIN")
+            .requestMatchers("/statistic/**").hasAuthority("ADMIN")
+            .requestMatchers("/checkout/**").hasAuthority("USER")
+            .requestMatchers("/user/**").hasAuthority("USER")
+            .requestMatchers("/order/**").hasAuthority("USER");          
     return http.build();
   }
 
