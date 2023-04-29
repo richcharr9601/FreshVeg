@@ -1,7 +1,7 @@
 [{
     "productName": "Củ cần Tây Đà Lạt",
     "weight": 10,
-    "price": 60000,
+    "price": 6000,
     "discount": 0,
     "description": "Củ cần tây hay còn có tên gọi khác là celeriac.Nguồn dinh dưỡng của củ cần tây cao, trong một 100 gram, chứa: 9,2gr tinh bột, 1,8gr chất xơ, 1,5gr chất béo, 0,3gr protein và các loại vitamin, kali,... Bạn có thể dùng chủ yếu về các món hấp và salad.",
     "status": true,
@@ -23,7 +23,7 @@
 {
     "productName": "Cà chua bi Gia Lai",
     "weight": 20,
-    "price": 35000,
+    "price": 3500,
     "discount": 0,
     "description": "Cà chua là một nhà máy dinh dưỡng vì nó cung cấp rất giàu vitamin A, C, K... Cà chua có nhiều lợi ích như: cải thiện thị lực, làm sáng da, giảm lượng đường trong máu, giúp giảm cân. Bạn có thể ăn sống kẹp với bánh mì, salad, sốt, sinh tố.",
     "status": true,
@@ -48,7 +48,7 @@
 {
     "productName": "Cà rốt Đà Lạt",
     "weight": 1,
-    "price": 22000,
+    "price": 2200,
     "discount": 0,
     "description": "Cà rốt là loại củ có thể mang lại sức khỏe cho con người, làm đẹp cho da, tóc… giúp bạn phòng chống ung thư và chống lão hóa. Cà rốt có thể chế biến thành nhiều món như: thịt bò nấu cà rốt, súp lơ xào cà rốt, cà rốt hầm xương, cháo, nước ép.",
     "status": true,
@@ -73,7 +73,7 @@
 {
     "productName": "Cải xoăn Kale Đà Lạt",
     "weight": 10,
-    "price": 45000,
+    "price": 4500,
     "discount": 0,
     "description": "Cải xoăn chứa nhiều flavonoid và sắt giúp giảm nguy cơ đột quỵ và vận chuyển canxi tới tất cả các tế bào trong cơ thể. Cải xoăn có thể cải thiện trí nhớ, chức năng và hoạt động não. Cải xoăn có thể dùng để hấp, xào, trộn salad hoặc ép làm nước uống.",
     "status": true,
@@ -98,9 +98,9 @@
 {
     "productName": "Rau mồng tơi hữu cơ Quảng Nam",
     "weight": 15,
-    "price": 33500,
+    "price": 3350,
     "discount": 0,
-    "description": "Rau mồng tơi có tác dụng g làm lành vết thương, trị mụn nhọt, say nắng, đẹp da, trị tiểu khó, chữa bỏng, lợi sữa, thanh nhiệt, giải độc, trị táo bón, bệnh trĩ. Rau mồng tơi dùng để chế biến các món ăn: canh cua, canh tôm, canh thịt, mồng tơi xào tỏi…",
+    "description": "Rau mồng tơi có tác dụng làm lành vết thương, trị mụn nhọt, say nắng, đẹp da, trị tiểu khó, chữa bỏng, lợi sữa, thanh nhiệt, giải độc, trị táo bón, bệnh trĩ. Rau mồng tơi dùng để chế biến các món ăn: canh cua, canh tôm, canh thịt, mồng tơi xào tỏi…",
     "status": true,
     "productImages": [
         {
@@ -120,19 +120,19 @@
 {
     "productName": "Cam xoàn hữu cơ Bến Tre",
     "weight": 50,
-    "price": 81000,
+    "price": 8100,
     "discount": 0,
     "description": "Cam xoàn rất giàu vitamin C, tăng cường hệ miễn dịch, chống lại quá trình lão hóa, làn da tươi trẻ, cơ thể tràn đầy năng lượng. Cam xoàn tốt cho mọi lứa tuổi. Thông thường có 2 cách sử dụng đối với loại trái cây này là vắt nước uống hoặc ăn trực tiếp.",
     "status": true,
     "productImages": [
         {
-            "imageLink": "https://mekokool.com/upload/product/836923_EBBE2FA2-930F-4812-B9CF-67550E1E1EDC.jpeg"
+            "imageLink": "https://cdn-www.vinid.net/2019/10/an-cam-co-tac-dung-gi-nen-an-cam-luc-nao-tot-nhat-1024x682.jpg"
         },
         {
             "imageLink": "https://giadinh.mediacdn.vn/2017/xoan-1507784852857.jpg"
         },
         {
-            "imageLink": "https://mekokool.com/upload/product/836923_9871916C-D498-4F96-9676-002C230D39C1.jpeg"
+            "imageLink": "https://cdn.tgdd.vn/Files/2021/07/21/1369641/1-qua-cam-co-bao-nhieu-calo-cach-giam-can-voi-cam-202107210056436596.jpg"
         }
     ],
     "category": {
@@ -142,7 +142,7 @@
 {
     "productName": "Thanh long ruột đỏ Cần Thơ",
     "weight": 10,
-    "price": 59000,
+    "price": 5900,
     "discount": 0,
     "description": "Trong quả thanh long có chứa rất nhiều chất dinh dưỡng quý giá với cơ thể.  Thanh Long ruột đỏ được biết đến như là loại thanh long ngọt và giàu chất dinh dưỡng hơn thanh long trắng. Ruột thanh long  có thể dùng để ăn trực tiếp hoặc xay sinh tố.",
     "status": true,
@@ -155,9 +155,6 @@
         },
         {
             "imageLink": "https://salt.tikicdn.com/ts/tmp/18/d8/b8/c85f64dba5395860bebf79150b93101c.jpg"
-        },
-        {
-            "imageLink": "https://www.richs.com.vn/images/Blog/Trends/5%20loai%20thuc%20uong%20lam%20tu%20thanh%20long/mon_ngon_tu_thanh_long_4.png"
         }
     ],
     "category": {
@@ -167,13 +164,13 @@
 {
     "productName": "Bông cải xanh Đà Lạt",
     "weight": 1,
-    "price": 35500,
+    "price": 3550,
     "discount": 0,
     "description": "Bông cải xanh có rất nhiều lợi ích như ngăn ngừa ung thư, bảo vệ tim mạch, giúp xương chắc khỏe, cải thiện trí nhớ, bảo vệ mắt, điều hòa huyết áp, chống oxy hóa... Bông cải xanh có thể dùng để luộc hay làm các món xào với thịt lợn, salad, súp, cháo.",
     "status": true,
     "productImages": [
         {
-            "imageLink": "https://suckhoedoisong.qltns.mediacdn.vn/Images/quangcao/2017/07/14/dt212.png"
+            "imageLink": "https://vnn-imgs-a1.vgcloud.vn/img2.infonet.vn/w660/Uploaded/2020/yqjwwqdwp/2019_11_20/bong_cai_xanh.jpg"
         },
         {
             "imageLink": "https://vnn-imgs-a1.vgcloud.vn/img2.infonet.vn/w660/Uploaded/2020/yqjwwqdwp/2019_11_20/bong_cai_xanh.jpg"
@@ -183,12 +180,6 @@
         },
         {
             "imageLink": "https://i.ytimg.com/vi/yezaMSXSlmU/maxresdefault.jpg"
-        },
-        {
-            "imageLink": "https://img-global.cpcdn.com/recipes/7fd870267b8a2d73/1200x630cq70/photo.jpg"
-        },
-        {
-            "imageLink": "https://afamilycdn.com/150157425591193600/2022/4/14/tom-xao-bong-cai-xanh-2-1649871111706917838925.png"
         }
     ],
     "category": {
@@ -198,7 +189,7 @@
 {
     "productName": "Khoai tây Đắk Lắk",
     "weight": 50,
-    "price": 29300,
+    "price": 2930,
     "discount": 0,
     "description": "Khoai tây giúp làm sáng da, chống ung thư, chữa chứng phù mặt, giảm nếp nhăn, trị mụn trứng cá, tốt cho người bệnh tiểu đường... Khoai tây có thể được chế biến thành nhiều món như thịt bò xào khoai tây, khoai tây chiên, salad, chiên, nấu súp… ",
     "status": true,
@@ -220,7 +211,7 @@
 {
     "productName": "Cải thìa hữu cơ Đà Lạt",
     "weight": 20,
-    "price": 33000,
+    "price": 3300,
     "discount": 0,
     "description": "Cải thìa có tác dụng phòng ngừa bệnh đục nhân mắt và thoái hóa hoàng điểm ở mắt đồng thời có tác dụng ngăn ngừa ung thư. Đông y dùng lá và hạt cải thìa để trị bệnh. Hạt cải thìa có tác dụng trị đau răng, trị ho, tiêu thũng, tiêu đờm, thông kinh mạch.",
     "status": true,
@@ -232,7 +223,7 @@
             "imageLink": "https://monngonmoingay.com/wp-content/uploads/2018/11/cai-thia-xao-nam-dong-co-thit-cua-500.jpg"
         },
         {
-            "imageLink": "https://cdn-0863.cafe24img.com/locknlockvn/web/Airfryer/steam%20air%20fryer/Steamed-Bok-Choy-with-Dried-Shrimps.png"
+            "imageLink": "https://suckhoedoisong.qltns.mediacdn.vn/Images/bichvan/2019/10/05/cai_thia.jpg"
         }
     ],
     "category": {
@@ -242,7 +233,7 @@
 {
     "productName": "Xà lách Romaine Đà Lạt",
     "weight": 20,
-    "price": 36000,
+    "price": 3600,
     "discount": 0,
     "description": "Xà lách Romaine có tác dụng hỗ trợ tiêu hóa và tốt cho gan, giảm nguy cơ mắc bệnh tim mạch, các cơn nhồi máu cơ tim, ung thư, nứt cột sống, thiếu máu, chứng mất ngủ do căng thẳng, phòng chống sự oxy hóa.",
     "status": true,
@@ -258,9 +249,6 @@
         },
         {
             "imageLink": "https://i.vietgiaitri.com/2018/9/30/nhung-mon-ngon-lam-tu-rau-xa-lach-ban-khong-nen-bo-lo-nhat-la-tr-74f53c.jpg"
-        },
-        {
-            "imageLink": "https://news.vietpage.com/data/images/vietpagenews/2019/11/5bca3e5f6d2a23f6856cff95356a754d.jpg"
         }
     ],
     "category": {
@@ -270,7 +258,7 @@
 {
     "productName": "Rau muống hữu cơ Quảng Nam",
     "weight": 15,
-    "price": 25500,
+    "price": 2550,
     "discount": 0,
     "description": "Rau muống được trồng theo phương thức hữu cơ không sử dụng thuốc trừ sâu, không sử dụng phân bón hóa học, không sử dụng chất bảo quản. Chế biến: rau muống thường được dùng để luộc, xào tỏi, nấu canh,...  hoặc chẻ ra ăn sống với các loại rau thơm khác.",
     "status": true,
@@ -283,9 +271,6 @@
         },
         {
             "imageLink": "https://cookbeo.com/media/2020/10/rau-muong-luoc/rau-muong-luoc-16x9.jpg"
-        },
-        {
-            "imageLink": "https://monngonchuabenh.com/wp-content/uploads/2019/01/rau-muong-xao-toi-thom-ngon.jpeg"
         }
     ],
     "category": {
@@ -295,7 +280,7 @@
 {
     "productName": "Cải bẹ xanh/Cải cay hữu cơ Quảng Ngãi",
     "weight": 15,
-    "price": 25500,
+    "price": 2550,
     "discount": 0,
     "description": "Cải bẹ xanh có tác dụng phòng chống bệnh tật, giải cảm hàn, thông đàm, lợi khí... Riêng hạt cải bẹ xanh, có vị cay, tính nhiệt, trị được các chứng phong hàn, ho đờm, hen, đau họng, tê dại, mụn nhọt... Thường dùng nấu canh, hay để muối dưa (dưa cải).",
     "status": true,
@@ -305,9 +290,6 @@
         },
         {
             "imageLink": "https://vuonnhien.vn/wp-content/uploads/2021/06/tac-dung-cua-rau-cai-xanh-1.jpg"
-        },
-        {
-            "imageLink": "https://afamilycdn.com/150157425591193600/2021/1/5/photo-1609843058133-16098430584041292563639.png"
         },
         {
             "imageLink": "https://img-global.cpcdn.com/recipes/9588da139ded23e3/1200x630cq70/photo.jpg"
@@ -320,7 +302,7 @@
 {
     "productName": "Khổ qua rừng Quảng Ngãi",
     "weight": 55,
-    "price": 328500,
+    "price": 32800,
     "discount": 0,
     "description": "Khổ qua có tác dụng làm giảm huyết áp, beta-carotene giúp sáng mắt, phòng ngừa ung thư, giúp hạ đường huyết, giải nhiệt, chữa nhiều bệnh như  do nhiệt, kiết lỵ, thấp nhiệt, nôn ói, tiêu chảy. Khổ qua có thể dùng để chế biến các món canh, món xào.",
     "status": true,
@@ -345,7 +327,7 @@
 {
     "productName": "Nấm kim châm hữu cơ Gia Lai",
     "weight": 30,
-    "price": 26000,
+    "price": 2600,
     "discount": 0,
     "description": "Nấm kim châm có giá trị rất dinh dưỡng cao và rất tốt với một số bệnh như tăng huyết áp, xơ vữa động mạch. Trong nấm có nhiều kẽm và kali nên rất hữu ích cho người già. Bên cạnh đó loại nấm này cũng chứa một chất có tác dụng chống ung thư hiệu quả.",
     "status": true,
@@ -361,9 +343,6 @@
         },
         {
             "imageLink": "https://cdn.tgdd.vn/2021/04/CookProduct/1-1200x676-3.jpg"
-        },
-        {
-            "imageLink": "https://yummyday.vn/uploads/images/thit-bo-xao-nam-3.jpg"
         }
     ],
     "category": {
@@ -373,7 +352,7 @@
 {
     "productName": "Củ cải trắng hữu cơ Đà Lạt",
     "weight": 80,
-    "price": 30500,
+    "price": 3050,
     "discount": 0,
     "description": "Củ cải trắng có thể trị lao phổi ho ra máu, trị viêm phế quản. Củ cải cũng giúp khống chế các bệnh ung thư, xơ cứng động mạch, làm đẹp da, cải thiện sức khỏe. Củ cải trắng có thể chế biến nhiều món ăn: củ cải muối, củ cải kho thịt, xào trứng, nấu canh.",
     "status": true,
@@ -383,9 +362,6 @@
         },
         {
             "imageLink": "https://caogam.vn/sites/default/files/2020-11/cu-cai-trang-1.jpg"
-        },
-        {
-            "imageLink": "https://vnn-imgs-a1.vgcloud.vn/cdn.24h.com.vn/upload/4-2020/images/2020-10-22/Mon-canh-xuong-bo-ham-voi-loai-cu-re-tien-nhung-lai-duoc-vi-nhu-1-1603349269-723-width936height624.jpeg"
         },
         {
             "imageLink": "https://afamilycdn.com/150157425591193600/2022/4/5/canh-nhan-sam-mua-dong-re-tien-ma-bao-ve-suc-khoe-gap-may-lan-thuoc-bo-8-1577713213-324-width700height467-1649151279507979014994.jpg"
@@ -398,7 +374,7 @@
 {
     "productName": "Tỏi Lý Sơn",
     "weight": 25,
-    "price": 30500,
+    "price": 3050,
     "discount": 0,
     "description": "Loại thực phẩm này cũng có hàm lượng cao germanium và selen khá cao, trong đó lượng germanium trong tỏi được ước tính cao hơn so với nhân sâm hay trà xanh. Tỏi được dùng nhằm gia tăng hương vị trong rất nhiều món ăn thường ngày hoặc chữa bệnh, giải cảm.",
     "status": true,
@@ -423,7 +399,7 @@
 {
     "productName": "Khoai mỡ Đắk Lắk",
     "weight": 60,
-    "price": 60000,
+    "price": 6000,
     "discount": 0,
     "description": "Khoai mỡ giúp kiểm soát được đường huyết trong máu và trọng lượng cơ thể. Khoai mỡ cũng là thực phẩm lợi tiểu nên có tác dụng chống viêm nhiễm, đặc biệt là viêm nhiễm đường tiểu; giảm đau bụng, đau thần kinh, chống căng cơ, chuột rút…",
     "status": true,
@@ -433,9 +409,6 @@
         },
         {
             "imageLink": "https://vinmec-prod.s3.amazonaws.com/images/20210518_103432_040484_an-khoai-mo-nhieu-c.max-1800x1800.jpg"
-        },
-        {
-            "imageLink": "https://image.cooky.vn/recipe/g5/42280/s640/cooky-recipe-636792105099186885.png"
         },
         {
             "imageLink": "https://daubepgiadinh.vn/wp-content/uploads/2018/12/canh-khoai-mo-thit-bam.jpg"
@@ -448,7 +421,7 @@
 {
     "productName": "Cà tím hữu cơ Gia Lai",
     "weight": 40,
-    "price": 25000,
+    "price": 2500,
     "discount": 0,
     "description": "Cà tím có tác dụng: phòng ngừa ung thư, không tăng cân, tốt cho làn da và tóc, tăng cường sức khỏe tim mạch, lo lắng, tăng cường đề kháng, giảm nguy cơ mắc các bệnh tiêu hóa và đường ruột, có đặc tính kháng khuẩn tốt, kiểm soát bệnh tiểu đường loại 2.",
     "status": true,
@@ -458,9 +431,6 @@
         },
         {
             "imageLink": "https://adiva.com.vn/wp-content/uploads/2017/11/tac-dung-cua-ca-tim-2.jpg"
-        },
-        {
-            "imageLink": "https://reviewaz.vn/storage/ca-tim-nuong-mo-hanh-mon-an-tuoi-tho.png"
         },
         {
             "imageLink": "https://img.meta.com.vn/Data/image/2020/06/29/ca-tim-lam-mon-gi-ngon-5.jpg"
@@ -473,7 +443,7 @@
 {
     "productName": "Ớt chuông hữu cơ Đà Lạt",
     "weight": 60,
-    "price": 28800,
+    "price": 2880,
     "discount": 0,
     "description": "Ớt chuông giúp điều trị các bệnh tim, viêm xương khớp, hen phế quản, ngừa ung thư, tăng cường miễn dịch. Ớt chuông thường được dùng trong các món salad, các món xào như sườn xào chua ngọt với ớt chuông, thịt bò xào ớt chuông, tim heo xào ớt chuông…",
     "status": true,
@@ -488,13 +458,7 @@
             "imageLink": "https://hapivegan.com/wp-content/uploads/2021/04/easy-vegan-stuffed-bell-peppers-3.jpg"
         },
         {
-            "imageLink": "https://ngonaz.com/wp-content/uploads/2022/04/ot-chuong-xao-gi-ngon-5.jpeg"
-        },
-        {
             "imageLink": "https://cdn.sgtiepthi.vn/wp-content/uploads/2021/05/T3_saladotchuong_medium.jpg"
-        },
-        {
-            "imageLink": "https://cungcau.qltns.mediacdn.vn/421196537165905920/2023/2/10/20kitch1-master768-16760376745751577874751.jpg"
         }
     ],
     "category": {
@@ -504,7 +468,7 @@
 {
     "productName": "Táo Envy New Zealand",
     "weight": 40,
-    "price": 255000,
+    "price": 25500,
     "discount": 0,
     "description": "Táo chứa nhiều chất chống oxy hóa ngăn chặn tế bào và tổn thương mô khỏi các gốc tự do trong cơ thể bằng cách ngăn chặn hoặc làm giảm quá trình oxy hóa, chống dị ứng, chống viêm, chống khối u, chống oxy hóa và bảo vệ chống lại quá trình lão hóa.",
     "status": true,
@@ -529,7 +493,7 @@
 {
     "productName": "Măng tây hữu cơ Ninh Thuận",
     "weight": 3,
-    "price": 70000,
+    "price": 4000,
     "discount": 0,
     "description": "Măng tây bảo vệ hệ tim mạch, tốt cho xương khớp, giúp giảm cân, đẹp da, hỗ trợ đường ruột và tốt cho tiết niệu, giảm nguy cơ tiểu đường tuýp 2. Măng tây có thể chế biến thành nhiều món như: xào tôm, súp măng tây, măng tây xào tỏi, măng tây xào thịt gà…",
     "status": true,
@@ -544,16 +508,6 @@
             "imageLink": "https://cookbeo.com/media/2021/06/mang-tay-xao-toi/mang-tay-xao-toi-4x3.jpg"
         },
         {
-            "imageLink": "https://ngonaz.com/wp-content/uploads/2018/12/mang-tay-lam-mon-gi-ngon-5.jpg"
-        },
-        {
-            "imageLink": "https://www.mediplus.vn/wp-content/uploads/2021/06/mang-tay-nuong-ca-hoi.jpg"
-        },
-
-        {
-            "imageLink": "https://i.ytimg.com/vi/ZGWoRbSmo7w/maxresdefault.jpg"
-        },
-        {
             "imageLink": "https://cdn.tgdd.vn/2021/05/content/8(1)-800x450.jpg"
         }
     ],
@@ -564,13 +518,13 @@
 {
     "productName": "Cải bó xôi Ninh Thuận",
     "weight": 10,
-    "price": 45000,
+    "price": 4500,
     "discount": 0,
     "description": "Bó xôi giúp thúc đẩy tăng trưởng, tăng cường sức đề kháng, đẩy mạnh tiến trình thay cũ đổi mới trong cơ thể, ngăn ngừa lão hóa, làm sạch da. Cải bó xôi có thể chế biến thành nhiều món ăn: Xào tỏi, nấu canh, nấu cháo, ăn lẩu, trộn salad…",
     "status": true,
     "productImages": [
         {
-            "imageLink": "https://static-images.vnncdn.net/files/publish/2022/6/10/mon-banh-an-vao-bua-sang-ngon-mem-hap-dan-du-chat-cho-ca-nha-4a1f2abd0a8a4f40a3b17e2ad240e803.png"
+            "imageLink": "https://anh.eva.vn/upload/2-2017/images/2017-04-28/tu-trong-rau-cai-bo-xoi-tai-nha-tu-bao-ve-gia-dinh-ban-khoi-benh-ung-thu-c---i-2-1493314261-width600height408.jpg"
         },
         {
             "imageLink": "https://icdn.dantri.com.vn/thumb_w/680/2021/10/10/caiboxoi1-1633857444623.jpg"
@@ -579,7 +533,7 @@
             "imageLink": "https://cdn.tgdd.vn/Files/2019/06/05/1171115/tong-hop-cac-mon-an-ngon-tu-cai-bo-xoi-202208311435581862.jpg"
         },
         {
-            "imageLink": "https://befresco.vn/fileuploads/Product/Content/Avatar/271bed6915674273b9ac4581931b40c6.png"
+            "imageLink": "https://mayxaygiadinh.com/Systems/2021/05/26/avt-cai-bo-xoi-va-nhung-dieu-ban-chua-biet.jpg"
         }
     ],
     "category": {
@@ -589,29 +543,19 @@
 {
     "productName": "Dâu tây vườn Đà Lạt",
     "weight": 30,
-    "price": 350000,
+    "price": 35000,
     "discount": 0,
     "description": "Dâu tây giúp chống oxy hóa, bệnh tật và tuổi tác, tạo ra collagen và duy trì sức khỏe của da. Dâu tây có liên quan đến sức khỏe của não. Chúng cung cấp chất chống oxy hóa và chất dinh dưỡng giúp quản lý lượng đường trong máu và cải thiện tim mạch.",
     "status": true,
     "productImages": [
         {
-            "imageLink": "https://m.epochtimesviet.com/wp-content/uploads/2022/05/dau-tay.jpeg"
-        },
-        {
             "imageLink": "https://imgamp.phunutoday.vn/files/news/2023/02/25/huong-dan-ban-cach-phan-biet-cac-loai-day-tay-ngon-co-mat-tai-viet-nam-154043.jpg"
-        },
-        {
-            "imageLink": "https://cdn.tgdd.vn/Files/2019/03/29/1157565/tu-lam-sinh-to-dau-tai-nha-don-gian-thom-ngon-beo-min-202209081529315269.jpeg"
         },
         {
             "imageLink": "https://jamja.vn/blog/wp-content/uploads/2021/01/cach-lam-mut-dau-tay-1.jpg"
         },
         {
             "imageLink": "https://quangon.vn/resources/2020/03/17/dau-tay-dam-sua-chua-1.jpg"
-        },
-
-        {
-            "imageLink": "https://quangon.vn/resources/2020/03/17/dau-tay-dam-sua-chua-3.jpg"
         },
         {
             "imageLink": "https://cdn.tgdd.vn/Files/2021/01/07/1318547/4-cach-lam-salad-cai-kale-khong-chi-ngon-con-chua-vo-van-loi-ich-202101071338176311.jpg"
@@ -624,7 +568,7 @@
 {
     "productName": "Củ dền hữu cơ Đắk Lắk",
     "weight": 35,
-    "price": 27500,
+    "price": 2750,
     "discount": 0,
     "description": "Củ dền giúp ngăn ngừa ung thư, ngăn ngừa bệnh tim mạch, , làm sạch gan. Củ dền có thể được chế biến bằng cách luộc, nướng, nấu canh, nấu súp, làm  sau khi nấu và thêm dầu và , nấu chè hoặc cũng có thể ăn sống, ép nước hoặc làm chất tạo màu.",
     "status": true,
@@ -649,16 +593,13 @@
 {
     "productName": "Khoai lang Bình Thuận",
     "weight": 35,
-    "price": 52000,
+    "price": 5200,
     "discount": 0,
     "description": "Khoai lang có tác dụng bồi bổ cơ thể, ích khí, cường thận, kiện vị, tiêu viêm, thanh can, lợi mật, sáng mắt, giúp tiêu hóa tốt, tăng thải cholesterol, chống táo bón... Khoai lang thường được chế biến như: luộc, nướng mật ong, nấu canh, làm bánh...",
     "status": true,
     "productImages": [
         {
             "imageLink": "https://static-images.vnncdn.net/files/publish/2022/12/20/khoai-lang-top-769.jpg"
-        },
-        {
-            "imageLink": "https://cafefcdn.com/203337114487263232/2022/4/22/photo-2-1650619485807180720008.png"
         },
         {
             "imageLink": "https://monngondongian.com/wp-content/uploads/2022/11/khoai-lang-ran-tam-mat-ong.jpg"
@@ -674,7 +615,7 @@
 {
     "productName": "Chuối tiêu Phan Thiết",
     "weight": 55,
-    "price": 52000,
+    "price": 5200,
     "discount": 0,
     "description": "Qua nghiên cứu, các nhà dinh dưỡng học đã xác nhận chuối chín là loại thức ăn được cơ thể tiêu hóa nhanh và cung cấp một nguồn năng lượng đáng kể. Ngoài ăn không, chuối còn có thể kết hợp cùng sữa chua, chè, kem, sinh tố và salad hoặc làm bánh.",
     "status": true,
@@ -689,9 +630,6 @@
             "imageLink": "https://toplist.vn/images/800px/banh-chuoi-hap-512454.jpg"
         },
         {
-            "imageLink": "https://cdn.tgdd.vn/2021/04/content/3-800x450-9.jpg"
-        },
-        {
             "imageLink": "https://kenh14cdn.com/thumb_w/600/203336854389633024/2021/10/8/photo1633675386688-16336753869511429260277.jpg"
         }
     ],
@@ -702,7 +640,7 @@
 {
     "productName": "Bầu đất Phan Thiết",
     "weight": 35,
-    "price": 30000,
+    "price": 3000,
     "discount": 0,
     "description": "Quả bầu là một vị thuốc dân gian tốt có tác dụng thanh nhiệt, giải khát, nhuận tràng, chống táo bón, trừ ngứa, tốt cho người bệnh tiểu đường và giảm cân. Quả bầu non thường được dùng để nấu canh, luộc hoặc xào.",
     "status": true,
@@ -717,9 +655,6 @@
             "imageLink": "https://cachlammonngon.vn/wp-content/uploads/2017/03/cach-nau-canh-bau.jpg"
         },
         {
-            "imageLink": "https://kenh14cdn.com/2018/6/5/photo-1-1528168257640552992706.jpg"
-        },
-        {
             "imageLink": "https://cdn.tgdd.vn/2020/08/CookRecipe/Avatar/canh-bau-nhoi-thit-chay-thumbnail-1.jpg"
         }
     ],
@@ -731,7 +666,7 @@
 {
     "productName": "Su hào hữu cơ Đà Lạt",
     "weight": 55,
-    "price": 32000,
+    "price": 3200,
     "discount": 0,
     "description": "Su hào giúp bảo vệ cơ thể khỏi bị tăng huyết áp, giảm cân. Su hào có thể sử dụng cả thân, củ, lá và cách thức chế biến cũng đa dạng như: xào, nấu canh, nấu súp, kết hợp cùng nhiều thực phẩm khác như thịt, tôm,...",
     "status": true,
@@ -741,9 +676,6 @@
         },
         {
             "imageLink": "https://cdn.tgdd.vn/2022/08/CookDish/cach-cat-su-hao-vua-dep-vua-nhanh-chi-em-nha-minh-luu-lai-avt-1200x676.jpg"
-        },
-        {
-            "imageLink": "https://vcdn1-giadinh.vnecdn.net/2022/11/06/3-Ca-kho-su-hao-3-4158-1667721298.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=x-JgJhHu7_bao00uSwIh7A"
         },
         {
             "imageLink": "https://yt.cdnxbvn.com/medias/uploads/198/198948-cach-xao-su-hao.jpg"
@@ -756,16 +688,16 @@
 {
     "productName": "Khoai môn Quảng Ngãi",
     "weight": 15,
-    "price": 25500,
+    "price": 2550,
     "discount": 0,
     "description": "Khoai môn chứa rất nhiều chất dinh dưỡng như hợp chất hữu cơ, khoáng chất và vitamin cần thiết cho sức khỏe. Cung cấp rất nhiều chất xơ và carbohydrate, các loại vitamin. Thường được dùng cho các món canh, chiên giòn, cari, làm bánh, chất tạo màu...",
     "status": true,
     "productImages": [
         {
-            "imageLink": "https://product.hstatic.net/1000246697/product/harper-bazaar-an-khoai-so-co-giam-can-khong-6_2f57bf0082d044e58e51eec5d5b3700d_master.jpeg"
+            "imageLink": "https://images2.thanhnien.vn/zoom/700_438/Uploaded/hoangnam/2018_12_31/mainshutterstock_taroroot_WPIN.jpg"
         },
         {
-            "imageLink": "https://beautysmile.vn/wp-content/uploads/2021/08/canh-cua-khoai-mo-ava-1.png"
+            "imageLink": "https://img.dantocmiennui.vn/t620/uploaddtmn//2018/6/12/khoaimon-1.jpg"
         },
         {
             "imageLink": "https://img-global.cpcdn.com/recipes/a574a2c4cbabc743/1200x630cq70/photo.jpg"
@@ -776,6 +708,503 @@
     ],
     "category": {
         "categoryId": 2
+    }
+},
+{
+    "productName": "Rau má Gia Lai",
+    "weight": 55,
+    "price": 3200,
+    "discount": 0,
+    "description": "Rau má giúp điều trị tình trạng mệt mỏi, lo lắng, trầm cảm, rối loạn tâm thần, bệnh Alzheimer, cải thiện trí nhớ. Rau má còn được dùng để chữa lành vùng da bị thương, chấn thương và các vấn đề lưu thông máu bao gồm cục máu đông ở chân và giãn tĩnh mạch.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://nutricare.com.vn/wp-content/uploads/2022/11/rau-ma.jpg"
+        },
+        {
+            "imageLink": "https://thaythuocvietnam.vn/wp-content/uploads/2018/06/rau-ma.jpg"
+        },
+        {
+            "imageLink": "https://media.doisongphapluat.com/601/2020/7/20/uong-nuoc-rau-ma-tuong-mat-nhung-se-thanh-doc-duoc-neu-pham-phai-nhung-sai-lam-nay.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/2021/07/CookProduct/2-1200x676-5.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 1
+    }
+},
+{
+    "productName": "Diếp cá Quảng Nam",
+    "weight": 15,
+    "price": 2000,
+    "discount": 0,
+    "description": "Rau má giúp điều trị tình trạng mệt mỏi, lo lắng, trầm cảm, rối loạn tâm thần, bệnh Alzheimer, cải thiện trí nhớ. Rau má còn được dùng để chữa lành vùng da bị thương, chấn thương và các vấn đề lưu thông máu bao gồm cục máu đông ở chân và giãn tĩnh mạch.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://vinmec-prod.s3.amazonaws.com/images/20201118_142647_218113_rau-diep-ca-chua-nh.max-1800x1800.jpg"
+        },
+        {
+            "imageLink": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/2/21/8bl3mbk2qcfmlhbrllwd-rau-diep-ca1-16454577447711063737856.jpg"
+        },
+        {
+            "imageLink": "https://vuonnhien.vn/wp-content/uploads/2021/06/tac-dung-cua-rau-diep-ca-voi-da-mat-5.jpg"
+        },
+        {
+            "imageLink": "https://lamifarm.vn/wp-content/uploads/2021/09/Bot-diep-ca-1.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 1
+    }
+},
+{
+    "productName": "Hành tây Đà Lạt",
+    "weight": 35,
+    "price": 6000,
+    "discount": 0,
+    "description": "Hành tây thuộc họ hành, là một loại thực phẩm quen thuộc có chứa nhiều chất dinh dưỡng khác nhau cần thiết cho cơ thể con người. Hành tây giúp ngăn ngừa ung thư, tốt cho tim mạch, tăng cường sức khỏe xương, trị bệnh tiểu đường, tăng cường miễn dịch...",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://photo-cms-tpo.epicdn.me/w890/Uploaded/2023/rkznae/2020_04_06/Onion_Effective_In_Facilitating_1_UHQD.jpg"
+        },
+        {
+            "imageLink": "https://suckhoedoisong.qltns.mediacdn.vn/Images/duylinh/2017/02/28/hanh_tay_resize.jpg"
+        },
+        {
+            "imageLink": "https://suckhoedoisong.qltns.mediacdn.vn/thumb_w/640/324455921873985536/2022/10/27/01g39e8wa37frw0rkgq2-1666835432925-16668354332171757452862.jpg"
+        },
+        {
+            "imageLink": "https://soyte.namdinh.gov.vn/Uploads/2021/10/11/13/C%C3%B4ng-d%E1%BB%A5ng-c%E1%BB%A7a-h%C3%A0nh-t%C3%A2y--%C3%ADt-ng%C6%B0%E1%BB%9Di-bi%E1%BA%BFt-1.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 2
+    }
+},
+{
+    "productName": "Nghệ Đắk Lắk ",
+    "weight": 20,
+    "price": 6000,
+    "discount": 0,
+    "description": "Củ nghệ thường được sử dụng chủ yếu để làm gia vị trong nấu ăn. Trong nghệ có chứa curcumin, có công dụng rất tốt đối với sức khỏe. Thậm chí, nhiều nghiên cứu đã cho thấy, ăn nghệ có thể ngăn ngừa và phòng chống một số căn bệnh ung thư.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://nghehoangminhchauhungyen.com/wp-content/uploads/2018/04/tinh-bot-nghe-do-co-tac-dung-gi-.jpg"
+        },
+        {
+            "imageLink": "https://admin.nongsandungha.com/wp-content/uploads/2021/06/cu-nghe-tuoi-min.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/2021/06/content/1.1-800x450-4.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/2021/09/content/nghe-4-800x450.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 2
+    }
+},
+{
+    "productName": "Sầu riêng Bến Tre",
+    "weight": 80,
+    "price": 30000,
+    "discount": 0,
+    "description": "Sầu riêng cũng rất giàu polyphenol như flavonoid và carotenoid – những hợp chất có đặc tính chống oxy hóa. Nhờ đó sầu riêng có thể làm giảm nguy cơ mắc các bệnh mãn tính như bệnh tim mạch, ung thư và tiểu đường nếu được đưa vào chế độ ăn uống lành mạnh.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://icdn.dantri.com.vn/thumb_w/640/2021/04/27/saurieng-1-1619513938693.jpg"
+        },
+        {
+            "imageLink": "https://vinmec-prod.s3.amazonaws.com/images/20200419_080435_727532_nguon-dien-tuong-la.max-1800x1800.jpg"
+        },
+        {
+            "imageLink": "https://tieudung.kinhtedothi.vn/upload_images/images/2022/07/11/sau.jpg"
+        },
+        {
+            "imageLink": "https://phunuvietnam.mediacdn.vn/179072216278405120/2022/9/28/1-mui-sau-rieng-bao-nhieu-calo-1664332429456228873336.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 3
+    }
+},
+{
+    "productName": "Chanh Phan Thiết",
+    "weight": 20,
+    "price": 4500,
+    "discount": 0,
+    "description": "Chanh cung cấp rất nhiều vitamin C, chất xơ và các hợp chất thực vật có lợi khác nhau. Những chất dinh dưỡng này đem lại một số lợi ích cho sức khỏe. Trên thực tế, chanh có thể hỗ trợ sức khỏe tim mạch, kiểm soát cân nặng và sức khỏe hệ tiêu hóa.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://cdn.tgdd.vn/2020/12/CookProduct/32-1200x676.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/2020/12/content/cg5-800x500.jpg"
+        },
+        {
+            "imageLink": "https://www.thuocdantoc.org/wp-content/uploads/2019/08/vi-thuoc-chanh-1.jpg"
+        },
+        {
+            "imageLink": "https://sudospaces.com/karofi-com/2020/08/nuoc-chanh-xanh.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 3
+    }
+},
+{
+    "productName": "Gừng Lạng Sơn",
+    "weight": 20,
+    "price": 3000,
+    "discount": 0,
+    "description": "Gừng là gia vị quen thuộc, thường được sử dụng trong mỗi bữa ăn gia đình. Ngoài ra, gừng còn có nhiều công dụng tuyệt vời cho sức khỏe con người. Gừng giúp giảm đau xương khớp và đau cơ, giảm đau kinh nguyệt, kéo dài tuổi thọ, trị chứng buồn nôn...",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://vinmec-prod.s3.amazonaws.com/images/20210213_161302_989863_gung-tuoi.max-1800x1800.jpg"
+        },
+        {
+            "imageLink": "https://image-us.eva.vn/upload/2-2021/images/2021-06-29/tac-dung-cua-gung-va-cach-su-dung-gung-tac-dung-cua-gung-7-1624979806-110-width700height450.jpg"
+        },
+        {
+            "imageLink": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2021/10/28/gung-co-tac-dung-gi-2-1635438675606590955706.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/Files/2018/04/23/1083975/an-gung-tuoi-co-nen-got-vo-2_800x400.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 2
+    }
+},
+{
+    "productName": "Mướp Gia Lai",
+    "weight": 5,
+    "price": 2000,
+    "discount": 0,
+    "description": "Mướp là nguyên liệu quen thuộc trong bữa cơm gia đình. Các mẹ thường chế biến các món như: canh mướp thịt nạt, canh mướp nấu tôm, mướp xào thịt, mướp xào tôm... Mướp giúp giảm cân, cải thiện sức khỏe tiêu hóa, chống lão hóa, cân bằng cơ thể.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://vnn-imgs-f.vgcloud.vn/2019/07/02/10/an-muop-cach-nay-tot-hon-uong-nghin-vien-thuoc-bo-2.jpg"
+        },
+        {
+            "imageLink": "https://suckhoedoisong.qltns.mediacdn.vn/Images/nguyenkhanh/2017/07/07/nhung-cong-dung-tuyet-voi-cua-qua-muop-640x427.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/2021/06/CookProduct/muop1200-1200x676.jpg"
+        },
+        {
+            "imageLink": "https://i.ytimg.com/vi/4VpGUOPMVWA/maxresdefault.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 3
+    }
+},
+{
+    "productName": "Bí đỏ Ninh Thuận",
+    "weight": 75,
+    "price": 4000,
+    "discount": 0,
+    "description": "Bí đỏ là loại thực phẩm rất phổ biến trong bữa ăn hàng ngày của chúng ta. Bí đỏ giúp sáng mắt, tốt cho tim mạch, giảm cân, ngăn ngừa tiểu đường, phát triển não bộ... Có thể chế biến các món ăn như: canh bí đỏ với thịt hoặc xương, cháo hoặc súp bí đỏ...",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/6/11/bi-do-165488080453166199430.jpg"
+        },
+        {
+            "imageLink": "https://vinmec-prod.s3.amazonaws.com/images/20200516_075746_243987_bi-do-1.max-800x800.jpg"
+        },
+        {
+            "imageLink": "https://www.huongnghiepaau.com/wp-content/uploads/2022/03/nguyen-lieu-lam-sua-bi-do.jpg"
+        },
+        {
+            "imageLink": "https://digifood.vn/blog/wp-content/uploads/2021/12/nau-canh-bi-do-thit-bam-dinh-duong.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 3
+    }
+},
+{
+    "productName": "Đậu hà lan xanh Đà Lạt",
+    "weight": 15,
+    "price": 64000,
+    "discount": 0,
+    "description": "Đậu Hà Lan được coi là một loại rau giàu tinh bột, là thực phẩm có lượng carbs và calo cao hơn so với các loại rau khác. Đậu Hà Lan hỗ trợ sức khỏe tiêu hóa bằng cách tăng cường vi khuẩn có lợi trong đường ruột và thúc đẩy nhu động ruột thường xuyên.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://cdn.tgdd.vn/2020/10/CookProduct/peas-istock-JulijaDmitrijeva-1200x676.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/2020/10/content/5-tac-dung-cua-dau-ha-lan-tac-dung-phu-va-cac-mon-an-hap-dan-1-800x485.jpg"
+        },
+        {
+            "imageLink": "https://hatgiongf1.com/Uploads/croped/hat-giong-dau-ha-lan-lay-hat-112245-450x450.jpg"
+        },
+        {
+            "imageLink": "https://hoangnganvina.vn/uploads/news/2015_10/dau-ha-lan.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 1
+    }
+},
+{
+    "productName": "Nấm  hương Gia Lai",
+    "weight": 15,
+    "price": 20000,
+    "discount": 0,
+    "description": "Nấm hương vừa là loại thực phẩm có chứa ít calo và rất giàu chất xơ, vitamin B cùng một số khoáng chất, vừa là một thảo dược chữa bệnh.Nấm hương tươi và cả sấy khô có chứa rất nhiều chất dinh dưỡng, đem lại nhiều lợi ích tuyệt vời.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://cdn.tgdd.vn/Files/2017/06/20/994624/tac-dung-than-ky-cua-nam-huong-doi-voi-suc-khoe-ban-nen-biet-202103121445597305.jpg"
+        },
+        {
+            "imageLink": "https://namxanh.vn/wp-content/uploads/2020/03/nam-huong-nam-dong-co-2.jpg"
+        },
+        {
+            "imageLink": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Lentinula_edodes_20101113_a.jpg/1200px-Lentinula_edodes_20101113_a.jpg"
+        },
+        {
+            "imageLink": "https://vinmec-prod.s3.amazonaws.com/images/20210528_050602_610380_nam-huong.max-1800x1800.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 1
+    }
+},
+{
+    "productName": "Mộc nhĩ Quảng Ngãi",
+    "weight": 15,
+    "price": 21100,
+    "discount": 0,
+    "description": "Nấm mộc nhĩ (hay nấm tai mèo), rất phổ biến trong nhiều món ăn và cũng là một vị thuốc chữa bệnh. Loại nấm này có màu nâu đen và khi ăn khá giòn. Nấm mộc nhĩ có nhiều công dụng như giảm cholesteron trong máu, trị ho, tăng cường máu não,....",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://namxanh.vn/wp-content/uploads/2019/07/nam-meo-nam-moc-nhi-01.jpg"
+        },
+        {
+            "imageLink": "https://vinmec-prod.s3.amazonaws.com/images/20210616_020347_007190_moc_nhi.max-1800x1800.jpg"
+        },
+        {
+            "imageLink": "https://nghebep.com/wp-content/uploads/2018/06/moc-nhi-la-gi.jpg"
+        },
+        {
+            "imageLink": "https://suckhoehangngay.mediacdn.vn/thumb_w/650/154880486097817600/2020/7/20/tac-dung-cua-moc-nhi-15952335854481675264403.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 1
+    }
+},
+{
+    "productName": "Nấm rơm Quảng Ngãi",
+    "weight": 15,
+    "price": 2000,
+    "discount": 0,
+    "description": "Nấm rơm lành tính với nhiều chất dinh dưỡng. Khi ăn, bạn sẽ cảm nhận được vị ngọt mát, mọng nước rất ngon miệng từ nấm. Nấm rơm có hàm lượng cholesteron thấp, giúp nâng cao sức đề kháng, tốt cho bệnh đái tháo đường, ngăn chặn các tế bào ung thư,....",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://vinmec-prod.s3.amazonaws.com/images/20210607_141030_605615_nam-rom-co-tac-dung.max-1800x1800.jpg"
+        },
+        {
+            "imageLink": "https://product.hstatic.net/200000281397/product/upload_6bb5a9474c5442bf84a4b7e951fa31d5_1024x1024.jpg"
+        },
+        {
+            "imageLink": "https://upload.wikimedia.org/wikipedia/commons/f/fc/StrawMushroom.jpg"
+        },
+        {
+            "imageLink": "https://vinmec-prod.s3.amazonaws.com/images/20210605_153744_456985_nam-rom-lam-mon-gi-.max-1800x1800.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 1
+    }
+},
+{
+    "productName": "Nấm đùi gà Đà Lạt",
+    "weight": 15,
+    "price": 6000,
+    "discount": 0,
+    "description": "Nấm đùi gà có thân màu trắng với phần mũ nâu nhạt hoặc trắng xám, loại nấm này có kích thước khá to và khi ăn thì hơi dai và giòn. Nấm đùi gà không chỉ giúp bổ sung dinh dưỡng mà còn tốt cho sức khỏe và hỗ trợ phòng ngừa nhiều bệnh.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://cdn.tgdd.vn/Files/2020/11/07/1305375/4-cach-lam-nam-dui-ga-thom-ngot-hao-com-tai-nha-202201201148545217.jpg"
+        },
+        {
+            "imageLink": "https://namxanh.vn/wp-content/uploads/2020/03/nam-dui-ga-tuoi.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/Files/2021/03/11/1334368/bat-mi-cach-chon-nam-dui-ga-tuoi-ngon-cua-nguoi-trong-nam-202103111516457880.jpg"
+        },
+        {
+            "imageLink": "https://bizweb.dktcdn.net/100/435/899/products/e4bbb8af-8f83-4119-aa42-90df877d1498.jpg?v=1630978915303"
+        }
+    ],
+    "category": {
+        "categoryId": 1
+    }
+},
+{
+    "productName": "Bí đao Ninh Thuận",
+    "weight": 15,
+    "price": 2000,
+    "discount": 0,
+    "description": " Đặc tính của bí đao là thanh mát, thanh phế và lợi tiểu, bên cạnh đó loại quả này còn điều trị mụn và giúp đẹp da cũng rất hiệu quả. Khi dùng bạn nên nấu bí đao với các loại thực phẩm như thịt, xương, chân giò,... ăn ngon mà lại bổ dưỡng.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": " https://vinmec-prod.s3.amazonaws.com/images/20200610_153300_830912_nuoc-ep-bi-dao.max-1800x1800.jpg"
+        },
+        {
+            "imageLink": " https://cdn.tgdd.vn/2020/07/CookProduct/6-cach-lam-bi-dao-giam-can-cao-bi-dao-dep-da-an-toan-tai-nha-0-1200x676.jpg"
+        },
+        {
+            "imageLink": " https://product.hstatic.net/200000452921/product/luu-y-khi-giam-can-voi-bi-dao_12f1ec4b32894b46894916a4f1abf009.jpg"
+        },
+        {
+            "imageLink": " https://bizweb.dktcdn.net/100/010/432/products/bi-dao-chua-benh-2.jpg?v=1530625706200"
+        }
+    ],
+    "category": {
+        "categoryId": 3
+    }
+},
+{
+    "productName": "Củ sen Đăk Lăk",
+    "weight": 45,
+    "price": 2000,
+    "discount": 0,
+    "description": " Củ sen tươi có vị ngọt nhẹ và kết cấu giòn khi ăn sống, hơi bột khi nấu chín. Củ sen có tác dụng điều trị bệnh tim mạch, điều hòa huyết áp, lưu thông máu, bảo vệ gan, hỗ trợ kháng viêm, sáng da, tốt cho thần kinh, giảm cân.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": " https://suckhoedoisong.qltns.mediacdn.vn/Images/bichvan/2019/07/13/cu_sen.jpg"
+        },
+        {
+            "imageLink": " https://media.vneconomy.vn/images/upload/2021/04/21/sen-16025620627291274098498.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/2021/12/CookDish/cach-chon-mua-cu-sen-tuoi-ngon-va-cach-phan-biet-cu-sen-7-lo-avt-1200x676.jpg"
+        },
+        {
+            "imageLink": "https://images.aws.nestle.recipes/resized/fcd6f56911d2e2c759c2cf55d15e5bbb_Thumb-crop_(4)_944_531.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 2
+    }
+},
+{
+    "productName": "Củ sắn dây Quảng Nam",
+    "weight": 65,
+    "price": 3200,
+    "discount": 0,
+    "description": "Sắn dây có công dụng giải cơ thoái nhiệt, giảm cân, lưu thông máu, điều hòa huyết áp, trị sốt do ngoại cảm, đau cổ gáy, đau đầu, sởi, sốt cao khát nước, đái tháo đường, tiêu chảy, kiết lỵ, cao huyết áp, thiếu máu cơ tim, chảy máu ...",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": " https://images.baodantoc.vn/uploads/2020/Th%C3%A1ng%203/Ngay%202/tac-hai-va-tac-dung-cua-cu-san-day-doi-voi-suc-khoe-ban-can-biet-san1-1582020866-245-width1280height720.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/Files/2020/11/19/1307827/cu-san-va-cu-san-day-co-phai-la-mot-khong-202107292005339768.jpg"
+        },
+        {
+            "imageLink": "https://phunuvietnam.mediacdn.vn/thumb_w/700/179072216278405120/2022/11/5/an-cu-san-co-tac-dung-gi-1667619624972827631084-0-0-700-1120-crop-1667619630931970362332.jpg"
+        },
+        {
+            "imageLink": "https://i.ex-cdn.com/nongnghiep.vn/files/content/2023/01/18/san-tuoi-095335_114.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 2
+    }
+},
+{
+    "productName": "Bắp cải thảo Đà Lạt",
+    "weight": 100,
+    "price": 7500,
+    "discount": 0,
+    "description": "Cải thảo là món ăn quen thuộc và bắt vị đối với trẻ nhỏ. Nó có tác dụng giúp tăng sức đề kháng, ngăn ngừa các bệnh về tim mạch, kiểm soát huyết áp và tiểu đường, ngừa hen suyễn, cải thiện tiêu hóa, chống lão hóa, giúp da khỏe đẹp và sáng. ",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://cdn.tgdd.vn/2021/05/CookProduct/thumb1-1200x676.jpg"
+        },
+        {
+            "imageLink": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2021/10/29/caithaothumnail-163552301748427624753.jpg"
+        },
+        {
+            "imageLink": "https://michiannai.vn/wp-content/uploads/2019/11/cay-cai-thao.jpg"
+        },
+        {
+            "imageLink": "https://image.freepik.com/free-photo/preparation-salad-from-chinese-cabbage_2829-11722.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 1
+    }
+},
+{
+    "productName": "Xoài cát Hòa Lộc",
+    "weight": 100,
+    "price": 8000,
+    "discount": 0,
+    "description": "Lợi ích của xoài mang đến cho sức khỏe là rất lớn: tốt cho mắt và da, ngăn ngừa ung thư, tiêu hóa tốt, tốt cho người đang bị tiểu đường và thiếu máu. Hơn nữa, nó là loại trái cây có hương vị thơm ngon nên được rất nhiều người yêu thích.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://cdn.tgdd.vn/Files/2017/12/03/1047079/nguon-goc-xoai-cat-hoa-loc-va-cach-chon-xoai-cat-hoa-loc-tuoi-ngon-202302251347125690.jpg"
+        },
+        {
+            "imageLink": "https://www.btaskee.com/wp-content/uploads/2021/08/vo%CC%89-xoa%CC%80i-ca%CC%81t-hoa%CC%80-lo%CC%A3%CC%82n-ngon.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/2020/10/CookProduct/1-1200x676-46.jpg"
+        },
+        {
+            "imageLink": "https://photo-cms-tpo.epicdn.me/w890/Uploaded/2023/rkznae/2020_11_23/1574750592_4663ca7c57ee00aec30305c0167bf6d9_YJMM.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 3
+    }
+},
+{
+    "productName": "Bòn bon Tiên Phước giống Thái",
+    "weight": 100,
+    "price": 6200,
+    "discount": 0,
+    "description": "Bòn bon là loại quả không phải chỉ ăn cho “vui miệng” mà còn có nhiều tác dụng tốt cho sức khỏe: có lợi cho xương, răng và tóc, chống lão hóa, bổ sung vitamin C, tăng cường để kháng, cải thiện tiêu hóa và ngăn ngừa các bệnh về tim mạch và ung thư.",
+    "status": true,
+    "productImages": [
+        {
+            "imageLink": "https://cdn.tgdd.vn/Files/2021/03/11/1334399/qua-bon-bon-la-gi-loi-ich-cua-qua-bon-bon-voi-suc-khoe-202201171309501376.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/2021/11/CookDish/bon-bon-an-nhu-the-nao-cach-chon-mua-bon-bon-va-an-bon-bon-avt-1200x676.jpg"
+        },
+        {
+            "imageLink": "https://cdn.tgdd.vn/Files/2021/03/11/1334399/qua-bon-bon-la-gi-loi-ich-cua-qua-bon-bon-voi-suc-khoe-202103111603502898.jpg"
+        }
+    ],
+    "category": {
+        "categoryId": 3
     }
 }
 ]
