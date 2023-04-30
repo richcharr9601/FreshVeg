@@ -88,7 +88,9 @@ public class SecurityConfig {
             .requestMatchers("/statistic/**").hasAuthority("ADMIN")
             .requestMatchers("/checkout/**").hasAuthority("USER")
             .requestMatchers("/user/**").hasAuthority("USER")
-            .requestMatchers("/order/**").hasAuthority("USER");          
+            .requestMatchers("/orderUser/**").hasAuthority("USER")
+            .requestMatchers("/orderAdmin/**").hasAuthority("ADMIN")
+            .requestMatchers("/order/**").permitAll();         
     return http.build();
   }
 

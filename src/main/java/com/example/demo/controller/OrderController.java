@@ -48,7 +48,6 @@ import com.example.demo.service.imp.ProductService;
 import com.example.demo.service.imp.OrderDetailService;
 
 @RestController
-@RequestMapping("/order")
 public class OrderController {
 
     ModelMapper modelMapper;
@@ -69,7 +68,7 @@ public class OrderController {
 
     @Autowired
     private ProductRepository productRepository;
-    @GetMapping("all")
+    @GetMapping("orderAdmin/all")
     public ResponseEntity<List<OrderDTO>> getOrders() {
         List<Order> orders = orderService.findAll();
         
@@ -81,14 +80,13 @@ public class OrderController {
                 }.getType()));
     }
 
-    @GetMapping("{orderId}")
+    @GetMapping("order/{orderId}")
     public ResponseEntity<OrderDTO> getOrderByOrderId(@PathVariable("orderId") Long oid) {
         Order order = orderRepository.findByOrderId(oid);
         return ResponseEntity.ok(modelMapper.map(order, OrderDTO.class));
-
     }
 
-    @GetMapping("all/{userId}")
+    @GetMapping("orderUser/all/{userId}")
     public ResponseEntity<List<OrderDTO>> getOrderByOrderIdAndUserId(@PathVariable("userId") Long uid) {
         List<Order> orders = orderRepository.findByUserUserId(uid);
 
@@ -99,7 +97,7 @@ public class OrderController {
                 }.getType()));
     }
 
-    @GetMapping("user/{userId}")
+    @GetMapping("orderUser/user/{userId}")
     public ResponseEntity<List<OrderDTO>> getOrdersByUserId(@PathVariable("userId") Long uid) {
         List<Order> orders = orderRepository.findByUserUserId(uid);
 
@@ -109,7 +107,7 @@ public class OrderController {
     }
 
     // @PreAuthorize("#userId == authentication.principal.userId")
-    @PostMapping("add")
+    @PostMapping("orderUser/add")
     public ResponseEntity<OrderDTO> addOrder(@RequestBody OrderDTO orderDTO)
             throws BadRequest {
         Date date = new Date();
@@ -155,21 +153,21 @@ public class OrderController {
         return ResponseEntity.ok("Cannot delete");
     }
 
-    @PatchMapping("{orderId}/confirmed")
+    @PatchMapping("orderAdmin/{orderId}/confirmed")
     public ResponseEntity<Object> confirmOrder(@PathVariable("orderId") Long id)
             throws BadRequest {
         return orderService.confirmOrder(id, OrderStatus.Confirmed) ? ResponseEntity.ok("Confirmed Order")
                 : ResponseEntity.notFound().build();
     }
 
-    @PatchMapping("{orderId}/success")
+    @PatchMapping("orderAdmin/{orderId}/success")
     public ResponseEntity<Object> orderSuccess(@PathVariable("orderId") Long id)
             throws BadRequest {
         return orderService.orderSuccess(id, OrderStatus.Success) ? ResponseEntity.ok("Successfully")
                 : ResponseEntity.notFound().build();
     }
 
-    @PatchMapping("{orderId}/failed")
+    @PatchMapping("orderAdmin/{orderId}/failed")
     public ResponseEntity<Object> orderFailed(@PathVariable("orderId") Long id)
             throws BadRequest {              
         return orderService.orderFailed(id, OrderStatus.Failed) ? ResponseEntity.ok("Failed")
@@ -177,7 +175,7 @@ public class OrderController {
     }
     
 
-    @PatchMapping("{orderId}/cancel")
+    @PatchMapping("order/{orderId}/cancel")
     public ResponseEntity<Object> orderCancel(@PathVariable("orderId") Long id)
             throws BadRequest {
                 Order order = orderRepository.findByOrderId(id);

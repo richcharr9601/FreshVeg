@@ -113,7 +113,7 @@ public class ProductController {
         return ResponseEntity.ok(modelMapper.map(productService.editProduct(id, productDTO), ProductDTO.class));
     }
 
-    @DeleteMapping()
+    @DeleteMapping("delete")
     public ResponseEntity<String> deleteProduct(@RequestBody Product product)
             throws BadRequest {
         Boolean result = productRepository.existsById(product.getProductId());
