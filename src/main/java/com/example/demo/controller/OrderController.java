@@ -109,7 +109,7 @@ public class OrderController {
     }
 
     // @PreAuthorize("#userId == authentication.principal.userId")
-    @PostMapping()
+    @PostMapping("add")
     public ResponseEntity<OrderDTO> addOrder(@RequestBody OrderDTO orderDTO)
             throws BadRequest {
         Date date = new Date();
@@ -144,7 +144,7 @@ public class OrderController {
       return ResponseEntity.ok(modelMapper.map(order, OrderDTO.class));
     }
 
-    @DeleteMapping()
+    @DeleteMapping("delete")
     public ResponseEntity<String> deleteOrder(@RequestBody Order order)
             throws BadRequest {
         Boolean result = orderRepository.existsById(order.getOrderId());

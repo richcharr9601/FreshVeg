@@ -81,7 +81,7 @@ public class SecurityConfig {
             .requestMatchers("/user/**").hasAuthority("USER")
             .requestMatchers("/auth/**").permitAll()
             .requestMatchers("/oauth/**").permitAll()
-            .requestMatchers("/checkout/payment-information/**").hasAuthority("USER")
+            .requestMatchers("/checkout/payment-information/**").permitAll()
             .requestMatchers("/address/**").hasAuthority("USER")
             .requestMatchers("/product/**").hasAuthority("ADMIN")
             .requestMatchers("/category/**").hasAuthority("ADMIN")
