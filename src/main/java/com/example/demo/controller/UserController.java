@@ -58,10 +58,8 @@ public class UserController {
     @PutMapping("/{userId}")
     public ResponseEntity<UserDTO> editUser(@PathVariable("userId") Long userId, @RequestBody UserDTO userDto)
             throws BadRequest {
-                User user = modelMapper.map(userDto, User.class);
-                user.setUserId(userId);
-                UserDTO updatedUser = modelMapper.map(userService.editUser(userId, user), UserDTO.class);
-        return ResponseEntity.ok(updatedUser);
+                
+        return ResponseEntity.ok(modelMapper.map(userService.editUser(userId,userDto), UserDTO.class));
     }
 
     @PatchMapping("/{id}/password")

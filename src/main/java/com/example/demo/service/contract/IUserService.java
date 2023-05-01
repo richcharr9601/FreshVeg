@@ -15,6 +15,6 @@ public interface IUserService extends IService<User, Long> {
 
     Optional<Role> addRole(Long userId, Long roleId);
 
-    User editUser (Long userId, User user);
+    User editUser (Long userId, UserDTO userDTO);
     
 }

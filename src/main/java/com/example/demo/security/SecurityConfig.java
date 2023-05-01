@@ -90,7 +90,7 @@ public class SecurityConfig {
             .requestMatchers("/user/**").hasAuthority("USER")
             .requestMatchers("/orderUser/**").hasAuthority("USER")
             .requestMatchers("/orderAdmin/**").hasAuthority("ADMIN")
-            .requestMatchers("/order/**").permitAll();         
+            .requestMatchers("/order/**").authenticated();  
     return http.build();
   }
 

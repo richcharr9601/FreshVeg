@@ -61,7 +61,20 @@ public class UserService extends EntityService<User, Long> implements IUserServi
         return Optional.empty();
     }
 
-    public User editUser (Long userId, User user){
+    public User editUser (Long userId, UserDTO userDTO){
+        User user = userRepository.findByUserId(userId);
+        user.setAvatar(userDTO.getAvatar());
+        user.setName(userDTO.getName());
+        user.setBirthday(userDTO.getBirthday());
+        user.setAddress(user.getAddress());
+        user.setEmail(user.getEmail());
+        user.setIsVerified(user.getIsVerified());
+        user.setOtp(user.getOtp());
+        user.setPassword(user.getPassword());
+        user.setRegisterDate(user.getRegisterDate());
+        user.setRoles(user.getRoles());
+        user.setUserId(userId);
+        user.setStatus(user.getStatus());
         return userRepository.save(user);
     }
 }
