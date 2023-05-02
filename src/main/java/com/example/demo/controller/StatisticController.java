@@ -120,4 +120,9 @@ public class StatisticController {
         return ResponseEntity.ok(modelMapper.map(top10, new TypeToken<List<ProductStatisticDTO>>() {
         }.getType()));
     }
+
+    @GetMapping("userwithorder/{userId}")
+    public ResponseEntity<StatisticUserDTO> userWithOrder(@PathVariable("userId") Long id) {
+        return ResponseEntity.ok(modelMapper.map(userRepository.userWithOrder(id), StatisticUserDTO.class));
+    }
 }

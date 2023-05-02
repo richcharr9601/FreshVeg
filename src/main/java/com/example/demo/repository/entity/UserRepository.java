@@ -19,4 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	@Query(value = "SELECT u.USER_ID, u.NAME,u.AVATAR, COUNT(*) AS OrderCount FROM USERS u JOIN ORDERS o ON u.USER_ID = o.USER_ID GROUP BY u.NAME,u.AVATAR,u.USER_ID ORDER BY OrderCount DESC FETCH FIRST 10 ROWS ONLY", nativeQuery = true)
 	List<StatisticUserDTO> list10UserWithMostOrder();
 
+	@Query(value = "SELECT u.USER_ID, u.NAME,u.AVATAR, COUNT(*) AS OrderCount FROM USERS u JOIN ORDERS o ON u.USER_ID = o.USER_ID WHERE o.USER_ID = ? GROUP BY u.NAME,u.AVATAR,u.USER_ID ORDER BY OrderCount", nativeQuery = true)
+	StatisticUserDTO userWithOrder (Long userId);
+
 }
