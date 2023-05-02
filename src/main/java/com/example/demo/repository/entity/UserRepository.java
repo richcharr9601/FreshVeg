@@ -16,7 +16,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	boolean existsByEmail(String email);
     User findByUserId(Long userId);
 
-	@Query(value = "SELECT u.NAME,u.AVATAR, COUNT(*) AS OrderCount FROM USERS u JOIN ORDERS o ON u.USER_ID = o.USER_ID GROUP BY u.NAME,u.AVATAR ORDER BY OrderCount DESC FETCH FIRST 10 ROWS ONLY", nativeQuery = true)
+	@Query(value = "SELECT u.USER_ID, u.NAME,u.AVATAR, COUNT(*) AS OrderCount FROM USERS u JOIN ORDERS o ON u.USER_ID = o.USER_ID GROUP BY u.NAME,u.AVATAR,u.USER_ID ORDER BY OrderCount DESC FETCH FIRST 10 ROWS ONLY", nativeQuery = true)
 	List<StatisticUserDTO> list10UserWithMostOrder();
 
 }
