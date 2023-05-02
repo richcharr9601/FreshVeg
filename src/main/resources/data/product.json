@@ -1,6 +1,6 @@
 [{
     "productName": "Củ cần Tây Đà Lạt",
-    "weight": 10,
+    "weight": 100,
     "price": 6000,
     "discount": 0,
     "description": "Củ cần tây hay còn có tên gọi khác là celeriac.Nguồn dinh dưỡng của củ cần tây cao, trong một 100 gram, chứa: 9,2gr tinh bột, 1,8gr chất xơ, 1,5gr chất béo, 0,3gr protein và các loại vitamin, kali,... Bạn có thể dùng chủ yếu về các món hấp và salad.",
@@ -22,7 +22,7 @@
 },
 {
     "productName": "Cà chua bi Gia Lai",
-    "weight": 20,
+    "weight": 200,
     "price": 3500,
     "discount": 0,
     "description": "Cà chua là một nhà máy dinh dưỡng vì nó cung cấp rất giàu vitamin A, C, K... Cà chua có nhiều lợi ích như: cải thiện thị lực, làm sáng da, giảm lượng đường trong máu, giúp giảm cân. Bạn có thể ăn sống kẹp với bánh mì, salad, sốt, sinh tố.",
@@ -47,7 +47,7 @@
 },
 {
     "productName": "Cà rốt Đà Lạt",
-    "weight": 1,
+    "weight": 150,
     "price": 2200,
     "discount": 0,
     "description": "Cà rốt là loại củ có thể mang lại sức khỏe cho con người, làm đẹp cho da, tóc… giúp bạn phòng chống ung thư và chống lão hóa. Cà rốt có thể chế biến thành nhiều món như: thịt bò nấu cà rốt, súp lơ xào cà rốt, cà rốt hầm xương, cháo, nước ép.",
@@ -72,7 +72,7 @@
 },
 {
     "productName": "Cải xoăn Kale Đà Lạt",
-    "weight": 10,
+    "weight": 50,
     "price": 4500,
     "discount": 0,
     "description": "Cải xoăn chứa nhiều flavonoid và sắt giúp giảm nguy cơ đột quỵ và vận chuyển canxi tới tất cả các tế bào trong cơ thể. Cải xoăn có thể cải thiện trí nhớ, chức năng và hoạt động não. Cải xoăn có thể dùng để hấp, xào, trộn salad hoặc ép làm nước uống.",
@@ -97,7 +97,7 @@
 },
 {
     "productName": "Rau mồng tơi hữu cơ Quảng Nam",
-    "weight": 15,
+    "weight": 80,
     "price": 3350,
     "discount": 0,
     "description": "Rau mồng tơi có tác dụng làm lành vết thương, trị mụn nhọt, say nắng, đẹp da, trị tiểu khó, chữa bỏng, lợi sữa, thanh nhiệt, giải độc, trị táo bón, bệnh trĩ. Rau mồng tơi dùng để chế biến các món ăn: canh cua, canh tôm, canh thịt, mồng tơi xào tỏi…",
@@ -141,7 +141,7 @@
 },
 {
     "productName": "Thanh long ruột đỏ Cần Thơ",
-    "weight": 10,
+    "weight": 95,
     "price": 5900,
     "discount": 0,
     "description": "Trong quả thanh long có chứa rất nhiều chất dinh dưỡng quý giá với cơ thể.  Thanh Long ruột đỏ được biết đến như là loại thanh long ngọt và giàu chất dinh dưỡng hơn thanh long trắng. Ruột thanh long  có thể dùng để ăn trực tiếp hoặc xay sinh tố.",
@@ -163,7 +163,7 @@
 },
 {
     "productName": "Bông cải xanh Đà Lạt",
-    "weight": 1,
+    "weight": 120,
     "price": 3550,
     "discount": 0,
     "description": "Bông cải xanh có rất nhiều lợi ích như ngăn ngừa ung thư, bảo vệ tim mạch, giúp xương chắc khỏe, cải thiện trí nhớ, bảo vệ mắt, điều hòa huyết áp, chống oxy hóa... Bông cải xanh có thể dùng để luộc hay làm các món xào với thịt lợn, salad, súp, cháo.",
