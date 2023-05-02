@@ -236,7 +236,10 @@ public ResponseEntity<?>  transactionHandle (
         orderRepository.save(order);
         result.setStatus("00");
         result.setMessage("Checkout successfully");
-        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("http://localhost:5173/order-success")).body(result);
+        var uri = UriComponentsBuilder.fromHttpUrl("http://localhost:5173/order-success/")
+                    .queryParam("orderId", txnRef)
+                    .build();
+            return ResponseEntity.status(HttpStatus.FOUND).location(uri.toUri()).build();
     }
     return ResponseEntity.status(HttpStatus.OK).body(result);
 }
