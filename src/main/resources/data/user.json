@@ -4,6 +4,7 @@
     "email": "thien@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
+    "isVerified": 1,
     "roles": [
       {
         "id": 1
@@ -15,6 +16,7 @@
     "email": "chukhanhdoan@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
+    "isVerified": 1,
     "roles": [
       {
         "id": 1
@@ -26,6 +28,7 @@
     "email": "hoangdeptrai@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
+    "isVerified": 1,
     "roles": [
       {
         "id": 2
@@ -37,6 +40,7 @@
     "email": "namnghien@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
+    "isVerified": 1,
     "roles": [
       {
         "id": 2

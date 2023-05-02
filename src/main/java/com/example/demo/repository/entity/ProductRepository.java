@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.dto.ProductDTO;
+import com.example.demo.dto.ProductStatisticDTO;
 import com.example.demo.entities.Category;
 import com.example.demo.entities.Product;
 @Repository
@@ -56,6 +57,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 	@Query(value= "SELECT * FROM products ORDER BY entered_date DESC FETCH FIRST 10 ROWS ONLY", nativeQuery = true)
 	List<Product> list10NewestProduct();
+
+	@Query(value="SELECT products.product_name, products.weight, COUNT(*) as OrderCount FROM order_details JOIN products ON order_details.product_id = products.product_id GROUP BY products.product_name, products.weight ORDER BY OrderCount DESC FETCH FIRST 10 ROWS ONLY", nativeQuery = true)
+	List<ProductStatisticDTO> list10ProductBeBought();
 
 
 }

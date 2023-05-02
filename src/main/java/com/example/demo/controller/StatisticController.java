@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.APIResponse;
 import com.example.demo.dto.ProductDTO;
+import com.example.demo.dto.ProductStatisticDTO;
 import com.example.demo.dto.StatisticUserDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.entities.Product;
@@ -111,5 +112,12 @@ public class StatisticController {
         Optional<User> userOptional = userService.findByID(id);
         return userOptional.map(c -> ResponseEntity.ok(modelMapper.map(c, UserDTO.class)))
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("top10ProductBeBought")
+    public ResponseEntity<List<ProductStatisticDTO>> top10ProductBeBought() {
+        var top10 = productRepository.list10ProductBeBought();
+        return ResponseEntity.ok(modelMapper.map(top10, new TypeToken<List<ProductStatisticDTO>>() {
+        }.getType()));
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.demo.entities.Address;
 import com.example.demo.entities.Category;
+import com.example.demo.entities.Order;
 import com.example.demo.entities.Product;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
@@ -30,7 +31,7 @@ public class DbInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Initialize(new Class[] { Role.class, User.class, Category.class, Product.class, Address.class});
+        Initialize(new Class[] { Role.class, User.class, Category.class, Product.class, Address.class, Order.class});
     }
 
     private void Initialize(Class[] entityTypes) {

@@ -11,9 +11,11 @@ import org.hibernate.annotations.ParamDef;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -75,7 +77,7 @@ public class Order implements Serializable {
     }
 
 	@OneToMany(mappedBy = "order")
-	@JsonIgnore
+	@JsonManagedReference
 	private Set<OrderDetail> orderDetails;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
@@ -85,7 +87,7 @@ public class Order implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "userId")
-	@JsonIgnore
+	@JsonBackReference
 	private User user;
 
 }

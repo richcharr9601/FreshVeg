@@ -20,7 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class OrderDTO {
     private Long orderId;
-    private Long userId;
+    // private Long userId;
     private String phone;
     private int amount;
     private Boolean statusPayment;
@@ -31,4 +31,5 @@ public class OrderDTO {
 
     @JsonManagedReference
     private Set<OrderDetailDTO> orderDetails;
+    private UserDTO user;
 }

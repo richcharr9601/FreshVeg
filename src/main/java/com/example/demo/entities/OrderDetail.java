@@ -46,6 +46,6 @@ public class OrderDetail implements Serializable {
 	@MapsId("orderId")
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "orderId")
-	@JsonIgnore
+	@JsonBackReference
 	private Order order;
 }

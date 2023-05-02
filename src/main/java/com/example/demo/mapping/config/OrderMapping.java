@@ -22,11 +22,11 @@ public class OrderMapping extends MappingConfig {
         });
 
         modelMapper.typeMap(OrderDTO.class, Order.class).addMappings(mapper -> {
-            mapper.map(src -> src.getUserId(), (dest, v) -> dest.getUser().setUserId((Long)v));
+            mapper.map(src -> src.getUser().getUserId(), (dest, v) -> dest.getUser().setUserId((Long)v));
         });
         
         modelMapper.typeMap(Order.class, OrderDTO.class).addMappings(mapper -> {
-            mapper.map(src -> src.getUser().getUserId(), (dest, v) -> dest.setUserId((Long)v));
+            mapper.map(src -> src.getUser().getUserId(), (dest, v) -> dest.getUser().setUserId((Long)v));
         });
 
         modelMapper.typeMap(OrderDTO.class, Order.class).addMappings(mapper -> {
