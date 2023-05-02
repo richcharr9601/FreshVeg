@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.dto.StatisticUserDTO;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.entities.User;
 
 import java.util.List;
@@ -21,5 +22,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	@Query(value = "SELECT u.USER_ID, u.NAME,u.AVATAR, COUNT(*) AS OrderCount FROM USERS u JOIN ORDERS o ON u.USER_ID = o.USER_ID WHERE o.USER_ID = ? GROUP BY u.NAME,u.AVATAR,u.USER_ID ORDER BY OrderCount", nativeQuery = true)
 	StatisticUserDTO userWithOrder (Long userId);
+
+	@Query(value = "SELECT u.* FROM users u JOIN users_roles ur ON u.USER_ID = ur.USER_ID WHERE ur.role_id = 2", nativeQuery = true)
+	List<User> listAllUserByRoleId();
 
 }

@@ -1,7 +1,7 @@
 [
   {
-    "name": "Hồ Hữu Tình",
-    "email": "thien@gmail.com",
+    "name": "FreshVeg Admin",
+    "email": "freshvegowner@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
     "isVerified": 1,
@@ -12,20 +12,20 @@
     ]
   },
   {
-    "name": "Chu Khánh Đoan",
-    "email": "chukhanhdoan@gmail.com",
+    "name": "Lê Anh Đức",
+    "email": "leanhduc@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
     "isVerified": 1,
     "roles": [
       {
-        "id": 1
+        "id": 2
       }
     ]
   },
   {
-    "name": "Phạm Tấn Hoàng",
-    "email": "hoangdeptrai@gmail.com",
+    "name": "Phạm Ngọc Ái Liên",
+    "email": "phamngocailien@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
     "isVerified": 1,
@@ -37,7 +37,7 @@
   },
   {
     "name": "Nguyễn Phương Nam",
-    "email": "namnghien@gmail.com",
+    "email": "nguyenphuongnam@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
     "isVerified": 1,
@@ -48,38 +48,14 @@
     ]
   },
   {
-    "name": "Trần Quốc Khanh",
-    "email": "khanhbeo@gmail.com",
+    "name": "Trần Ngọc Toàn",
+    "email": "tranngoctoan@gmail.com",
     "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
     "avatar": "",
     "isVerified": 1,
     "roles": [
       {
         "id": 2
-      }
-    ]
-  },
-  {
-    "name": "Toàn",
-    "email": "richcharr4869@gmail.com",
-    "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
-    "avatar": "",
-    "isVerified": 1,
-    "roles": [
-      {
-        "id": 2
-      }
-    ]
-  },
-  {
-    "name": "Thinhj",
-    "email": "richcharr9601@gmail.com",
-    "password": "$2a$10$yuhoAhDNsn3WyT4k.CEG0.u6h9bdBRI8py6LQiLJ2JNtLW6aednAG",
-    "avatar": "",
-    "isVerified": 1,
-    "roles": [
-      {
-        "id": 1
       }
     ]
   }

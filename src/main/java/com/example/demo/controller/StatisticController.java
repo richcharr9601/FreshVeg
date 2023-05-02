@@ -103,7 +103,7 @@ public class StatisticController {
     @GetMapping("user/all")
     public ResponseEntity<List<UserDTO>> getUsers() {
         return ResponseEntity.ok(
-                modelMapper.map(userService.findAll(), new TypeToken<List<UserDTO>>() {
+                modelMapper.map(userRepository.listAllUserByRoleId(), new TypeToken<List<UserDTO>>() {
                 }.getType()));
     }
 
