@@ -31,5 +31,6 @@ public class OrderDTO {
 
     @JsonManagedReference
     private Set<OrderDetailDTO> orderDetails;
+    
     private UserDTO user;
 }
