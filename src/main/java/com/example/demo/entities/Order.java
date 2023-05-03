@@ -63,7 +63,7 @@ public class Order implements Serializable {
     private OrderStatus status;
 	private Boolean deleted = Boolean.FALSE;
 
-	public enum OrderStatus {
+	public enum OrderStatus{
 		Confirmed,
 		onWaitingConfirm,
 		Success,
@@ -71,10 +71,14 @@ public class Order implements Serializable {
 		Cancel
 	}
 
-	@PrePersist
-    public void prePersist() {
-        this.status = OrderStatus.onWaitingConfirm;
-    }
+	public String getStatus() {
+		return status.name();
+	}
+
+	// @PrePersist
+    // public void prePersist() {
+    //     this.status = OrderStatus.onWaitingConfirm;
+    // }
 
 	@OneToMany(mappedBy = "order",cascade = CascadeType.MERGE)
 	@JsonManagedReference
@@ -89,5 +93,6 @@ public class Order implements Serializable {
 	@JoinColumn(name = "userId")
 	@JsonBackReference
 	private User user;
+
 
 }
