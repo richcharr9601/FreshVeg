@@ -13,4 +13,6 @@ import com.example.demo.entities.Product;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
+
+    Category findByCategoryId(Long categoryId);
 }

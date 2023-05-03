@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import com.example.demo.dto.ProductDTO;
 import com.example.demo.entities.Category;
 import com.example.demo.entities.Product;
+import com.example.demo.repository.entity.CategoryRepository;
 import com.example.demo.repository.entity.ProductRepository;
 import com.example.demo.service.contract.IProductService;
 
@@ -22,6 +23,9 @@ public class ProductService extends EntityService<Product, Long> implements IPro
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public ProductService() {
         super(Product.class);
@@ -51,8 +55,7 @@ public class ProductService extends EntityService<Product, Long> implements IPro
         product.setDiscount(productDTO.getDiscount());
         product.setEnteredDate(date);
         product.setStatus(productDTO.getStatus());
-        Category category = new Category();
-        // category.setCategoryId(productDTO.getCategory());
+        Category category = categoryRepository.findByCategoryId(productDTO.getCategory().getCategoryId());
         product.setCategory(category);
         return productRepository.save(product);
     }
