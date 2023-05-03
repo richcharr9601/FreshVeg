@@ -76,7 +76,7 @@ public class Order implements Serializable {
         this.status = OrderStatus.onWaitingConfirm;
     }
 
-	@OneToMany(mappedBy = "order")
+	@OneToMany(mappedBy = "order",cascade = CascadeType.MERGE)
 	@JsonManagedReference
 	private Set<OrderDetail> orderDetails;
 
