@@ -19,6 +19,6 @@ public class OrderDetailDTO {
     private Double weight;
     private Double price;
 
-    // @JsonBackReference
-    // private OrderDTO order;
+    @JsonBackReference
+    private OrderDTO order;
 }
